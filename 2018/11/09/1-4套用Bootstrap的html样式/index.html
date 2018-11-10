@@ -5,15 +5,22 @@
   
 
   
-  <title>Hexo</title>
+  <title>1.4 套用 Bootstrap 的 html 样式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="目标上一节只是“挂上”Bootstrap 使用的 CSS这一节则是让全站的 HTML 架构，套用 Bootstrap 的制服 步骤Step 1. 新增 app/views/common 资料夹mkdir app/views/common Step 2. 新增 navbartouch app/views/common/_navbar.html.erb 填入 app/views/common/_nav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.4 套用 Bootstrap 的 html 样式">
+<meta property="og:url" content="http://yoursite.com/2018/11/09/1-4套用Bootstrap的html样式/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目标上一节只是“挂上”Bootstrap 使用的 CSS这一节则是让全站的 HTML 架构，套用 Bootstrap 的制服 步骤Step 1. 新增 app/views/common 资料夹mkdir app/views/common Step 2. 新增 navbartouch app/views/common/_navbar.html.erb 填入 app/views/common/_nav">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx24w3ie8rj311i0hojuk.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx256a1dllj31kw0kjq5h.jpg">
+<meta property="og:updated_time" content="2018-11-09T13:49:23.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="1.4 套用 Bootstrap 的 html 样式">
+<meta name="twitter:description" content="目标上一节只是“挂上”Bootstrap 使用的 CSS这一节则是让全站的 HTML 架构，套用 Bootstrap 的制服 步骤Step 1. 新增 app/views/common 资料夹mkdir app/views/common Step 2. 新增 navbartouch app/views/common/_navbar.html.erb 填入 app/views/common/_nav">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx24w3ie8rj311i0hojuk.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,238 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/05/hello-world/" class="article-date">
-  <time datetime="2018-11-05T09:34:17.729Z" itemprop="datePublished">2018-11-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<p><strong>哈哈哈哈哈</strong></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/05/hello-world/" data-id="cjoathp3o0003v46cedl0zvgr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1-0前言Rails101" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/08/1-0前言Rails101/" class="article-date">
-  <time datetime="2018-11-08T01:46:16.000Z" itemprop="datePublished">2018-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/08/1-0前言Rails101/">Rails101</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。</p>
-<p>我的logdown上有我总结的很多问题的解答，地址是：<a href="http://zehuama.logdown.com/archives" target="_blank" rel="noopener">Logdown</a><br>希望能够帮到一些朋友。</p>
-<p>课程以mac电脑开发。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-0前言Rails101/" data-id="cjoathp3c0000v46cf3tx49lc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1-1开始101" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/08/1-1开始101/" class="article-date">
-  <time datetime="2018-11-08T01:45:03.000Z" itemprop="datePublished">2018-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/08/1-1开始101/">1.1 本章目标</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目标<br>这一章的最终目标，是让各位同学在本章结束后，可以得到一个套好 Boostrap 样式的空专案。</p>
-<p>最后成果会长成这样：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx256a1dllj31kw0kjq5h.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-1开始101/" data-id="cjoathp3k0001v46crdo8zp2i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1-2建立新的专案" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/08/1-2建立新的专案/" class="article-date">
-  <time datetime="2018-11-08T03:06:30.000Z" itemprop="datePublished">2018-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/08/1-2建立新的专案/">1.2 建立新的专案</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
-<li>这一节的目标，是要带领大家建立一个新的全新 Rails 空专案。</li>
-</ul>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-确认-Ruby-版本"><a href="#Step-1-确认-Ruby-版本" class="headerlink" title="Step 1. 确认 Ruby 版本"></a>Step 1. 确认 Ruby 版本</h2><p>输入 ruby -v<br>确认一下现在的 Ruby 版本。</p>
-<h2 id="Step-2-确认-Rails-版本（版本-5-0-0-或以上"><a href="#Step-2-确认-Rails-版本（版本-5-0-0-或以上" class="headerlink" title="Step 2. 确认 Rails 版本（版本 5.0.0 或以上)"></a>Step 2. 确认 Rails 版本（版本 5.0.0 或以上)</h2><p>输入 rails -v<br>确认现在的Rails版本 。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx1owf1osfj30tm05gmy4.jpg" alt=""></p>
-<h2 id="Step-3-建立一个新-Rails-专案"><a href="#Step-3-建立一个新-Rails-专案" class="headerlink" title="Step 3. 建立一个新 Rails 专案"></a>Step 3. 建立一个新 Rails 专案</h2><p>输入 <code>rails new rails101</code> (我新建的folder是rails01-7)</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx1ox7ver4j30wm0mitdl.jpg" alt="-w140"></p>
-<h2 id="Step-4-进入新建好的专案-并建立-git-做版本控制"><a href="#Step-4-进入新建好的专案-并建立-git-做版本控制" class="headerlink" title="Step 4. 进入新建好的专案, 并建立 git 做版本控制"></a>Step 4. 进入新建好的专案, 并建立 git 做版本控制</h2><p>请跟着指南，手打输入每一行指令。</p>
-<p><code>cd rails101</code><br><code>git init</code><br><code>git add .</code><br><code>git commit -m &quot;Initial Commit&quot;</code></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx1r6ti0wfj30yy0akdi8.jpg" alt=""></p>
-<p>解说<br>未来在做这个专案练习时，记得每做一个章节，就把程式码 commit 一次。等于每一个章节都建立一个存档点。<br>这样子的话，如果之后改烂，或是改出来你不喜欢，你都可以利用 git 来“还原”到先前的状态。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-2建立新的专案/" data-id="cjoathp3m0002v46czrn89v9d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1-3帮rails专案穿上bootstrap" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/09/1-3帮rails专案穿上bootstrap/" class="article-date">
-  <time datetime="2018-11-09T07:32:45.000Z" itemprop="datePublished">2018-11-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/09/1-3帮rails专案穿上bootstrap/">1.3帮rails专案穿上bootstrap</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>本章的作业目标，是要带领各位把目前的空专案，穿上“衣服”，让各位在做这个程式练习时，不再感到专案是在“裸奔”！</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx256a1dllj31kw0kjq5h.jpg" alt=""></p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch01"><a href="#Step-0-git-checkout-b-ch01" class="headerlink" title="Step 0. git checkout -b ch01"></a>Step 0. git checkout -b ch01</h2><p>这里我们要来示范一个 git 功能，输入：</p>
-<p><code>git checkout -b ch01</code></p>
-<p>等一下在这一章做的动作，我们 commit 进去的程式码都会属于 ch01 这个分支。</p>
-<h2 id="Step-1-帮专案穿上衣服-Bootstrap，挂上-bootstrap-sass-这个-gem"><a href="#Step-1-帮专案穿上衣服-Bootstrap，挂上-bootstrap-sass-这个-gem" class="headerlink" title="Step 1. 帮专案穿上衣服 Bootstrap，挂上 bootstrap-sass 这个 gem"></a>Step 1. 帮专案穿上衣服 Bootstrap，挂上 bootstrap-sass 这个 gem</h2><p>Bootstrap 是 Web 设计圈有名的 CSS 框架，提供了开发专案快速便利的元件素材，如按钮、下拉选单、表格等等样式。</p>
-<p>在 Rails 上要帮专案穿上 Bootstrap，用的是 bootstrap-sass 这个套件。</p>
-<p>在编辑器打开 Gemfile 这个档案</p>
-<p>修改 Gemfile，在 <code>group :development, :test do</code> 前一行加入 <code>gem &#39;bootstrap-sass&#39;</code></p>
-<figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem 'bootstrap-sass'</span><br></pre></td></tr></table></figure>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx23455hr3j30yu0agjsx.jpg" alt=""></p>
-<h2 id="Step-2-bundle-install"><a href="#Step-2-bundle-install" class="headerlink" title="Step 2. bundle install"></a>Step 2. bundle install</h2><p>执行 <code>bundle install</code></p>
-<p>(注意：修改完 Gemfile 都要执行 <code>bundle install</code>）</p>
-<h2 id="Step-3-将-Bootstrap-的-CSS-套件装进专案里面"><a href="#Step-3-将-Bootstrap-的-CSS-套件装进专案里面" class="headerlink" title="Step 3. 将 Bootstrap 的 CSS 套件装进专案里面"></a>Step 3. 将 Bootstrap 的 CSS 套件装进专案里面</h2><p>输入</p>
-<p><code>mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss</code></p>
-<p>将 <code>application.css</code> 更名为 <code>application.scss</code></p>
-<p>然后修改内容加入这两行</p>
-<figure class="highlight html"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* ...(一堆注解)</span><br><span class="line">*= require_tree .</span><br><span class="line">*= require_self</span><br><span class="line">*/</span><br><span class="line">@import "bootstrap-sprockets";</span><br><span class="line">@import "bootstrap";</span><br></pre></td></tr></table></figure>
-<h2 id="Step-4-将变更-commit-进去-git-里面。"><a href="#Step-4-将变更-commit-进去-git-里面。" class="headerlink" title="Step 4. 将变更 commit 进去 git 里面。"></a>Step 4. 将变更 commit 进去 git 里面。</h2><p><code>git add .</code><br><code>git commit -m &quot;add bootstrap to project&quot;</code></p>
-<p>解说<br>What is Bootstrap?<br>Bootstrap 是一个有名的 CSS 框架，提供了很多的现成元件样式，而且也是很多程式设计师开发程式首选的“制服”。<br>Bootstrap 的官网网址在<a href="http://getbootstrap.com/" target="_blank" rel="noopener">这里</a> ，你可以在这里看到更多范例，以及用法。<br>以后如果你想要修改你的“按钮样式”，或者扩充一些新的功能，可以回到这个网站上面查询功能。<br>不过现在先不要在这里玩到迷路了。先继续你的 Rails 练习作业吧！<br>css 与 scss 有什么不同？<br>SCSS 是一套“程式语言”，可以用来产生 CSS。意思是你可以写程式“产生 CSS”，提供一些 CSS 原生没有办法的进阶作法。不过在这章你只要理解成为，我们为了要“挂上”bootstrap，所以必须要用到 scss<br>import 是什么？<br>是 scss 内引入“模组”的意思。透过这样的方式去引用其他资源，就不需要自己从头开始制作。比方说你要穿衣服，直接买一件来穿就省事很多，不需要自己跑去买布、搞裁缝那些。<br>为什么我们不去 bootstrap 官网上下载 CSS 再丢到 Rails 目录夹里面比较快？<br>因为这样每次 bootstrap 更换版本，你的 CSS 目录夹就会脏到一塌糊涂，所以 Rails 有好心人打包成“挂上去的版本”，如果未来开发者想要升级，只要改变 bootstrap-sass 的板号就可以了。<br>·</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/09/1-3帮rails专案穿上bootstrap/" data-id="cjoathp3q0004v46cm5o8hocd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1-4套用Bootstrap的html样式" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-1-4套用Bootstrap的html样式" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/09/1-4套用Bootstrap的html样式/" class="article-date">
   <time datetime="2018-11-09T12:23:51.000Z" itemprop="datePublished">2018-11-09</time>
@@ -304,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/09/1-4套用Bootstrap的html样式/">1.4 套用 Bootstrap 的 html 样式</a>
+    <h1 class="article-title" itemprop="name">
+      1.4 套用 Bootstrap 的 html 样式
     </h1>
   
 
@@ -348,11 +124,19 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/09/1-3帮rails专案穿上bootstrap/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">1.3帮rails专案穿上bootstrap</div>
+    </a>
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
