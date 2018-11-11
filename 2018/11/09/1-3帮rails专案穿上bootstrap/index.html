@@ -16,7 +16,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx256a1dllj31kw0kjq5h.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx23455hr3j30yu0agjsx.jpg">
-<meta property="og:updated_time" content="2018-11-09T13:47:53.247Z">
+<meta property="og:updated_time" content="2018-11-10T02:38:54.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1.3帮rails专案穿上bootstrap">
 <meta name="twitter:description" content="目标本章的作业目标，是要带领各位把目前的空专案，穿上“衣服”，让各位在做这个程式练习时，不再感到专案是在“裸奔”！  步骤Step 0. git checkout -b ch01这里我们要来示范一个 git 功能，输入： git checkout -b ch01 等一下在这一章做的动作，我们 commit 进去的程式码都会属于 ch01 这个分支。 Step 1. 帮专案穿上衣服 Bootstra">
@@ -108,12 +108,12 @@
 <p>然后修改内容加入这两行</p>
 <figure class="highlight html"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* ...(一堆注解)</span><br><span class="line">*= require_tree .</span><br><span class="line">*= require_self</span><br><span class="line">*/</span><br><span class="line">@import "bootstrap-sprockets";</span><br><span class="line">@import "bootstrap";</span><br></pre></td></tr></table></figure>
 <h2 id="Step-4-将变更-commit-进去-git-里面。"><a href="#Step-4-将变更-commit-进去-git-里面。" class="headerlink" title="Step 4. 将变更 commit 进去 git 里面。"></a>Step 4. 将变更 commit 进去 git 里面。</h2><p><code>git add .</code><br><code>git commit -m &quot;add bootstrap to project&quot;</code></p>
-<p>解说<br>What is Bootstrap?<br>Bootstrap 是一个有名的 CSS 框架，提供了很多的现成元件样式，而且也是很多程式设计师开发程式首选的“制服”。<br>Bootstrap 的官网网址在<a href="http://getbootstrap.com/" target="_blank" rel="noopener">这里</a> ，你可以在这里看到更多范例，以及用法。<br>以后如果你想要修改你的“按钮样式”，或者扩充一些新的功能，可以回到这个网站上面查询功能。<br>不过现在先不要在这里玩到迷路了。先继续你的 Rails 练习作业吧！<br>css 与 scss 有什么不同？<br>SCSS 是一套“程式语言”，可以用来产生 CSS。意思是你可以写程式“产生 CSS”，提供一些 CSS 原生没有办法的进阶作法。不过在这章你只要理解成为，我们为了要“挂上”bootstrap，所以必须要用到 scss<br>import 是什么？<br>是 scss 内引入“模组”的意思。透过这样的方式去引用其他资源，就不需要自己从头开始制作。比方说你要穿衣服，直接买一件来穿就省事很多，不需要自己跑去买布、搞裁缝那些。<br>为什么我们不去 bootstrap 官网上下载 CSS 再丢到 Rails 目录夹里面比较快？<br>因为这样每次 bootstrap 更换版本，你的 CSS 目录夹就会脏到一塌糊涂，所以 Rails 有好心人打包成“挂上去的版本”，如果未来开发者想要升级，只要改变 bootstrap-sass 的板号就可以了。<br>·</p>
+<h2 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h2><p>What is Bootstrap?<br>Bootstrap 是一个有名的 CSS 框架，提供了很多的现成元件样式，而且也是很多程式设计师开发程式首选的“制服”。<br>Bootstrap 的官网网址在<a href="http://getbootstrap.com/" target="_blank" rel="noopener">这里</a> ，你可以在这里看到更多范例，以及用法。<br>以后如果你想要修改你的“按钮样式”，或者扩充一些新的功能，可以回到这个网站上面查询功能。<br>不过现在先不要在这里玩到迷路了。先继续你的 Rails 练习作业吧！<br>css 与 scss 有什么不同？<br>SCSS 是一套“程式语言”，可以用来产生 CSS。意思是你可以写程式“产生 CSS”，提供一些 CSS 原生没有办法的进阶作法。不过在这章你只要理解成为，我们为了要“挂上”bootstrap，所以必须要用到 scss<br>import 是什么？<br>是 scss 内引入“模组”的意思。透过这样的方式去引用其他资源，就不需要自己从头开始制作。比方说你要穿衣服，直接买一件来穿就省事很多，不需要自己跑去买布、搞裁缝那些。<br>为什么我们不去 bootstrap 官网上下载 CSS 再丢到 Rails 目录夹里面比较快？<br>因为这样每次 bootstrap 更换版本，你的 CSS 目录夹就会脏到一塌糊涂，所以 Rails 有好心人打包成“挂上去的版本”，如果未来开发者想要升级，只要改变 bootstrap-sass 的板号就可以了。<br>·</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/09/1-3帮rails专案穿上bootstrap/" data-id="cjoatyilo0004zl6cxz426xnp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/09/1-3帮rails专案穿上bootstrap/" data-id="cjocp12bs0002se6cqbe6zqod" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,23 +171,23 @@
       <ul>
         
           <li>
-            <a href="/2018/11/09/1-4套用Bootstrap的html样式/">1.4 套用 Bootstrap 的 html 样式</a>
+            <a href="/2018/11/11/3-7解说CRUD与RESTful/">3.7 解说CRUD与RESTful</a>
           </li>
         
           <li>
-            <a href="/2018/11/09/1-3帮rails专案穿上bootstrap/">1.3帮rails专案穿上bootstrap</a>
+            <a href="/2018/11/11/3-6限制“标题为空”的文章/">3.6 限制“标题为空”的文章，不能被送出</a>
           </li>
         
           <li>
-            <a href="/2018/11/08/1-2建立新的专案/">1.2 建立新的专案</a>
+            <a href="/2018/11/11/3-5实作讨论群“删除“功能/">3.5 实作讨论群“删除“功能</a>
           </li>
         
           <li>
-            <a href="/2018/11/08/1-0前言Rails101/">1.0 前言 Rails101</a>
+            <a href="/2018/11/10/3-4实作讨论群“修改”功能/">3.4 实作讨论群“修改”功能</a>
           </li>
         
           <li>
-            <a href="/2018/11/08/1-1开始101/">1.1 本章目标</a>
+            <a href="/2018/11/10/3-3实作讨论群“浏览”功能/">3.3 实作讨论群“浏览”功能</a>
           </li>
         
       </ul>

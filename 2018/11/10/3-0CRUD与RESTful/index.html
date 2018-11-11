@@ -5,19 +5,19 @@
   
 
   
-  <title>1.0 前言 Rails101 | Hexo</title>
+  <title>3.0 手动实作讨论群的CRUD功能 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。 我的logdown上有我总结的很多问题的解答，地址是：Logdown希望能够帮到一些朋友。 课程以mac电脑开发。">
+  <meta name="description" content="本章的作业目标： 实作看板的“新增”  new / create 实作看板的“修改” edit / update 实作看板的“删除” destroy  额外会谈到的主题是： 使用 gem &amp;quot;simple_form&amp;quot; 产生表单 限制看板标题“不得为空”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1.0 前言 Rails101">
-<meta property="og:url" content="http://yoursite.com/2018/11/08/1-0前言Rails101/index.html">
+<meta property="og:title" content="3.0 手动实作讨论群的CRUD功能">
+<meta property="og:url" content="http://yoursite.com/2018/11/10/3-0CRUD与RESTful/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。 我的logdown上有我总结的很多问题的解答，地址是：Logdown希望能够帮到一些朋友。 课程以mac电脑开发。">
+<meta property="og:description" content="本章的作业目标： 实作看板的“新增”  new / create 实作看板的“修改” edit / update 实作看板的“删除” destroy  额外会谈到的主题是： 使用 gem &amp;quot;simple_form&amp;quot; 产生表单 限制看板标题“不得为空”">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-10T02:27:00.482Z">
+<meta property="og:updated_time" content="2018-11-10T07:45:16.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1.0 前言 Rails101">
-<meta name="twitter:description" content="这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。 我的logdown上有我总结的很多问题的解答，地址是：Logdown希望能够帮到一些朋友。 课程以mac电脑开发。">
+<meta name="twitter:title" content="3.0 手动实作讨论群的CRUD功能">
+<meta name="twitter:description" content="本章的作业目标： 实作看板的“新增”  new / create 实作看板的“修改” edit / update 实作看板的“删除” destroy  额外会谈到的主题是： 使用 gem &amp;quot;simple_form&amp;quot; 产生表单 限制看板标题“不得为空”">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-1-0前言Rails101" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-3-0CRUD与RESTful" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/08/1-0前言Rails101/" class="article-date">
-  <time datetime="2018-11-08T01:46:16.000Z" itemprop="datePublished">2018-11-08</time>
+    <a href="/2018/11/10/3-0CRUD与RESTful/" class="article-date">
+  <time datetime="2018-11-10T07:36:52.000Z" itemprop="datePublished">2018-11-10</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      1.0 前言 Rails101
+      3.0 手动实作讨论群的CRUD功能
     </h1>
   
 
@@ -86,14 +86,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。</p>
-<p>我的logdown上有我总结的很多问题的解答，地址是：<a href="http://zehuama.logdown.com/archives" target="_blank" rel="noopener">Logdown</a><br>希望能够帮到一些朋友。</p>
-<p>课程以mac电脑开发。</p>
+        <h2 id="本章的作业目标："><a href="#本章的作业目标：" class="headerlink" title="本章的作业目标："></a>本章的作业目标：</h2><ul>
+<li>实作看板的“新增”  <code>new</code> / <code>create</code></li>
+<li>实作看板的“修改” <code>edit</code> / <code>update</code></li>
+<li>实作看板的“删除” <code>destroy</code></li>
+</ul>
+<h2 id="额外会谈到的主题是："><a href="#额外会谈到的主题是：" class="headerlink" title="额外会谈到的主题是："></a>额外会谈到的主题是：</h2><ul>
+<li>使用 <code>gem &quot;simple_form&quot;</code> 产生表单</li>
+<li>限制看板标题“不得为空”</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-0前言Rails101/" data-id="cjocp12bg0000se6cs19cpzse" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-0CRUD与RESTful/" data-id="cjocp12bx0005se6ck5afvgv4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -102,19 +108,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/08/1-2建立新的专案/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/10/3-1将表单换成Bootstrap的版型/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          1.2 建立新的专案
+          3.1 将表单换成Bootstrap的版型
         
       </div>
     </a>
   
   
-    <a href="/2018/11/08/1-1开始101/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/10/2-2将首页换成讨论群一览表/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">1.1 本章目标</div>
+      <div class="article-nav-title">2.2 将首页换成讨论群一览表</div>
     </a>
   
 </nav>

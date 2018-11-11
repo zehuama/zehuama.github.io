@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>3.6 限制“标题为空”的文章，不能被送出 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目标 有时候我们会遇到使用者手残，直接送出全空的表单，结果就出现空文章 因此我们要加上一个限制，让使用者不能送出“空标题”文章才对   步骤Step 1: 在 Group model 加入“标题限制”修改 app/models/group.rb 让它长得像这样 app/models/group.rb123class Group &amp;lt; ActiveRecord::Base validates :">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.6 限制“标题为空”的文章，不能被送出">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目标 有时候我们会遇到使用者手残，直接送出全空的表单，结果就出现空文章 因此我们要加上一个限制，让使用者不能送出“空标题”文章才对   步骤Step 1: 在 Group model 加入“标题限制”修改 app/models/group.rb 让它长得像这样 app/models/group.rb123class Group &amp;lt; ActiveRecord::Base validates :">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx481gxtk1j31kw0n5ade.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx484d4tmdj31kw0luq5j.jpg">
+<meta property="og:updated_time" content="2018-11-11T09:16:42.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3.6 限制“标题为空”的文章，不能被送出">
+<meta name="twitter:description" content="目标 有时候我们会遇到使用者手残，直接送出全空的表单，结果就出现空文章 因此我们要加上一个限制，让使用者不能送出“空标题”文章才对   步骤Step 1: 在 Group model 加入“标题限制”修改 app/models/group.rb 让它长得像这样 app/models/group.rb123class Group &amp;lt; ActiveRecord::Base validates :">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx481gxtk1j31kw0n5ade.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-3-6限制“标题为空”的文章" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/11/3-6限制“标题为空”的文章/" class="article-date">
+  <time datetime="2018-11-11T08:47:35.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      3.6 限制“标题为空”的文章，不能被送出
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>有时候我们会遇到使用者手残，直接送出全空的表单，结果就出现空文章</li>
+<li>因此我们要加上一个限制，让使用者不能送出“空标题”文章才对</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx481gxtk1j31kw0n5ade.jpg" alt=""></p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-在-Group-model-加入“标题限制”"><a href="#Step-1-在-Group-model-加入“标题限制”" class="headerlink" title="Step 1: 在 Group model 加入“标题限制”"></a>Step 1: 在 Group model 加入“标题限制”</h2><p>修改 app/models/group.rb 让它长得像这样</p>
+<figure class="highlight html"><figcaption><span>app/models/group.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Group <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"> <span class="attr">validates</span> <span class="attr">:title</span>, <span class="attr">presence:</span> <span class="attr">true</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>这样一来，就算送出了空的表单，也不会产生任何纪录。</p>
+<p>但我们真正希望达到的效果是像这样子的，送出了空表单，使用者能够确切地知道，自己是因为什么错误被拦下：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx484d4tmdj31kw0luq5j.jpg" alt=""></p>
+<h2 id="Step-2-git-存档"><a href="#Step-2-git-存档" class="headerlink" title="Step 2 : git 存档"></a>Step 2 : git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;add validation to title&quot;</code></p>
+<h3 id="解说："><a href="#解说：" class="headerlink" title="解说："></a>解说：</h3><p><code>validates :title, presence: true</code> 是什么意思？</p>
+<ul>
+<li>这是 Rails 的 Model 内建的“验证”函式。意思是“不得为空”。</li>
+<li>其实 Rails 还有很多内建验质函式，你可以看这里：<a href="http://guides.rubyonrails.org/active_record_validations.html" target="_blank" rel="noopener">http://guides.rubyonrails.org/active_record_validations.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/" data-id="cjocp12cg000cse6cylrkcfbc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/11/3-7解说CRUD与RESTful/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          3.7 解说CRUD与RESTful
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/11/3-5实作讨论群“删除“功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">3.5 实作讨论群“删除“功能</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/11/3-7解说CRUD与RESTful/">3.7 解说CRUD与RESTful</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/11/3-6限制“标题为空”的文章/">3.6 限制“标题为空”的文章，不能被送出</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/11/3-5实作讨论群“删除“功能/">3.5 实作讨论群“删除“功能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/3-4实作讨论群“修改”功能/">3.4 实作讨论群“修改”功能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/3-3实作讨论群“浏览”功能/">3.3 实作讨论群“浏览”功能</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

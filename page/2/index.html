@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-3-1将表单换成Bootstrap的版型" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/10/3-1将表单换成Bootstrap的版型/" class="article-date">
+  <time datetime="2018-11-10T07:58:41.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/10/3-1将表单换成Bootstrap的版型/">3.1 将表单换成Bootstrap的版型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Step-1-将表单换成-Bootstrap-的版型"><a href="#Step-1-将表单换成-Bootstrap-的版型" class="headerlink" title="Step 1 : 将表单换成 Bootstrap 的版型"></a>Step 1 : 将表单换成 Bootstrap 的版型</h2><p>在 Rails 表單裡面，通常我們是用 <code>form_for</code> 生成表格</p>
+<p>寫這樣的 code</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &lt;%= form_for @group do |f| -%&gt;</span><br><span class="line"></span><br><span class="line">標題  &lt;%= f.text_field :title %&gt; &lt;br&gt;</span><br><span class="line">敘述 &lt;br&gt;  &lt;%= f.text_area :description %&gt; &lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;%= f.submit &quot;Submit&quot;, :disable_with =&gt; &apos;Submiting...&apos; %&gt;</span><br><span class="line">&lt;% end %&gt;</span><br></pre></td></tr></table></figure>
+<p>產生出</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx30ywbvdzj30iv066dft.jpg" alt=""></p>
+<p>背後會生成這樣的原始碼<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;form class=&quot;new_group&quot; id=&quot;new_group&quot; action=&quot;/groups&quot; accept-charset=&quot;UTF-8&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;utf8&quot; type=&quot;hidden&quot; value=&quot;✓&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;authenticity_token&quot; value=&quot;kp/KDToCeIXh0/mPIoGD+PfOJVJ9/GWTwyNn6/CmvVzEoAsYOqCHyC5RBH402cNqcWGAjO6a8+n3M+twgNp5yQ==&quot;&gt;</span><br><span class="line">標題  &lt;input type=&quot;text&quot; name=&quot;group[title]&quot; id=&quot;group_title&quot;&gt; &lt;br&gt;</span><br><span class="line">敘述 &lt;br&gt;  &lt;textarea name=&quot;group[description]&quot; id=&quot;group_description&quot;&gt;&lt;/textarea&gt; &lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;commit&quot; value=&quot;Submit&quot; disable_with=&quot;Submiting...&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Bootstrap-的完美表格"><a href="#Bootstrap-的完美表格" class="headerlink" title="Bootstrap 的完美表格"></a>Bootstrap 的完美表格</h2><p>但是 Bootstrap 有支援這樣的完美表格</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx311flbkbj30m8081dfz.jpg" alt=""></p>
+<p>不過我們如果要用 Rails 內建的 <code>form_for</code> 製作 Bootstrap 的完美表格，就要寫這樣又長又複雜的語法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> &lt;%= form_for @group do |f| -%&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;form-group string optional&quot;&gt;</span><br><span class="line">    &lt;%= f.label &quot;title&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</span><br><span class="line">     &lt;%= f.text_field :title, :class =&gt; &quot;string optional form-control form-control&quot; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">   &lt;div class=&quot;form-group string optional&quot;&gt;</span><br><span class="line">    &lt;%= f.label &quot;description&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</span><br><span class="line">     &lt;%= f.text_area :description, :class =&gt; &quot;string optional form-control form-control&quot; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">  &lt;%= f.submit &quot;Submit&quot;, class: &quot;btn btn-primary&quot;, data: &#123; disable_with: &quot;Submitting...&quot; &#125; %&gt;</span><br><span class="line">&lt;% end -%&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Simple-Form-表單產生器"><a href="#Simple-Form-表單產生器" class="headerlink" title="Simple Form 表單產生器"></a>Simple Form 表單產生器</h2><p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="noopener">SimpleForm</a> 是一套強大的表單產生器，它能自動產生 Bootstrap 的表單版型。在這裡我們將會使用這套 gem 換掉我們未來的所有表單產生方式。</p>
+<h3 id="安裝-simple-form"><a href="#安裝-simple-form" class="headerlink" title="安裝 simple_form"></a>安裝 simple_form</h3><figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">source 'https://rubygems.org'</span><br><span class="line"></span><br><span class="line">gem 'bootstrap-sass'</span><br><span class="line"></span><br><span class="line">+ gem "simple_form"</span><br><span class="line"></span><br><span class="line"># Bundle edge Rails instead: gem 'rails', github: 'rails/rails'</span><br><span class="line">gem 'rails', '4.2.0'</span><br><span class="line"></span><br><span class="line">... (略)</span><br></pre></td></tr></table></figure>
+<p>執行 <code>bundle install</code></p>
+<h3 id="安裝-simple-form-for-bootstrap-的設定"><a href="#安裝-simple-form-for-bootstrap-的設定" class="headerlink" title="安裝 simple_form for bootstrap 的設定"></a>安裝 simple_form for bootstrap 的設定</h3><p><code>rails generate simple_form:install --bootstrap</code></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx31cd11x4j31ac0hygp7.jpg" alt=""></p>
+<h3 id="重開-rails-server"><a href="#重開-rails-server" class="headerlink" title="重開 rails server"></a>重開 rails server</h3><p>（注意：裝任何 Gem 都要重開 rails s）</p>
+<p>重開 <code>rails s</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/10/3-1将表单换成Bootstrap的版型/" data-id="cjocp12ci000ese6c7n7gfvu2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-2实作讨论群“新增”功能" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/10/3-2实作讨论群“新增”功能/" class="article-date">
+  <time datetime="2018-11-10T08:22:06.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/10/3-2实作讨论群“新增”功能/">3.2 实作讨论群“新增”功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>这一章我们要实作 讨论群 的新增功能</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch03"><a href="#Step-0-git-checkout-b-ch03" class="headerlink" title="Step 0. git checkout -b ch03"></a>Step 0. git checkout -b ch03</h2><p>因为我们现在要实作第三章的内容，新增一个 branch 把实作内容集中在 <code>ch03</code> 是比较合理的。将来回顾就可以比较清楚 在 <code>ch03</code> 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch03</code></p>
+<h2 id="Step-1-新增看板"><a href="#Step-1-新增看板" class="headerlink" title="Step 1 : 新增看板"></a>Step 1 : 新增看板</h2><h3 id="建立-“new”-action"><a href="#建立-“new”-action" class="headerlink" title="建立 “new” action"></a>建立 “new” action</h3><figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">groups</span> = <span class="string">Group.all</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.new</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="建立-“new”-的表格-template"><a href="#建立-“new”-的表格-template" class="headerlink" title="建立 “new” 的表格 template"></a>建立 “new” 的表格 template</h3><p><code>touch app/views/groups/new.html.erb</code><br><figure class="highlight html"><figcaption><span>app/views/groups/new.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4 col-md-offset-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>新增討論版<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">simple_form_for</span> @<span class="attr">group</span> <span class="attr">do</span> |<span class="attr">f</span>| %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:title</span>, <span class="attr">input_html:</span> &#123; <span class="attr">class:</span> "<span class="attr">form-control</span>"&#125; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:description</span>, <span class="attr">input_html:</span> &#123; <span class="attr">class:</span> "<span class="attr">form-control</span>"&#125; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.submit</span> "<span class="attr">Submit</span>", <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span>", <span class="attr">data:</span> &#123; <span class="attr">disable_with:</span> "<span class="attr">Submitting...</span>" &#125; %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="git-存档"><a href="#git-存档" class="headerlink" title="git 存档"></a>git 存档</h3><p><code>git add .</code><br><code>git commit -m &quot;implement groups#new &quot;</code></p>
+<p>前往 <a href="http://localhost:3000/groups/new" target="_blank" rel="noopener">http://localhost:3000/groups/new</a> 即會出現新增討論版的表單</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx324bpqrnj31kw0k9dii.jpg" alt=""><br>  <br><br><strong>目前還只是個表單畫面，無法將資料送出後成功建立出一筆討論版的資料，缺了 action ‘create’</strong></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx325owgh8j31gg098dh2.jpg" alt=""></p>
+<h2 id="Step-2-接收資料並儲存"><a href="#Step-2-接收資料並儲存" class="headerlink" title="Step 2 : 接收資料並儲存"></a>Step 2 : 接收資料並儲存</h2><h3 id="建立-“create”-action"><a href="#建立-“create”-action" class="headerlink" title="建立 “create” action"></a>建立 “create” action</h3><p>我們要將 <a href="http://localhost:3000/groups/new" target="_blank" rel="noopener">http://localhost:3000/groups/new</a> 裡的表單送出的訊息變成一筆存在資料庫裡的資料</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">groups</span> = <span class="string">Group.all</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.new(group_params)</span></span></span><br><span class="line"><span class="tag">+</span></span><br><span class="line"><span class="tag">+   <span class="attr">if</span> @<span class="attr">group.save</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">redirect_to</span> <span class="attr">groups_path</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">else</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">private</span></span></span><br><span class="line"><span class="tag">+</span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">group_params</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">params.require</span>(<span class="attr">:group</span>)<span class="attr">.permit</span>(<span class="attr">:title</span>, <span class="attr">:description</span>)</span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>完成後再送一次即可成功建立資料<br>可以多建幾筆資料測試功能</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx32icfg7wj31kw0fgtbj.jpg" alt=""></p>
+<h3 id="git-存档-1"><a href="#git-存档-1" class="headerlink" title="git 存档"></a>git 存档</h3><p><code>git add .</code><br><code>git commit -m &quot;implement groups#create&quot;</code></p>
+<h3 id="group-params-又是什么？"><a href="#group-params-又是什么？" class="headerlink" title="group_params 又是什么？"></a>group_params 又是什么？</h3><p>这是一个“过滤器架构”叫 Strong Parameter，在这里你先不用详细理解 Strong Parameter 是什么，你只要知道因为 Rails 很聪明的会翻译你的表格，所以外面的坏人会想要偷塞一些垃圾进来，所以我们要设一个“允许进来的栏位”，在这里就是<code>title</code>与<code>description</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/10/3-2实作讨论群“新增”功能/" data-id="cjocp12c10007se6collhxkeu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-3实作讨论群“浏览”功能" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/10/3-3实作讨论群“浏览”功能/" class="article-date">
+  <time datetime="2018-11-10T09:05:32.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/10/3-3实作讨论群“浏览”功能/">3.3 实作讨论群“浏览”功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>这一章我们要实作 讨论群 的浏览功能</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx337nhawbj31kw0ieq5f.jpg" alt=""><br>这时候如果直接点 index 上的 title 连结, 会跳出下面的错误讯息：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx3391ihvdj31j208ota0.jpg" alt=""></p>
+<p>我们要修正这个问题，让使用者可以浏览这个页面</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step1-建立-show-action"><a href="#Step1-建立-show-action" class="headerlink" title="Step1: 建立 show action"></a>Step1: 建立 show action</h2><p>在 app/controllers/groups_controller.rb 加入 show action</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag"> <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">   @<span class="attr">groups</span> = <span class="string">Group.all</span></span></span><br><span class="line"><span class="tag"> <span class="attr">end</span></span></span><br><span class="line"><span class="tag"> <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">   @<span class="attr">group</span> = <span class="string">Group.new</span></span></span><br><span class="line"><span class="tag"> <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">show</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"> <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">   @<span class="attr">group</span> = <span class="string">Group.new(group_params)</span></span></span><br><span class="line"><span class="tag">   <span class="attr">if</span> @<span class="attr">group.save</span></span></span><br><span class="line"><span class="tag">     <span class="attr">redirect_to</span> <span class="attr">groups_path</span></span></span><br><span class="line"><span class="tag">   <span class="attr">else</span></span></span><br><span class="line"><span class="tag">     <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">   <span class="attr">end</span></span></span><br><span class="line"><span class="tag"> <span class="attr">end</span></span></span><br><span class="line"><span class="tag"> <span class="attr">private</span></span></span><br><span class="line"><span class="tag"> <span class="attr">def</span> <span class="attr">group_params</span></span></span><br><span class="line"><span class="tag">   <span class="attr">params.require</span>(<span class="attr">:group</span>)<span class="attr">.permit</span>(<span class="attr">:title</span>, <span class="attr">:description</span>)</span></span><br><span class="line"><span class="tag"> <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-2-加入-app-views-groups-show-html-erb"><a href="#Step-2-加入-app-views-groups-show-html-erb" class="headerlink" title="Step 2: 加入 app/views/groups/show.html.erb"></a>Step 2: 加入 app/views/groups/show.html.erb</h2><p><code>touch app/views/groups/show.html.erb</code></p>
+<p>加入以下内容</p>
+<figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"group"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Edit</span>", <span class="attr">edit_group_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span> <span class="attr">pull-right</span>")%&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> @<span class="attr">group.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> @<span class="attr">group.description</span> %&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后，当你浏览 <a href="http://localhost:3000/groups/1" target="_blank" rel="noopener">http://localhost:3000/groups/1</a> 时，页面就会长这样</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx33kyx9brj31kw0co40b.jpg" alt=""></p>
+<h2 id="Step-3-git-存档"><a href="#Step-3-git-存档" class="headerlink" title="Step 3 : git 存档"></a>Step 3 : git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;implement groups#show&quot;</code></p>
+<h2 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h2><p>params[:id] 是从哪里来的？<br>是从 <a href="http://localhost:3000/groups/1" target="_blank" rel="noopener">http://localhost:3000/groups/1</a> 的 <code>1</code>来的，网址预设 <code>groups/</code> 后面的参数就是 <code>params[:id]</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/10/3-3实作讨论群“浏览”功能/" data-id="cjocp12c50009se6cr94vcli5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-4实作讨论群“修改”功能" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/10/3-4实作讨论群“修改”功能/" class="article-date">
+  <time datetime="2018-11-10T09:37:03.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/10/3-4实作讨论群“修改”功能/">3.4 实作讨论群“修改”功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h1><p>这一节我们要实作 讨论群 的修改功能</p>
+<h1 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h1><h2 id="Step-1-建立-edit-action"><a href="#Step-1-建立-edit-action" class="headerlink" title="Step 1. 建立 edit action"></a>Step 1. 建立 edit action</h2><p>修改 <code>app/controllers/groups_controller.rb</code> 加入 <code>edit</code> action</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  # 略 <span class="attr">...</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">show</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag">+  @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  # 略 <span class="attr">...</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-2-建立-edit-action-的表单"><a href="#Step-2-建立-edit-action-的表单" class="headerlink" title="Step 2. 建立 edit action 的表单"></a>Step 2. 建立 edit action 的表单</h2><p>新增 app/views/groups/edit.html.erb</p>
+<p><code>touch app/views/groups/edit.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/groups/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4 col-md-offset-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>修改討論版<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">simple_form_for</span> @<span class="attr">group</span> <span class="attr">do</span> |<span class="attr">f</span>| %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:title</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:description</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.submit</span> "<span class="attr">Submit</span>", <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span>", <span class="attr">data:</span> &#123; <span class="attr">disable_with:</span> "<span class="attr">Submitting...</span>" &#125; %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后打开 <a href="http://localhost:3000/groups/1/edit" target="_blank" rel="noopener">http://localhost:3000/groups/1/edit</a>，可以见到成果</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx3xmhbnetj31kw0m2tb4.jpg" alt=""></p>
+<h2 id="Step-3-git-存档"><a href="#Step-3-git-存档" class="headerlink" title="Step 3. git 存档"></a>Step 3. git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;implement groups#edit &quot;</code></p>
+<h2 id="Step-4-实作-update-action"><a href="#Step-4-实作-update-action" class="headerlink" title="Step 4. 实作 update action"></a>Step 4. 实作 update action</h2><p>这时候我们可以尝试修改里面的资料，并试着送出。但是我们发现会跳出错误讯息，提醒我们 update 还没实作：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx3xkjsea2j31j40ac0u3.jpg" alt=""></p>
+<p>所以这时候，我们要实作 update action，接收 edit 里的表单送出的讯息，真正更新存在资料库里的资料。</p>
+<p>修改 app/controllers/groups_controller.rb</p>
+<figure class="highlight html"><figcaption><span>app/controller/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">    # <span class="attr">...</span> 略</span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.new(group_params)</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group.save</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">groups_path</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  + <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag">  +   @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  +   <span class="attr">if</span> @<span class="attr">group.update</span>(<span class="attr">group_params</span>)</span></span><br><span class="line"><span class="tag">  +     <span class="attr">redirect_to</span> <span class="attr">groups_path</span>, <span class="attr">notice:</span> "修改讨论版成功"</span></span><br><span class="line"><span class="tag">  +   <span class="attr">else</span></span></span><br><span class="line"><span class="tag">  +     <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">  +   <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  + <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    # <span class="attr">...</span> 略</span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>然后试着更新一下资料，成功画面应该会有“绿色”提示讯息。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx3zzd12n3j31kw0iwadd.jpg" alt=""></p>
+<h2 id="Step-5-git-存档"><a href="#Step-5-git-存档" class="headerlink" title="Step 5. git 存档"></a>Step 5. git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;implement groups#update &quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/10/3-4实作讨论群“修改”功能/" data-id="cjocp12c7000ase6csck7ed4m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-5实作讨论群“删除“功能" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/11/3-5实作讨论群“删除“功能/" class="article-date">
+  <time datetime="2018-11-11T04:16:49.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/11/3-5实作讨论群“删除“功能/">3.5 实作讨论群“删除“功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h1><p>这一节我们要实作 讨论群 的删除功能</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx47f8lvc0j31kw0ghn08.jpg" alt=""></p>
+<p>当我们点击 delete 按钮的时候, 会跳出下面的错误讯息</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx47fvrt0nj31h20860ty.jpg" alt=""></p>
+<h1 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h1><h2 id="Step1-建立-delete-action"><a href="#Step1-建立-delete-action" class="headerlink" title="Step1. 建立 delete action"></a>Step1. 建立 delete action</h2><figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    # .... 略</span><br><span class="line">  def update</span><br><span class="line">    @group = Group.find(params[:id])</span><br><span class="line">    @group.update(group_params)</span><br><span class="line">    redirect_to groups_path, notice: "Update Success"</span><br><span class="line">  end</span><br><span class="line">+  def destroy</span><br><span class="line">+    @group = Group.find(params[:id])</span><br><span class="line">+    @group.destroy</span><br><span class="line">+    redirect_to groups_path, alert: "讨论版已删除"</span><br><span class="line">+  end</span><br><span class="line"></span><br><span class="line">  # .... 略</span><br></pre></td></tr></table></figure>
+<p>然后，按下删除键之后，就可以把该笔记录删除。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx47oi7511j31kw0jlgqk.jpg" alt=""></p>
+<p>如果成功的话，可以看到显示“红色”的讯息。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx47pq8xjbj31kw0nsdj8.jpg" alt=""></p>
+<h2 id="Step-2-git-存档"><a href="#Step-2-git-存档" class="headerlink" title="Step 2. git 存档"></a>Step 2. git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;implement groups#destroy &quot;</code></p>
+<h3 id="解说："><a href="#解说：" class="headerlink" title="解说："></a>解说：</h3><p>为什么按下删除，会有 <code>Are you sure?</code> 字样?<br>删除按钮的连结长这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= link_to(&quot;Delete&quot;, group_path(group), class: &quot;btn btn-sm btn-default&quot;, method: :delete, data: &#123; confirm: &quot;Are you sure?&quot; &#125; )%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我先这样解释，在架构上，Rails 不允许随便人点连结就可以删除，否则任何机器人走进来都可以删除。而且也希望人在删除之前，先思考一下。所以：</p>
+<p><code>method :delete</code> 是一个要按钮才触发的动作，会对 Rails 送出 <code>[DELETE]</code> 的请求，这样 Rails 就知道是去找 <code>destroy</code> action。<br><code>data: { confirm: &quot;Are you sure?&quot;}</code> 则是 Rails 触发确认讯息的方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/11/3-5实作讨论群“删除“功能/" data-id="cjocp12cb000bse6cby0d5x8g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-6限制“标题为空”的文章" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/11/3-6限制“标题为空”的文章/" class="article-date">
+  <time datetime="2018-11-11T08:47:35.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/11/3-6限制“标题为空”的文章/">3.6 限制“标题为空”的文章，不能被送出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>有时候我们会遇到使用者手残，直接送出全空的表单，结果就出现空文章</li>
+<li>因此我们要加上一个限制，让使用者不能送出“空标题”文章才对</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx481gxtk1j31kw0n5ade.jpg" alt=""></p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-在-Group-model-加入“标题限制”"><a href="#Step-1-在-Group-model-加入“标题限制”" class="headerlink" title="Step 1: 在 Group model 加入“标题限制”"></a>Step 1: 在 Group model 加入“标题限制”</h2><p>修改 app/models/group.rb 让它长得像这样</p>
+<figure class="highlight html"><figcaption><span>app/models/group.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Group <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"> <span class="attr">validates</span> <span class="attr">:title</span>, <span class="attr">presence:</span> <span class="attr">true</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>这样一来，就算送出了空的表单，也不会产生任何纪录。</p>
+<p>但我们真正希望达到的效果是像这样子的，送出了空表单，使用者能够确切地知道，自己是因为什么错误被拦下：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx484d4tmdj31kw0luq5j.jpg" alt=""></p>
+<h2 id="Step-2-git-存档"><a href="#Step-2-git-存档" class="headerlink" title="Step 2 : git 存档"></a>Step 2 : git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;add validation to title&quot;</code></p>
+<h3 id="解说："><a href="#解说：" class="headerlink" title="解说："></a>解说：</h3><p><code>validates :title, presence: true</code> 是什么意思？</p>
+<ul>
+<li>这是 Rails 的 Model 内建的“验证”函式。意思是“不得为空”。</li>
+<li>其实 Rails 还有很多内建验质函式，你可以看这里：<a href="http://guides.rubyonrails.org/active_record_validations.html" target="_blank" rel="noopener">http://guides.rubyonrails.org/active_record_validations.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/" data-id="cjocp12cg000cse6cylrkcfbc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-7解说CRUD与RESTful" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/11/3-7解说CRUD与RESTful/" class="article-date">
+  <time datetime="2018-11-11T09:16:13.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/11/3-7解说CRUD与RESTful/">3.7 解说CRUD与RESTful</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<h1 id="HTTP-请求-Request）与-HTTP-动词-Verb）"><a href="#HTTP-请求-Request）与-HTTP-动词-Verb）" class="headerlink" title="HTTP 请求( Request）与 HTTP 动词 ( Verb）"></a>HTTP 请求( Request）与 HTTP 动词 ( Verb）</h1><p>一般网页的运作原理是这样的：</p>
+<ol>
+<li>使用者在浏览器输入了某个网址，点击了某个连结。这都叫发出 HTTP 请求 ( Request）。</li>
+<li>而浏览器回应之后：产生页面，或者是重新导向。这都叫 HTTP 回应（ Response）。</li>
+</ol>
+<p>一般来说，使用者最常使用的是两种类型 / 动作 ( Verb )的请求： GET 与 POST。</p>
+<ul>
+<li>GET ：输入网址，点击某些网址。这都是 GET。</li>
+<li>POST：送出表单。这叫做 POST</li>
+</ul>
+<h1 id="RESTful-的基础概念"><a href="#RESTful-的基础概念" class="headerlink" title="RESTful 的基础概念"></a>RESTful 的基础概念</h1><p>因为 CRUD 是常见的操作行为，但是大家实作的方式、与网址设计方式不一样。造成很多维护上的困扰。</p>
+<p>后来就有人发明 RESTful 这个概念，希望用 HTTP 的动作 ( Verb）一起去封装 CRUD 的行为。所以又多加了两个动作：</p>
+<ul>
+<li>PUT : 更新 ( update )</li>
+<li>DELETE : 删除 ( delete）</li>
+</ul>
+<p>而 Rails 的 Routing 也是依循这样的理念去设计。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx495r5ytej30el03amxt.jpg" alt=""></p>
+<h1 id="Rails-的基础-RESTful概念"><a href="#Rails-的基础-RESTful概念" class="headerlink" title="Rails 的基础 RESTful概念"></a>Rails 的基础 RESTful概念</h1><p>由于RESTful是个新手不容易一下子理解的概念，号称学 Ruby on Rails 初期最大障碍。</p>
+<p>在本篇尽量用浅显易懂的方式解释。如果看不懂也没关系，用背的！！</p>
+<p>一定要背起来！</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx496cyymlj30jg0jgdh5.jpg" alt=""></p>
+<h1 id="以下例子以-第三章，-做出-CRUD-功能的讨论版来解释："><a href="#以下例子以-第三章，-做出-CRUD-功能的讨论版来解释：" class="headerlink" title="以下例子以 第三章， 做出 CRUD 功能的讨论版来解释："></a>以下例子以 第三章， 做出 CRUD 功能的讨论版来解释：</h1><ul>
+<li>讨论版这个功能的名称： groups。Restful 的概念里面叫做 <code>resources</code>，“一组资源”。</li>
+</ul>
+<p>为了要控制它的运作，我们会创建一个新的 Controller档案 叫做 groups_controller.rb</p>
+<p>HTTP Verb 有四种：</p>
+<ul>
+<li>新增 (create，使用 POST )</li>
+<li>读取 (read，使用 GET )</li>
+<li>更新 (update，使用 PUT )</li>
+<li>删除 (destroy，使用 DELETE)</li>
+</ul>
+<p>在这组 controller 当中，我们会实作 7 个 Action ，4 张页面。</p>
+<ul>
+<li>首页( index )：用来列出所有的讨论版，可以选择各个单版 （使用 GET )</li>
+<li>各个讨论版专属页面(show)：显示讨论版版名跟简介 (使用 GET )</li>
+<li>新增页面(new)：里面会有表单，填完以后可以送出 (使用 GET )</li>
+<li>产生资料（create) ：new 送出来的表单到 create 这个 action，新增一笔资料 ( 使用 POST )</li>
+<li>修改页面(edit)：里面会有表单呈现现有资料来，填完资料后可以送出 (使用 GET )</li>
+<li>更新资料（update)：edit 送出来的表单可以到 update 这个 action，更新该笔资料 (使用 PUT )</li>
+<li>删除资料：送出删除请求，删除该笔资料（使用 DELETE）</li>
+</ul>
+<p>这七个 action ，是每个CRUD功能里最基本的动作。只要我们在 controller.rb 里定义 (def) 好这七个方法当作动作 (action)。其他的部分 Rails 就会帮我们处理了。</p>
+<p>像是设定 Routing (路由) 只需要简单一行:</p>
+<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources :groups</span><br></pre></td></tr></table></figure>
+<p>这样不管浏览器端跑来什么样的请求 (request) ，Routing都会聪明地帮我们导向正确的 action 去运作后续流程。</p>
+<h1 id="网址对应关系"><a href="#网址对应关系" class="headerlink" title="网址对应关系"></a>网址对应关系</h1><p>对于网址跟对应的Action与页面来说</p>
+<ul>
+<li><code>/groups/</code> 一定就是 index，首页，对应Routes路径： <code>groups_path</code></li>
+<li><code>/groups/123</code> 一定就是 show，名字为123的讨论版个版页面，对应Routes路径： <code>group_path(123)</code></li>
+<li><code>/groups/123/edit</code> 一定就是 edit，修改讨论版123的表单页面，对应Routes路径：<code>edit_group_path(123)</code></li>
+<li><code>/groups/new</code> 一定就是 new，新增讨论版的表单页面，对应Routes路径(或称为helper)：<code>new_group_path</code> 总结</li>
+</ul>
+<p>所以制作一个 RESTful 风格的讨论版，我们仅需在Routes设定一行程式即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/11/3-7解说CRUD与RESTful/" data-id="cjocp12cl000fse6cewmfvymr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/11/3-7解说CRUD与RESTful/">3.7 解说CRUD与RESTful</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/11/3-6限制“标题为空”的文章/">3.6 限制“标题为空”的文章，不能被送出</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/11/3-5实作讨论群“删除“功能/">3.5 实作讨论群“删除“功能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/3-4实作讨论群“修改”功能/">3.4 实作讨论群“修改”功能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/3-3实作讨论群“浏览”功能/">3.3 实作讨论群“浏览”功能</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

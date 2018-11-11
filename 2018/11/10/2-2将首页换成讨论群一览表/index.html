@@ -5,19 +5,19 @@
   
 
   
-  <title>1.0 前言 Rails101 | Hexo</title>
+  <title>2.2 将首页换成讨论群一览表 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。 我的logdown上有我总结的很多问题的解答，地址是：Logdown希望能够帮到一些朋友。 课程以mac电脑开发。">
+  <meta name="description" content="目标在这一节，我们会完成以下事项：  使用者在首页，可以直接看到“讨论群一览表”步骤Step 1. 修改 routing把 root &amp;#39;welcome#index&amp;#39; 删掉，换成 root &amp;#39;groups#index&amp;#39;  （记得 + - 不要打进去，他们各代表“加这一行” / “减这一行”的意思。） config/routes.rb12345Rails.applica">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1.0 前言 Rails101">
-<meta property="og:url" content="http://yoursite.com/2018/11/08/1-0前言Rails101/index.html">
+<meta property="og:title" content="2.2 将首页换成讨论群一览表">
+<meta property="og:url" content="http://yoursite.com/2018/11/10/2-2将首页换成讨论群一览表/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。 我的logdown上有我总结的很多问题的解答，地址是：Logdown希望能够帮到一些朋友。 课程以mac电脑开发。">
+<meta property="og:description" content="目标在这一节，我们会完成以下事项：  使用者在首页，可以直接看到“讨论群一览表”步骤Step 1. 修改 routing把 root &amp;#39;welcome#index&amp;#39; 删掉，换成 root &amp;#39;groups#index&amp;#39;  （记得 + - 不要打进去，他们各代表“加这一行” / “减这一行”的意思。） config/routes.rb12345Rails.applica">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-10T02:27:00.482Z">
+<meta property="og:updated_time" content="2018-11-10T07:31:37.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1.0 前言 Rails101">
-<meta name="twitter:description" content="这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。 我的logdown上有我总结的很多问题的解答，地址是：Logdown希望能够帮到一些朋友。 课程以mac电脑开发。">
+<meta name="twitter:title" content="2.2 将首页换成讨论群一览表">
+<meta name="twitter:description" content="目标在这一节，我们会完成以下事项：  使用者在首页，可以直接看到“讨论群一览表”步骤Step 1. 修改 routing把 root &amp;#39;welcome#index&amp;#39; 删掉，换成 root &amp;#39;groups#index&amp;#39;  （记得 + - 不要打进去，他们各代表“加这一行” / “减这一行”的意思。） config/routes.rb12345Rails.applica">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-1-0前言Rails101" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-2-2将首页换成讨论群一览表" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/08/1-0前言Rails101/" class="article-date">
-  <time datetime="2018-11-08T01:46:16.000Z" itemprop="datePublished">2018-11-08</time>
+    <a href="/2018/11/10/2-2将首页换成讨论群一览表/" class="article-date">
+  <time datetime="2018-11-10T07:27:58.000Z" itemprop="datePublished">2018-11-10</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      1.0 前言 Rails101
+      2.2 将首页换成讨论群一览表
     </h1>
   
 
@@ -86,14 +86,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这里主要结合了xdite老师的Rails 101课程的第4、5版，重新做的整理。希望对初学者能够更容易理解、方便。</p>
-<p>我的logdown上有我总结的很多问题的解答，地址是：<a href="http://zehuama.logdown.com/archives" target="_blank" rel="noopener">Logdown</a><br>希望能够帮到一些朋友。</p>
-<p>课程以mac电脑开发。</p>
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>在这一节，我们会完成以下事项：</p>
+<ul>
+<li>使用者在首页，可以直接看到“讨论群一览表”<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-修改-routing"><a href="#Step-1-修改-routing" class="headerlink" title="Step 1. 修改 routing"></a>Step 1. 修改 routing</h2>把 <code>root &#39;welcome#index&#39;</code> 删掉，换成 <code>root &#39;groups#index&#39;</code></li>
+</ul>
+<p>（记得 <code>+</code> <code>-</code> 不要打进去，他们各代表“加这一行” / “减这一行”的意思。）</p>
+<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.routes.draw do</span><br><span class="line">  resources :groups</span><br><span class="line">+  root 'groups#index'</span><br><span class="line">-  root 'welcome#index'</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>然后你就可以在 <a href="http://localhost:3000/" target="_blank" rel="noopener">http://localhost:3000/</a> 看到 Group 一览表了</p>
+<h2 id="Step-2-git-存档"><a href="#Step-2-git-存档" class="headerlink" title="Step 2. git 存档"></a>Step 2. git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;replace root with groups#index&quot;</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-0前言Rails101/" data-id="cjocp12bg0000se6cs19cpzse" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/2-2将首页换成讨论群一览表/" data-id="cjocp12ch000dse6cgbjj3ak6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -102,19 +107,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/08/1-2建立新的专案/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/10/3-0CRUD与RESTful/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          1.2 建立新的专案
+          3.0 手动实作讨论群的CRUD功能
         
       </div>
     </a>
   
   
-    <a href="/2018/11/08/1-1开始101/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/10/2-1建立一个讨论群/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">1.1 本章目标</div>
+      <div class="article-nav-title">2.1 建立一个讨论群</div>
     </a>
   
 </nav>
