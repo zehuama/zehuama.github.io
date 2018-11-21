@@ -62,58 +62,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-3-1将表单换成Bootstrap的版型" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/10/3-1将表单换成Bootstrap的版型/" class="article-date">
-  <time datetime="2018-11-10T07:58:41.000Z" itemprop="datePublished">2018-11-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/10/3-1将表单换成Bootstrap的版型/">3.1 将表单换成Bootstrap的版型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Step-1-将表单换成-Bootstrap-的版型"><a href="#Step-1-将表单换成-Bootstrap-的版型" class="headerlink" title="Step 1 : 将表单换成 Bootstrap 的版型"></a>Step 1 : 将表单换成 Bootstrap 的版型</h2><p>在 Rails 表單裡面，通常我們是用 <code>form_for</code> 生成表格</p>
-<p>寫這樣的 code</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &lt;%= form_for @group do |f| -%&gt;</span><br><span class="line"></span><br><span class="line">標題  &lt;%= f.text_field :title %&gt; &lt;br&gt;</span><br><span class="line">敘述 &lt;br&gt;  &lt;%= f.text_area :description %&gt; &lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;%= f.submit &quot;Submit&quot;, :disable_with =&gt; &apos;Submiting...&apos; %&gt;</span><br><span class="line">&lt;% end %&gt;</span><br></pre></td></tr></table></figure>
-<p>產生出</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx30ywbvdzj30iv066dft.jpg" alt=""></p>
-<p>背後會生成這樣的原始碼<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;form class=&quot;new_group&quot; id=&quot;new_group&quot; action=&quot;/groups&quot; accept-charset=&quot;UTF-8&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;utf8&quot; type=&quot;hidden&quot; value=&quot;✓&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;authenticity_token&quot; value=&quot;kp/KDToCeIXh0/mPIoGD+PfOJVJ9/GWTwyNn6/CmvVzEoAsYOqCHyC5RBH402cNqcWGAjO6a8+n3M+twgNp5yQ==&quot;&gt;</span><br><span class="line">標題  &lt;input type=&quot;text&quot; name=&quot;group[title]&quot; id=&quot;group_title&quot;&gt; &lt;br&gt;</span><br><span class="line">敘述 &lt;br&gt;  &lt;textarea name=&quot;group[description]&quot; id=&quot;group_description&quot;&gt;&lt;/textarea&gt; &lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;commit&quot; value=&quot;Submit&quot; disable_with=&quot;Submiting...&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Bootstrap-的完美表格"><a href="#Bootstrap-的完美表格" class="headerlink" title="Bootstrap 的完美表格"></a>Bootstrap 的完美表格</h2><p>但是 Bootstrap 有支援這樣的完美表格</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx311flbkbj30m8081dfz.jpg" alt=""></p>
-<p>不過我們如果要用 Rails 內建的 <code>form_for</code> 製作 Bootstrap 的完美表格，就要寫這樣又長又複雜的語法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> &lt;%= form_for @group do |f| -%&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;form-group string optional&quot;&gt;</span><br><span class="line">    &lt;%= f.label &quot;title&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</span><br><span class="line">     &lt;%= f.text_field :title, :class =&gt; &quot;string optional form-control form-control&quot; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">   &lt;div class=&quot;form-group string optional&quot;&gt;</span><br><span class="line">    &lt;%= f.label &quot;description&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</span><br><span class="line">     &lt;%= f.text_area :description, :class =&gt; &quot;string optional form-control form-control&quot; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">  &lt;%= f.submit &quot;Submit&quot;, class: &quot;btn btn-primary&quot;, data: &#123; disable_with: &quot;Submitting...&quot; &#125; %&gt;</span><br><span class="line">&lt;% end -%&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Simple-Form-表單產生器"><a href="#Simple-Form-表單產生器" class="headerlink" title="Simple Form 表單產生器"></a>Simple Form 表單產生器</h2><p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="noopener">SimpleForm</a> 是一套強大的表單產生器，它能自動產生 Bootstrap 的表單版型。在這裡我們將會使用這套 gem 換掉我們未來的所有表單產生方式。</p>
-<h3 id="安裝-simple-form"><a href="#安裝-simple-form" class="headerlink" title="安裝 simple_form"></a>安裝 simple_form</h3><figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">source 'https://rubygems.org'</span><br><span class="line"></span><br><span class="line">gem 'bootstrap-sass'</span><br><span class="line"></span><br><span class="line">+ gem "simple_form"</span><br><span class="line"></span><br><span class="line"># Bundle edge Rails instead: gem 'rails', github: 'rails/rails'</span><br><span class="line">gem 'rails', '4.2.0'</span><br><span class="line"></span><br><span class="line">... (略)</span><br></pre></td></tr></table></figure>
-<p>執行 <code>bundle install</code></p>
-<h3 id="安裝-simple-form-for-bootstrap-的設定"><a href="#安裝-simple-form-for-bootstrap-的設定" class="headerlink" title="安裝 simple_form for bootstrap 的設定"></a>安裝 simple_form for bootstrap 的設定</h3><p><code>rails generate simple_form:install --bootstrap</code></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx31cd11x4j31ac0hygp7.jpg" alt=""></p>
-<h3 id="重開-rails-server"><a href="#重開-rails-server" class="headerlink" title="重開 rails server"></a>重開 rails server</h3><p>（注意：裝任何 Gem 都要重開 rails s）</p>
-<p>重開 <code>rails s</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-1将表单换成Bootstrap的版型/" data-id="cjor7zms0000ca56cqbuylvyq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-3-2实作讨论群“新增”功能" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/10/3-2实作讨论群“新增”功能/" class="article-date">
@@ -155,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-2实作讨论群“新增”功能/" data-id="cjor7zms1000da56cn176q6xe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-2实作讨论群“新增”功能/" data-id="cjor82i58000dbq6cnv5gwl40" class="article-share-link">Share</a>
       
       
     </footer>
@@ -206,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-3实作讨论群“浏览”功能/" data-id="cjor7zms2000ea56cyg7uv2ej" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-3实作讨论群“浏览”功能/" data-id="cjor82i59000ebq6c52hdht5x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -259,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-4实作讨论群“修改”功能/" data-id="cjor7zms3000fa56crq1ccb6w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-4实作讨论群“修改”功能/" data-id="cjor82i5b000fbq6cdgcrl2e2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/3-5实作讨论群“删除“功能/" data-id="cjor7zms4000ga56c8j786rjf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/3-5实作讨论群“删除“功能/" data-id="cjor82i5b000gbq6c5g8h2pq8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -360,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/" data-id="cjor7zms5000ha56ceug46bd3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/" data-id="cjor82i5c000hbq6cd4jwnrv6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -452,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/3-7解说CRUD与RESTful/" data-id="cjor7zms5000ia56c0xlg5xvp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/3-7解说CRUD与RESTful/" data-id="cjor82i5d000ibq6cm31vwirz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -495,7 +443,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-0发表文章Post/" data-id="cjor7zms6000ja56cehqsqrue" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-0发表文章Post/" data-id="cjor82i5e000jbq6c6038ql88" class="article-share-link">Share</a>
       
       
     </footer>
@@ -575,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjor7zms7000ka56cuxchcxh9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjor82i5f000kbq6cze6vtu3r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -657,7 +605,67 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-2Post的CRUD/" data-id="cjor7zms8000la56ccgh6upne" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-2Post的CRUD/" data-id="cjor82i5g000lbq6ccme4lx4f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-4-3用before-action整理重复程式码" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/12/4-3用before-action整理重复程式码/" class="article-date">
+  <time datetime="2018-11-12T07:04:19.000Z" itemprop="datePublished">2018-11-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/12/4-3用before-action整理重复程式码/">4.3 用before_action整理重复程式码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目前為止，我們的 posts_controller 整份程式碼如下：</p>
+<figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.build(post_params)</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已刪除"</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">post_params</span></span></span><br><span class="line"><span class="tag">    <span class="attr">params.require</span>(<span class="attr">:post</span>)<span class="attr">.permit</span>(<span class="attr">:content</span>)</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>有沒有人發現每個 action 都有重複的地方？ 不會覺得礙眼嗎</p>
+<p>可以看到每個 action 前面都有一行 <code>@group = Group.find(params[:group_id])</code></p>
+<p>所以能使用 before_action 來宣告此 Controller 每個 action 在執行之前都會先做 before_action 的設定</p>
+<p>來把每個 action 的那行簡化掉</p>
+<p>在最下面增加一段 code</p>
+<p>變成</p>
+<figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_action</span> <span class="attr">:find_group</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.build(post_params)</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已刪除"</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">find_group</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">post_params</span></span></span><br><span class="line"><span class="tag">    <span class="attr">params.require</span>(<span class="attr">:post</span>)<span class="attr">.permit</span>(<span class="attr">:content</span>)</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><ul>
+<li><p>before_action 是一個常見的 controller 技巧,用來收納重複的程式碼。</p>
+</li>
+<li><p>before_action 后面不加任何东西，表示这个 controller 下的所有 action 都要登入。</p>
+</li>
+<li><p>before_action 可以用 only,指定某些 action 執行:<br><code>before_action :find_group, only: [:edit, :update]</code></p>
+</li>
+<li><p>或者使用 except,排除某些 action 不執行:<br><code>before_action :find_group, except: [:show, :index]</code></p>
+</li>
+<li><p>還有一個 after_action =&gt; 同 before_action, 用於執行完成 action 後的動作</p>
+</li>
+<li><p>你可以把 before_action 想像成“先过我这一关”的“拦截器”</p>
+</li>
+</ul>
+<h3 id="git-存档"><a href="#git-存档" class="headerlink" title="git 存档"></a><strong>git 存档</strong></h3><p><code>git add .</code><br><code>git commit -m &quot;use before_action simple method&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/12/4-3用before-action整理重复程式码/" data-id="cjor82i5h000mbq6cy2da04pr" class="article-share-link">Share</a>
       
       
     </footer>

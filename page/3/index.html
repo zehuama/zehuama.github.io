@@ -62,66 +62,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-4-3用before-action整理重复程式码" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/12/4-3用before-action整理重复程式码/" class="article-date">
-  <time datetime="2018-11-12T07:04:19.000Z" itemprop="datePublished">2018-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/12/4-3用before-action整理重复程式码/">4.3 用before_action整理重复程式码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目前為止，我們的 posts_controller 整份程式碼如下：</p>
-<figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.build(post_params)</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已刪除"</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">post_params</span></span></span><br><span class="line"><span class="tag">    <span class="attr">params.require</span>(<span class="attr">:post</span>)<span class="attr">.permit</span>(<span class="attr">:content</span>)</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
-<p>有沒有人發現每個 action 都有重複的地方？ 不會覺得礙眼嗎</p>
-<p>可以看到每個 action 前面都有一行 <code>@group = Group.find(params[:group_id])</code></p>
-<p>所以能使用 before_action 來宣告此 Controller 每個 action 在執行之前都會先做 before_action 的設定</p>
-<p>來把每個 action 的那行簡化掉</p>
-<p>在最下面增加一段 code</p>
-<p>變成</p>
-<figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_action</span> <span class="attr">:find_group</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.build(post_params)</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已刪除"</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">find_group</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">post_params</span></span></span><br><span class="line"><span class="tag">    <span class="attr">params.require</span>(<span class="attr">:post</span>)<span class="attr">.permit</span>(<span class="attr">:content</span>)</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><ul>
-<li><p>before_action 是一個常見的 controller 技巧,用來收納重複的程式碼。</p>
-</li>
-<li><p>before_action 后面不加任何东西，表示这个 controller 下的所有 action 都要登入。</p>
-</li>
-<li><p>before_action 可以用 only,指定某些 action 執行:<br><code>before_action :find_group, only: [:edit, :update]</code></p>
-</li>
-<li><p>或者使用 except,排除某些 action 不執行:<br><code>before_action :find_group, except: [:show, :index]</code></p>
-</li>
-<li><p>還有一個 after_action =&gt; 同 before_action, 用於執行完成 action 後的動作</p>
-</li>
-<li><p>你可以把 before_action 想像成“先过我这一关”的“拦截器”</p>
-</li>
-</ul>
-<h3 id="git-存档"><a href="#git-存档" class="headerlink" title="git 存档"></a><strong>git 存档</strong></h3><p><code>git add .</code><br><code>git commit -m &quot;use before_action simple method&quot;</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/4-3用before-action整理重复程式码/" data-id="cjor7zms9000ma56crbq2lb6b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-5-0實作使用者功能" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/12/5-0實作使用者功能/" class="article-date">
@@ -164,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-0實作使用者功能/" data-id="cjor7zmsb000na56cv0c0n02d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-0實作使用者功能/" data-id="cjor82i5i000nbq6c6pdm4ju7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -223,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-1安装登入系统/" data-id="cjor7zmsd000oa56cyojj9bev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-1安装登入系统/" data-id="cjor82i5i000obq6cfjgyrk33" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-2实际登入登出注册账号/" data-id="cjor7zmse000pa56cfvd3yagd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-2实际登入登出注册账号/" data-id="cjor82i5j000pbq6ceeq7xkg7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -351,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjor7zmsh000qa56cstlhzd9i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjor82i5k000qbq6cdh9jx4p6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -420,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/15/6-1Group与User产生关联/" data-id="cjor7zmsj000ra56cnevx9h8o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/15/6-1Group与User产生关联/" data-id="cjor82i5l000rbq6cua7tdhge" class="article-share-link">Share</a>
       
       
     </footer>
@@ -483,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjor7zmsl000sa56cghtidf9l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjor82i5l000sbq6c4ae8di1t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -544,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjor7zmsn000ta56csa2xkh4x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjor82i5m000tbq6cls0ptvjx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -587,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-0创建社团/" data-id="cjor7zmso000ua56cavzkcd1s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-0创建社团/" data-id="cjor82i5o000ubq6cl86mceju" class="article-share-link">Share</a>
       
       
     </footer>
@@ -655,7 +595,69 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-1建立讨论版成员及设定/" data-id="cjor7zmsp000va56c9psbhkef" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-1建立讨论版成员及设定/" data-id="cjor82i5p000vbq6cvjt0baxd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-7-2判断“是否群组成员”" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/18/7-2判断“是否群组成员”/" class="article-date">
+  <time datetime="2018-11-18T03:04:23.000Z" itemprop="datePublished">2018-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/18/7-2判断“是否群组成员”/">7.2 判断“是否为群组成员”</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>会员要可以在社团里面看到自己“是否群组成员”</li>
+<li>user 必須要是這個社團的成員才能發表文章</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-在-user-model-内实作“是否为成员一分子”的判断式-is-member-of-group"><a href="#Step-1-在-user-model-内实作“是否为成员一分子”的判断式-is-member-of-group" class="headerlink" title="Step 1. 在 user model 内实作“是否为成员一分子”的判断式 is_member_of?(group)"></a>Step 1. 在 user model 内实作“是否为成员一分子”的判断式 is_member_of?(group)</h2><p>打開 app/models/user.rb</p>
+<figure class="highlight html"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  has_many :group_users</span><br><span class="line">  has_many :participated_groups, through: :group_users, source: :group</span><br><span class="line"></span><br><span class="line">+ def is_member_of?(group)</span><br><span class="line">+   participated_groups.include?(group)</span><br><span class="line">+ end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Step-2-user-必須要是這個社團的成員才能發表文章"><a href="#Step-2-user-必須要是這個社團的成員才能發表文章" class="headerlink" title="Step 2. user 必須要是這個社團的成員才能發表文章"></a>Step 2. user 必須要是這個社團的成員才能發表文章</h2><figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:authenticate_user</span>!</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:find_group</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_action</span> <span class="attr">:member_required</span>, <span class="attr">only:</span> [<span class="attr">:new</span>, <span class="attr">:create</span> ]</span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"><span class="attr">..</span></span></span><br><span class="line"><span class="tag"><span class="attr">..</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">member_required</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">if</span> !<span class="attr">current_user.is_member_of</span>?(@<span class="attr">group</span>)</span></span><br><span class="line"><span class="tag">+     <span class="attr">flash</span>[<span class="attr">:warning</span>] = <span class="string">"你不是本讨论版的成员，不能发文喔！"</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>)</span></span><br><span class="line"><span class="tag">+   <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-3-user-可以在-group-頁面-加入-退出-此-group"><a href="#Step-3-user-可以在-group-頁面-加入-退出-此-group" class="headerlink" title="Step 3. user 可以在 group 頁面 加入 / 退出 此 group"></a>Step 3. user 可以在 group 頁面 加入 / 退出 此 group</h2><p>定义关系 <code>join!</code> 和 <code>quit!</code><br><figure class="highlight html"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class User <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">join</span>!(<span class="attr">group</span>)</span></span><br><span class="line">+   participated_groups &lt;&lt; group</span><br><span class="line">+ end</span><br><span class="line">+</span><br><span class="line">+ def quit!(group)</span><br><span class="line">+   participated_groups.delete(group)</span><br><span class="line">+ end</span><br><span class="line"></span><br><span class="line"> def is_member_of?(group)</span><br><span class="line">   participated_groups.include?(group)</span><br><span class="line"> end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>实际操作“加入群组”或“退出群组”<br><figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">+ def join</span><br><span class="line">+   @group = Group.find(params[:id])</span><br><span class="line">+</span><br><span class="line">+   if !current_user.is_member_of?(@group)</span><br><span class="line">+     current_user.join!(@group)</span><br><span class="line">+     flash[:notice] = "加入本讨论版成功！"</span><br><span class="line">+   else</span><br><span class="line">+     flash[:warning] = "你已经是本讨论版成员！"</span><br><span class="line">+   end</span><br><span class="line">+</span><br><span class="line">+   redirect_to group_path(@group)</span><br><span class="line">+ end</span><br><span class="line">+</span><br><span class="line">+ def quit</span><br><span class="line">+   @group = Group.find(params[:id])</span><br><span class="line">+</span><br><span class="line">+   if current_user.is_member_of?(@group)</span><br><span class="line">+     current_user.quit!(@group)</span><br><span class="line">+     flash[:alert] = "已退出本讨论版！"</span><br><span class="line">+   else</span><br><span class="line">+     flash[:warning] = "你不是本讨论版成员，无法退出"</span><br><span class="line">+   end</span><br><span class="line">+</span><br><span class="line">+   redirect_to group_path(@group)</span><br><span class="line">+ end</span><br><span class="line"></span><br><span class="line"> private</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2 id="Step-4-修改路由"><a href="#Step-4-修改路由" class="headerlink" title="Step 4. 修改路由"></a>Step 4. 修改路由</h2><figure class="highlight html"><figcaption><span>config/routes</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"> resources :groups do</span><br><span class="line">+   member do</span><br><span class="line">+     post :join</span><br><span class="line">+     post :quit</span><br><span class="line">+   end</span><br><span class="line"></span><br><span class="line">   resources :posts</span><br><span class="line"> end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Step-5-实作加入-退出按钮"><a href="#Step-5-实作加入-退出按钮" class="headerlink" title="Step 5. 实作加入/退出按钮"></a>Step 5. 实作加入/退出按钮</h2><figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"group"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">New</span> <span class="attr">Post</span>", <span class="attr">new_group_post_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-warning</span> <span class="attr">pull-right</span>")%&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Edit</span>", <span class="attr">edit_group_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span> <span class="attr">pull-right</span>")%&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span> &amp;&amp; <span class="attr">current_user.is_member_of</span>?(@<span class="attr">group</span>) %&gt;</span></span><br><span class="line">+      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Quit</span> <span class="attr">Group</span>", <span class="attr">quit_group_path</span>(@<span class="attr">group</span>), <span class="attr">method:</span> <span class="attr">:post</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span>") %&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">%</span> <span class="attr">else</span> %&gt;</span></span><br><span class="line">+      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Join</span> <span class="attr">Group</span>", <span class="attr">join_group_path</span>(@<span class="attr">group</span>), <span class="attr">method:</span> <span class="attr">:post</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-info</span>") %&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Step-6-User-在建立-group-後自動成為-group-的一員"><a href="#Step-6-User-在建立-group-後自動成為-group-的一員" class="headerlink" title="Step 6. User 在建立 group 後自動成為 group 的一員"></a>Step 6. User 在建立 group 後自動成為 group 的一員</h2><p>當你創辦了 group ，卻還要手動再加入這個 group 不會很怪嗎？</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  def create</span><br><span class="line">    @group = current_user.groups.new(group_params)</span><br><span class="line"></span><br><span class="line">    if @group.save</span><br><span class="line">+     current_user.join!(@group)</span><br><span class="line">      redirect_to groups_path, notice: "新增讨论版成功"</span><br><span class="line">    else</span><br><span class="line">      render :new</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line"> ...</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdgy3by00j31qa0u0n0s.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxdgyh1r74j31qb0u0gp6.jpg" alt=""></p>
+<h2 id="Step-7-git-git-储存"><a href="#Step-7-git-git-储存" class="headerlink" title="Step 7. git git 储存"></a>Step 7. git git 储存</h2><p> <code>git add .</code><br> <code>git commit -m &quot;implement join/quit action&quot;</code></p>
+<h2 id="解说："><a href="#解说：" class="headerlink" title="解说："></a>解说：</h2><p>member 是什么？它的规则是什么？<br>执行 <code>rake routes</code>，你会看到它产生的规则是 join_group_path(@group) ，“单数”。member 是单数。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxcipnncw2j30ho01nt8o.jpg" alt=""></p>
+<p>还有一个东西，叫 collection，假设我们要做一个热门文章吧，叫做 hot，意思是“热门的文章”“们”，这时候我们就会用 collection。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxcipr6hhzj306902i3yd.jpg" alt=""></p>
+<p>再执行 <code>rake routes</code></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxciq0wt1yj30iy0300t3.jpg" alt=""><br>在这边你只要先“背”起来：</p>
+<ul>
+<li>member （成员）是“单数”，不加 s</li>
+<li>collection （集合）是“复数”，加 s</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/18/7-2判断“是否群组成员”/" data-id="cjor82i5p000wbq6c3vlpwl5s" class="article-share-link">Share</a>
       
       
     </footer>
