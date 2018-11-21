@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>6.2 只有群组的“创始者”可以“修改”“删除”群组资讯 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目标 路人不应该可以看到“修改”“删除”按钮 只有群组的“创始者”可以实际执行“修改”“删除”群组资讯  步骤Step 1: 路人不应该可以看到“修改”“删除”按钮把“修改”“删除”藏起来，限定  只有登入模式下 而且还必须是群组“创始者”  才能看得到这个按钮，否则路人是看不到的。 修改 app/views/groups/index.html.erb加入 &amp;lt;% if current_use">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.2 只有群组的“创始者”可以“修改”“删除”群组资讯">
+<meta property="og:url" content="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目标 路人不应该可以看到“修改”“删除”按钮 只有群组的“创始者”可以实际执行“修改”“删除”群组资讯  步骤Step 1: 路人不应该可以看到“修改”“删除”按钮把“修改”“删除”藏起来，限定  只有登入模式下 而且还必须是群组“创始者”  才能看得到这个按钮，否则路人是看不到的。 修改 app/views/groups/index.html.erb加入 &amp;lt;% if current_use">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxa52h189pj31w60mogo8.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxa5cly9ajj31vy0nqjtt.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxa5cwqqzoj31w00najtr.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxa8guu28nj31ve0u0jw0.jpg">
+<meta property="og:updated_time" content="2018-11-16T13:41:19.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6.2 只有群组的“创始者”可以“修改”“删除”群组资讯">
+<meta name="twitter:description" content="目标 路人不应该可以看到“修改”“删除”按钮 只有群组的“创始者”可以实际执行“修改”“删除”群组资讯  步骤Step 1: 路人不应该可以看到“修改”“删除”按钮把“修改”“删除”藏起来，限定  只有登入模式下 而且还必须是群组“创始者”  才能看得到这个按钮，否则路人是看不到的。 修改 app/views/groups/index.html.erb加入 &amp;lt;% if current_use">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxa52h189pj31w60mogo8.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-6-2仅创始者可修改删除Group" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/6-2仅创始者可修改删除Group/" class="article-date">
+  <time datetime="2018-11-15T11:52:22.000Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      6.2 只有群组的“创始者”可以“修改”“删除”群组资讯
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>路人不应该可以看到“修改”“删除”按钮</li>
+<li>只有群组的“创始者”可以实际执行“修改”“删除”群组资讯</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-路人不应该可以看到“修改”“删除”按钮"><a href="#Step-1-路人不应该可以看到“修改”“删除”按钮" class="headerlink" title="Step 1: 路人不应该可以看到“修改”“删除”按钮"></a>Step 1: 路人不应该可以看到“修改”“删除”按钮</h2><p>把“修改”“删除”藏起来，限定</p>
+<ul>
+<li>只有登入模式下</li>
+<li>而且还必须是群组“创始者”</li>
+</ul>
+<p>才能看得到这个按钮，否则路人是看不到的。</p>
+<p>修改 app/views/groups/index.html.erb<br>加入 <code>&lt;% if current_user &amp;&amp; current_user == group.user %&gt;</code> 的判断式</p>
+<figure class="highlight html"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">+       <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span> &amp;&amp; <span class="attr">current_user</span> == <span class="string">group.user</span> %&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Edit</span>", <span class="attr">edit_group_path</span>(<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-sm</span> <span class="attr">btn-default</span>")%&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Delete</span>", <span class="attr">group_path</span>(<span class="attr">group</span>),    <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-sm</span> <span class="attr">btn-default</span>",</span></span><br><span class="line"><span class="tag">                      <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">data:</span> &#123; <span class="attr">confirm:</span> "<span class="attr">Are</span> <span class="attr">you</span> <span class="attr">sure</span>?" &#125; )%&gt;</span></span><br><span class="line">+       <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>重新刷新首页，路人现在就看不到按钮了。<br><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxa52h189pj31w60mogo8.jpg" alt=""></p>
+<h2 id="Step-2-git-存档"><a href="#Step-2-git-存档" class="headerlink" title="Step 2: git 存档"></a>Step 2: git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;people can&#39;t see edit button unless he is group owner&quot;</code></p>
+<h2 id="Step-3-若不是-group-創辦人，就不會顯示-edit-按鈕"><a href="#Step-3-若不是-group-創辦人，就不會顯示-edit-按鈕" class="headerlink" title="Step 3: 若不是 group 創辦人，就不會顯示 edit 按鈕"></a>Step 3: 若不是 group 創辦人，就不會顯示 edit 按鈕</h2><p>就算已經設定不是作者，按了 edit 也會跳 error</p>
+<p>但不是作者還跑出 edit 來讓你按實在是很怪，對吧？</p>
+<figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"group"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">New</span> <span class="attr">Post</span>", <span class="attr">new_group_post_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-warning</span> <span class="attr">pull-right</span>") %&gt;</span></span><br><span class="line">+ <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span> &amp;&amp; <span class="attr">current_user</span> == <span class="string">@group.user</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Edit</span>", <span class="attr">edit_group_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span> <span class="attr">pull-right</span>") %&gt;</span></span><br><span class="line">+ <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Step-4-git-存档"><a href="#Step-4-git-存档" class="headerlink" title="Step 4: git 存档"></a>Step 4: git 存档</h2><p><code>git add .</code><br><code>git commit -m &quot;add permission check on show page&quot;</code></p>
+<p>Before<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxa5cly9ajj31vy0nqjtt.jpg" alt=""></p>
+<p>After<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxa5cwqqzoj31w00najtr.jpg" alt=""></p>
+<h2 id="Step-5-必须要是-group-拥有人，才能进入-edit，否则会被重导至首页，并显示错误讯息。"><a href="#Step-5-必须要是-group-拥有人，才能进入-edit，否则会被重导至首页，并显示错误讯息。" class="headerlink" title="Step 5: 必须要是 group 拥有人，才能进入 edit，否则会被重导至首页，并显示错误讯息。"></a>Step 5: 必须要是 group 拥有人，才能进入 edit，否则会被重导至首页，并显示错误讯息。</h2><p>修改 app/controllers/groups_controller.rb 加入权限，如果不是“创始者”去存取，会显示没有权限的错误讯息。</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def edit</span><br><span class="line">  @group = Group.find(params[:id])</span><br><span class="line"></span><br><span class="line">  if current_user != @group.user</span><br><span class="line">    redirect_to groups_path, alert: "You have no permission."</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  @group.user = current_user</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>这样当其他人，试图输入 <a href="http://localhost:3000/groups/某笔资料的ID/edit" target="_blank" rel="noopener">http://localhost:3000/groups/某笔资料的ID/edit</a> 这样的网址，想要修改资料，就会被挡住。</p>
+<h2 id="Step-6-依样画葫芦的把“权限检查”的程式码，套用到-update-destroy-上"><a href="#Step-6-依样画葫芦的把“权限检查”的程式码，套用到-update-destroy-上" class="headerlink" title="Step 6: 依样画葫芦的把“权限检查”的程式码，套用到 update / destroy 上"></a>Step 6: 依样画葫芦的把“权限检查”的程式码，套用到 update / destroy 上</h2><p>修改 app/controllers/groups_controller.rb 中的 update 与 destroy 部分。</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def update</span><br><span class="line">  @group = Group.find(params[:id])</span><br><span class="line">  if current_user != @group.user</span><br><span class="line">    redirect_to groups_path, alert: "You have no permission."</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  @group.user = current_user</span><br><span class="line"></span><br><span class="line">  if @group.update(group_params)</span><br><span class="line">    redirect_to groups_path, notice: "修改讨论版成功"</span><br><span class="line">  else</span><br><span class="line">    render :edit</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">def destroy</span><br><span class="line">  @group = Group.find(params[:id]s)</span><br><span class="line"></span><br><span class="line">  if current_user != @group.user</span><br><span class="line">    redirect_to root_path, alert: "You have no permission."</span><br><span class="line">  else</span><br><span class="line">    @group.destroy</span><br><span class="line">    redirect_to groups_path, alert: "讨论版已删除"</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxa8guu28nj31ve0u0jw0.jpg" alt=""></p>
+<p>##Step 7: git 存档<br><code>git add .</code><br><code>git commit -m &quot;check owner permission when access edit/update/destroy&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjor7t5cb000s8g6c3wgenrgd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/16/6-3仅创始者可修改删除Post/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          6.3 只有作者才能有 post 的修改/刪除權限
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/6-1Group与User产生关联/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">6.1 让“Group”与“User”产生关联</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

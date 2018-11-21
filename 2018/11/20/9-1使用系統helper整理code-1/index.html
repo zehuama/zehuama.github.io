@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>9.1 使用系統 helper 整理 code | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="步骤Step 0. git checkout -b ch09因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch09 是比较合理的。将来回顾就可以比较清楚 在 ch09 我们做了哪一些练习。 git checkout -b ch09 Step 1. 時間格式 我們會發現在時間格式上是顯示 2018-11-20 03:07:08 UTC         我們可以改用這樣的寫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9.1 使用系統 helper 整理 code">
+<meta property="og:url" content="http://yoursite.com/2018/11/20/9-1使用系統helper整理code-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="步骤Step 0. git checkout -b ch09因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch09 是比较合理的。将来回顾就可以比较清楚 在 ch09 我们做了哪一些练习。 git checkout -b ch09 Step 1. 時間格式 我們會發現在時間格式上是顯示 2018-11-20 03:07:08 UTC         我們可以改用這樣的寫">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxeox9f396j31vm0psjux.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxep07dmqsj31vu0po0wb.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxep17zgexj31w00qajuu.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxep3rnu6uj31um0u0whx.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxep7f5sjhj31vy0q8whe.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxepbcbnn8j31vs0qwtcx.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxepdnxlk0j31vu0qswib.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxfnwf7ni6j30m800ydgn.jpg">
+<meta property="og:updated_time" content="2018-11-21T06:31:19.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9.1 使用系統 helper 整理 code">
+<meta name="twitter:description" content="步骤Step 0. git checkout -b ch09因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch09 是比较合理的。将来回顾就可以比较清楚 在 ch09 我们做了哪一些练习。 git checkout -b ch09 Step 1. 時間格式 我們會發現在時間格式上是顯示 2018-11-20 03:07:08 UTC         我們可以改用這樣的寫">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxeox9f396j31vm0psjux.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-9-1使用系統helper整理code-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/9-1使用系統helper整理code-1/" class="article-date">
+  <time datetime="2018-11-20T10:00:36.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      9.1 使用系統 helper 整理 code
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch09"><a href="#Step-0-git-checkout-b-ch09" class="headerlink" title="Step 0. git checkout -b ch09"></a>Step 0. git checkout -b ch09</h2><p>因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch09 是比较合理的。将来回顾就可以比较清楚 在 ch09 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch09</code></p>
+<h2 id="Step-1-時間格式"><a href="#Step-1-時間格式" class="headerlink" title="Step 1. 時間格式"></a>Step 1. 時間格式</h2><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxeox9f396j31vm0psjux.jpg" alt=""></p>
+<p>我們會發現在時間格式上是顯示</p>
+<p>2018-11-20 03:07:08 UTC        </p>
+<p>我們可以改用這樣的寫法:</p>
+<figure class="highlight html"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.updated_at.to_s</span>(<span class="attr">:long</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxep07dmqsj31vu0po0wb.jpg" alt=""></p>
+<p>或</p>
+<figure class="highlight html"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.updated_at.to_s</span>(<span class="attr">:short</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxep17zgexj31w00qajuu.jpg" alt=""><br><br></p>
+<h2 id="Step-2-內文自動斷行"><a href="#Step-2-內文自動斷行" class="headerlink" title="Step 2. 內文自動斷行"></a>Step 2. 內文自動斷行</h2><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxep3rnu6uj31um0u0whx.jpg" alt=""></p>
+<p>要讓 post 的 content 能自動斷行</p>
+<figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">-         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.content</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">simple_format</span>(<span class="attr">post.content</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxep7f5sjhj31vy0q8whe.jpg" alt=""></p>
+<p>如果後台的 account/post 也要改的話，<br>一樣打開 app/views/account/posts/index.html.erb<br>把上述那行改掉</p>
+<p><br></p>
+<h2 id="Step-3-標題文字太長"><a href="#Step-3-標題文字太長" class="headerlink" title="Step 3. 標題文字太長"></a>Step 3. 標題文字太長</h2><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxepbcbnn8j31vs0qwtcx.jpg" alt=""></p>
+<figure class="highlight html"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">-     <span class="tag">&lt;<span class="name">td</span>&gt;</span>  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">group.title</span>, <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">td</span>&gt;</span>  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">truncate</span>(<span class="attr">group.title</span>, <span class="attr">length:</span> <span class="attr">15</span> ), <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxepdnxlk0j31vu0qswib.jpg" alt=""></p>
+<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><p><strong>为什么会有这样的差别？</strong><br>让我们捞出 Log，你可以观察到，其实系统存的是这样的格式，断行是 <code>\r\n</code>。很遗憾的 HTML 并不认得 <code>\r\n</code> 是什么。HTML 只知道断行符号应该叫<code>&lt;br&gt;</code></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxfnwf7ni6j30m800ydgn.jpg" alt=""></p>
+<p><code>simple_format</code> 是 Rails 内建的 Helper，可以帮忙把 <code>\r\n</code> 翻译成为 <code>&lt;br&gt;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/9-1使用系統helper整理code-1/" data-id="cjor7t5cl00128g6cuj7s3k74" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/20/9-2自己撰寫helper包裝html/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          9.2 自己撰寫helper包裝html
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/20/9-0重构程式码-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">9.0 重构程式码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

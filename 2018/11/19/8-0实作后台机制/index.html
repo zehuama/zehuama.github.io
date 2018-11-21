@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>8.0 实作后台机制 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本章目標 建立使用者後台 ( 前置作業 ) 使用者可以在後台看到自己參加的 group 使用可以在後台看到自己發表的 post post 的排列要以時間 (最新 =&amp;gt; 最舊) 順序排列 group 的排列要以 文章數量 當熱門度排列 bug 解決 =&amp;gt; 當 group 刪除時，所屬的 posts 也要跟著刪除">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.0 实作后台机制">
+<meta property="og:url" content="http://yoursite.com/2018/11/19/8-0实作后台机制/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本章目標 建立使用者後台 ( 前置作業 ) 使用者可以在後台看到自己參加的 group 使用可以在後台看到自己發表的 post post 的排列要以時間 (最新 =&amp;gt; 最舊) 順序排列 group 的排列要以 文章數量 當熱門度排列 bug 解決 =&amp;gt; 當 group 刪除時，所屬的 posts 也要跟著刪除">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-19T08:46:42.203Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8.0 实作后台机制">
+<meta name="twitter:description" content="本章目標 建立使用者後台 ( 前置作業 ) 使用者可以在後台看到自己參加的 group 使用可以在後台看到自己發表的 post post 的排列要以時間 (最新 =&amp;gt; 最舊) 順序排列 group 的排列要以 文章數量 當熱門度排列 bug 解決 =&amp;gt; 當 group 刪除時，所屬的 posts 也要跟著刪除">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-8-0实作后台机制" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/8-0实作后台机制/" class="article-date">
+  <time datetime="2018-11-19T08:45:17.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      8.0 实作后台机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="本章目標"><a href="#本章目標" class="headerlink" title="本章目標"></a>本章目標</h2><ul>
+<li>建立使用者後台 ( 前置作業 )</li>
+<li>使用者可以在後台看到自己參加的 group</li>
+<li>使用可以在後台看到自己發表的 post</li>
+<li>post 的排列要以時間 (最新 =&gt; 最舊) 順序排列</li>
+<li>group 的排列要以 文章數量 當熱門度排列</li>
+<li>bug 解決 =&gt; 當 group 刪除時，所屬的 posts 也要跟著刪除</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/19/8-0实作后台机制/" data-id="cjor7t5cl00118g6cga9vit4n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/19/8-1可看到自己参与的Group/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          8.1 可看到自己参与的Group
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/18/7-2判断“是否群组成员”/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">7.2 判断“是否为群组成员”</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

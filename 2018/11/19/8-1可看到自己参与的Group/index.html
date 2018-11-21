@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>8.1 可看到自己参与的Group | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目标 使用者在下拉选单内，可以看到 “My Groups” 使用者点选 “My Groups” 可以看到自己参与的所有群组  步骤Step 0. git checkout -b ch08因为我们现在要实作第七章的内容，新增一个 branch 把实作内容集中在 ch08 是比较合理的。将来回顾就可以比较清楚 在 ch08 我们做了哪一些练习。 git checkout -b ch08 Step 1:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.1 可看到自己参与的Group">
+<meta property="og:url" content="http://yoursite.com/2018/11/19/8-1可看到自己参与的Group/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目标 使用者在下拉选单内，可以看到 “My Groups” 使用者点选 “My Groups” 可以看到自己参与的所有群组  步骤Step 0. git checkout -b ch08因为我们现在要实作第七章的内容，新增一个 branch 把实作内容集中在 ch08 是比较合理的。将来回顾就可以比较清楚 在 ch08 我们做了哪一些练习。 git checkout -b ch08 Step 1:">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxdksag71wj31vy0syjvj.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxdn9g3m2ij31w00p0jut.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxdn7ob90ej31c608kdhy.jpg">
+<meta property="og:updated_time" content="2018-11-19T12:29:48.538Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8.1 可看到自己参与的Group">
+<meta name="twitter:description" content="目标 使用者在下拉选单内，可以看到 “My Groups” 使用者点选 “My Groups” 可以看到自己参与的所有群组  步骤Step 0. git checkout -b ch08因为我们现在要实作第七章的内容，新增一个 branch 把实作内容集中在 ch08 是比较合理的。将来回顾就可以比较清楚 在 ch08 我们做了哪一些练习。 git checkout -b ch08 Step 1:">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxdksag71wj31vy0syjvj.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-8-1可看到自己参与的Group" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/8-1可看到自己参与的Group/" class="article-date">
+  <time datetime="2018-11-19T08:56:10.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      8.1 可看到自己参与的Group
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>使用者在下拉选单内，可以看到 “My Groups”</li>
+<li>使用者点选 “My Groups” 可以看到自己参与的所有群组</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch08"><a href="#Step-0-git-checkout-b-ch08" class="headerlink" title="Step 0. git checkout -b ch08"></a>Step 0. git checkout -b ch08</h2><p>因为我们现在要实作第七章的内容，新增一个 branch 把实作内容集中在 ch08 是比较合理的。将来回顾就可以比较清楚 在 ch08 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch08</code></p>
+<h2 id="Step-1-产生-account-的-namespace-下的-groups-controller"><a href="#Step-1-产生-account-的-namespace-下的-groups-controller" class="headerlink" title="Step 1: 产生 account 的 namespace 下的 groups_controller"></a>Step 1: 产生 account 的 namespace 下的 groups_controller</h2><p>执行</p>
+<p><code>rails g controller account/groups</code></p>
+<h2 id="Step-2-修改-routing"><a href="#Step-2-修改-routing" class="headerlink" title="Step 2. 修改 routing"></a>Step 2. 修改 routing</h2><p>修改 config/routes.rb 加入：</p>
+<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace :account do</span><br><span class="line">  resources :groups</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Step-3-修改下拉选项"><a href="#Step-3-修改下拉选项" class="headerlink" title="Step 3: 修改下拉选项"></a>Step 3: 修改下拉选项</h2><p>然后修改 <code>app/views/common/_navbar.html.erb</code></p>
+<p>加入多一个“下拉选单选项”：</p>
+<figure class="highlight html"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">My</span> <span class="attr">Groups</span>", <span class="attr">account_groups_path</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"divider"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("账号设定", <span class="attr">edit_user_registration_path</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("登出", <span class="attr">destroy_user_session_path</span>, <span class="attr">method:</span> <span class="attr">:delete</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>成果就会长这样：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdksag71wj31vy0syjvj.jpg" alt=""></p>
+<h2 id="Step-4-建立-account-groups-controller-rb-下的-index-action"><a href="#Step-4-建立-account-groups-controller-rb-下的-index-action" class="headerlink" title="Step 4. 建立 account/groups_controller.rb 下的 index action"></a>Step 4. 建立 account/groups_controller.rb 下的 index action</h2><p>记得要加入： before_action :authenticate_user!，限制必须要得登入使用者，才能看。</p>
+<figure class="highlight html"><figcaption><span>app/controllers/account/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Account::GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:authenticate_user</span>!</span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">groups</span> = <span class="string">current_user.participated_groups</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-5-新增-“参与群组一览表”"><a href="#Step-5-新增-“参与群组一览表”" class="headerlink" title="Step 5. 新增 “参与群组一览表”"></a>Step 5. 新增 “参与群组一览表”</h2><p><code>touch app/views/account/groups/index.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/account/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span> 我加入的讨论版 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> # <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Title <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Description <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Post Count <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Last Update <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> @<span class="attr">groups.each</span> <span class="attr">do</span> |<span class="attr">group</span>| %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> # <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">group.title</span>, <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.description</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.posts.count</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.updated_at</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>成果：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxdn9g3m2ij31w00p0jut.jpg" alt=""></p>
+<h2 id="Step-6-git-储存"><a href="#Step-6-git-储存" class="headerlink" title="Step 6: git 储存"></a>Step 6: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;implement my groups&quot;</code></p>
+<h2 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h2><p><strong>namespace 是什么？</strong></p>
+<ul>
+<li>我们尴尬的发现，要做个人后台时，却发现 groups 这个名字已被人用走，但我们却想做出 /account/groups 这样的网址。</li>
+<li>namespace 就是“命名空间”，你可以想成因为北京有很多个叫“梁朝伟”的人，所以要分成“三里屯梁朝伟”、“国贸梁朝伟”。<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace :account do</span><br><span class="line">  resources :groups</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>会生成以下这样的 routing</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxdn7ob90ej31c608kdhy.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/19/8-1可看到自己参与的Group/" data-id="cjor7t5ch000w8g6cz6293yrq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/19/8-2可看到自己发表的Post/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          8.2 可看到自己发表的Post
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/19/8-0实作后台机制/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">8.0 实作后台机制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

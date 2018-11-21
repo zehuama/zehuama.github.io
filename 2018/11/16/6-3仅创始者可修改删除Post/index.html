@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>6.3 只有作者才能有 post 的修改/刪除權限 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="步骤Step 1: 新增 user_id 到 post 的 table 里执行rails g migration add_user_id_to_post user_id:integer 然后，执行rake db:migrate Step 2: 設定 user 跟 post 之間的資料庫關聯打開 app/models/user.rbapp/models/user.rb123456class User">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.3 只有作者才能有 post 的修改&#x2F;刪除權限">
+<meta property="og:url" content="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="步骤Step 1: 新增 user_id 到 post 的 table 里执行rails g migration add_user_id_to_post user_id:integer 然后，执行rake db:migrate Step 2: 設定 user 跟 post 之間的資料庫關聯打開 app/models/user.rbapp/models/user.rb123456class User">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxbf2m0g2mj31s50u0n1x.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxbf3v7cx6j31w40r477j.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxbf58abrnj31q10u0tc9.jpg">
+<meta property="og:updated_time" content="2018-11-19T13:31:19.441Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6.3 只有作者才能有 post 的修改&#x2F;刪除權限">
+<meta name="twitter:description" content="步骤Step 1: 新增 user_id 到 post 的 table 里执行rails g migration add_user_id_to_post user_id:integer 然后，执行rake db:migrate Step 2: 設定 user 跟 post 之間的資料庫關聯打開 app/models/user.rbapp/models/user.rb123456class User">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxbf2m0g2mj31s50u0n1x.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-6-3仅创始者可修改删除Post" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/16/6-3仅创始者可修改删除Post/" class="article-date">
+  <time datetime="2018-11-16T12:49:12.000Z" itemprop="datePublished">2018-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      6.3 只有作者才能有 post 的修改/刪除權限
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-新增-user-id-到-post-的-table-里"><a href="#Step-1-新增-user-id-到-post-的-table-里" class="headerlink" title="Step 1: 新增 user_id 到 post 的 table 里"></a>Step 1: 新增 user_id 到 post 的 table 里</h2><p>执行<br><code>rails g migration add_user_id_to_post user_id:integer</code></p>
+<p>然后，执行<br><code>rake db:migrate</code></p>
+<h2 id="Step-2-設定-user-跟-post-之間的資料庫關聯"><a href="#Step-2-設定-user-跟-post-之間的資料庫關聯" class="headerlink" title="Step 2: 設定 user 跟 post 之間的資料庫關聯"></a>Step 2: 設定 user 跟 post 之間的資料庫關聯</h2><p>打開 app/models/user.rb<br><figure class="highlight html"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class User <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">has_many</span> <span class="attr">:groups</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">has_many</span> <span class="attr">:posts</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure></p>
+<p>打開 app/models/post.rb<br>改成<br><figure class="highlight html"><figcaption><span>app/models/post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Post <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">belongs_to</span> <span class="attr">:user</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Step-3-限定post的修改-删除权限-amp-amp-为创建post引入必要参数"><a href="#Step-3-限定post的修改-删除权限-amp-amp-为创建post引入必要参数" class="headerlink" title="Step 3: 限定post的修改/删除权限 &amp;&amp; 为创建post引入必要参数"></a>Step 3: 限定post的修改/删除权限 &amp;&amp; 为创建post引入必要参数</h2><p>打開 app/controllers/posts_controller.rb<br><figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">Post.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> <span class="attr">current_user</span> != <span class="string">@post.user</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "<span class="attr">You</span> <span class="attr">have</span> <span class="attr">no</span> <span class="attr">permission.</span>"</span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">Post.new(post_params)</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.group</span> = <span class="string">@group</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.user</span> = <span class="string">current_user</span></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">Post.find(params[:id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.group</span> = <span class="string">@group</span></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> <span class="attr">current_user</span> != <span class="string">@post.user</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "<span class="attr">You</span> <span class="attr">have</span> <span class="attr">no</span> <span class="attr">permission.</span>"</span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.user</span> = <span class="string">current_user</span></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">Post.find(params[:id])</span></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> <span class="attr">current_user</span> != <span class="string">@post.user</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "<span class="attr">You</span> <span class="attr">have</span> <span class="attr">no</span> <span class="attr">permission.</span>"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已删除"</span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxbf2m0g2mj31s50u0n1x.jpg" alt=""></p>
+<h2 id="Step-4-对非创建者隐藏post的修改-删除按键"><a href="#Step-4-对非创建者隐藏post的修改-删除按键" class="headerlink" title="Step 4: 对非创建者隐藏post的修改/删除按键"></a>Step 4: 对非创建者隐藏post的修改/删除按键</h2><p>打開 app/views/groups/show.html.erb<br><figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">..</span><br><span class="line">..</span><br><span class="line">+     <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span> &amp;&amp; <span class="attr">current_user</span> == <span class="string">post.user</span> %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Edit</span>", <span class="attr">edit_group_post_path</span>(<span class="attr">post.group</span>, <span class="attr">post</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-default</span> <span class="attr">btn-xs</span>")%&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Delete</span>", <span class="attr">group_post_path</span>(<span class="attr">post.group</span>, <span class="attr">post</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-default</span> <span class="attr">btn-xs</span>", <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">data:</span> &#123;<span class="attr">confirm:</span> "<span class="attr">Are</span> <span class="attr">you</span> <span class="attr">sure</span>?"&#125;) %&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>之后刷新页面</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxbf3v7cx6j31w40r477j.jpg" alt=""></p>
+<p>新增文章</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxbf58abrnj31q10u0tc9.jpg" alt=""></p>
+<h3 id="將尚未做使用者功能前的-group-與-post-資料刪除"><a href="#將尚未做使用者功能前的-group-與-post-資料刪除" class="headerlink" title="將尚未做使用者功能前的 group 與 post 資料刪除"></a>將尚未做使用者功能前的 group 與 post 資料刪除</h3><p>當我們完成前面使用者登入的機制, 以及 group / post 擁有者機制的功能後</p>
+<p>只要建立 group , 發表 post 都會要求登入</p>
+<p>並且在建立之後會將把該筆資料的 user_id 欄位存進您的 user.id</p>
+<p>這時候會遇到一個 bug: 之前所建立的 group 與 post 沒有 user_id 的值 ( nil )</p>
+<p>後面的功能開發，需要驗證作者，若遇到沒有 user_id 的資料會導致出現 bug</p>
+<h2 id="解決方法："><a href="#解決方法：" class="headerlink" title="解決方法："></a>解決方法：</h2><p>進入 rails console 模式<br><code>rails c</code></p>
+<p>輸入以下指令:</p>
+<p><code>Group.where(user_id: nil).destroy_all</code></p>
+<p><code>Post.where(user_id: nil).destroy_all</code></p>
+<p><code>Post.where(group_id: nil).destroy_all</code></p>
+<p>或者</p>
+<p><code>Group.delete_all</code> 之后重新创建</p>
+<p>即可完成</p>
+<h2 id="Step-5-git-储存"><a href="#Step-5-git-储存" class="headerlink" title="Step 5: git 储存"></a>Step 5: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;only creater can edit/destroy post&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjor7t5cf000t8g6cd0thw6yx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/18/7-0创建社团/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          7.0 创建社团
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/6-2仅创始者可修改删除Group/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">6.2 只有群组的“创始者”可以“修改”“删除”群组资讯</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

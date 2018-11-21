@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>5.3 客制化Name栏位 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Step 1: 客製化 devise =&amp;gt; 新增一個 “name” 的欄位devise 內建的資料格式並沒有 name 這個欄位，所以我們要客製化一個出來新增一個資料庫異動設定, 名稱是 add_name_to_user ( user 表單新增一個 name 欄位) rails g migration add_name_to_user 打開新增的檔案 db/migrate/(一堆數字)_ad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5.3 客制化Name栏位">
+<meta property="og:url" content="http://yoursite.com/2018/11/13/5-3客制化Name栏位/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Step 1: 客製化 devise =&amp;gt; 新增一個 “name” 的欄位devise 內建的資料格式並沒有 name 這個欄位，所以我們要客製化一個出來新增一個資料庫異動設定, 名稱是 add_name_to_user ( user 表單新增一個 name 欄位) rails g migration add_name_to_user 打開新增的檔案 db/migrate/(一堆數字)_ad">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx6c3nwu35j31dc0e00x7.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx6hxwbwelj31kw0p7n0b.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx6ctnlk77j31kw0pwwib.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx6ctv94b8j31kw0nkgow.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx6i8tu2f0j31kw0xaaes.jpg">
+<meta property="og:updated_time" content="2018-11-13T08:55:49.587Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5.3 客制化Name栏位">
+<meta name="twitter:description" content="Step 1: 客製化 devise =&amp;gt; 新增一個 “name” 的欄位devise 內建的資料格式並沒有 name 這個欄位，所以我們要客製化一個出來新增一個資料庫異動設定, 名稱是 add_name_to_user ( user 表單新增一個 name 欄位) rails g migration add_name_to_user 打開新增的檔案 db/migrate/(一堆數字)_ad">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx6c3nwu35j31dc0e00x7.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-5-3客制化Name栏位" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/13/5-3客制化Name栏位/" class="article-date">
+  <time datetime="2018-11-13T03:55:01.000Z" itemprop="datePublished">2018-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      5.3 客制化Name栏位
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Step-1-客製化-devise-gt-新增一個-“name”-的欄位"><a href="#Step-1-客製化-devise-gt-新增一個-“name”-的欄位" class="headerlink" title="Step 1: 客製化 devise =&gt; 新增一個 “name” 的欄位"></a>Step 1: 客製化 devise =&gt; 新增一個 “name” 的欄位</h2><p>devise 內建的資料格式並沒有 name 這個欄位，所以我們要客製化一個出來<br>新增一個資料庫異動設定, 名稱是 add_name_to_user ( user 表單新增一個 name 欄位)</p>
+<p><code>rails g migration add_name_to_user</code></p>
+<p>打開新增的檔案 <code>db/migrate/(一堆數字)_add_name_to_user.rb</code></p>
+<figure class="highlight html"><figcaption><span>db/migrate/(一堆數字)_add_name_to_user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class AddNameToUser <span class="tag">&lt; <span class="attr">ActiveRecord::Migration</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">change</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">add_column</span> <span class="attr">:users</span>, <span class="attr">:name</span>, <span class="attr">:string</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>接下來跑 <code>rake db:migrate</code></p>
+<p>這樣 user 資料庫就有 name 這個欄位了</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx6c3nwu35j31dc0e00x7.jpg" alt=""><br><br></p>
+<h2 id="Step-2-客製化-devise-的-views-gt-註冊頁面新增-name-欄位"><a href="#Step-2-客製化-devise-的-views-gt-註冊頁面新增-name-欄位" class="headerlink" title="Step 2: 客製化 devise 的 views =&gt; 註冊頁面新增 name 欄位"></a>Step 2: 客製化 devise 的 views =&gt; 註冊頁面新增 name 欄位</h2><p>打開 app/views/devise/registrations/new.html.erb</p>
+<figure class="highlight html"><figcaption><span>app/views/devise/registrations/new.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-inputs"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:email</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">autofocus:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:name</span>,  <span class="attr">required:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">hint:</span> ("#&#123;@<span class="attr">minimum_password_length</span>&#125; <span class="attr">characters</span> <span class="attr">minimum</span>" <span class="attr">if</span> @<span class="attr">validatable</span>) %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password_confirmation</span>, <span class="attr">required:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx6hxwbwelj31kw0p7n0b.jpg" alt=""></p>
+<p>現在還只是前端的部分完成，後端還要再加一個設定，才能讓 name 輸入的值真正存到資料庫裡面<br>(還記得前面說的 <a href="http://rails101s.logdown.com/posts/211391-strong-parameters" target="_blank" rel="noopener">strong_params</a> 嗎？)<br><br></p>
+<h2 id="Step-3-加入-strong-parameters-與-devise-整合的-hack"><a href="#Step-3-加入-strong-parameters-與-devise-整合的-hack" class="headerlink" title="Step 3: 加入 strong_parameters 與 devise 整合的 hack"></a>Step 3: 加入 strong_parameters 與 devise 整合的 hack</h2><p>打開 app/controller/application_controller</p>
+<figure class="highlight html"><figcaption><span>app/controller/application_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class ApplicationController <span class="tag">&lt; <span class="attr">ActionController::Base</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_filter</span> <span class="attr">:configure_permitted_parameters</span>, <span class="attr">if:</span> <span class="attr">:devise_controller</span>?</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+  <span class="attr">protected</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+  <span class="attr">def</span> <span class="attr">configure_permitted_parameters</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">devise_parameter_sanitizer.for</span>(<span class="attr">:sign_up</span>) &#123; |<span class="attr">u</span>| <span class="attr">u.permit</span>(<span class="attr">:name</span>, <span class="attr">:email</span>, <span class="attr">:password</span>, <span class="attr">:password_confirmation</span>) &#125;</span></span><br><span class="line"><span class="tag">+  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>這樣註冊新會員功能就完成了， 請新建立一個測試用帳號 來測試功能<br><br></p>
+<h2 id="Step-4-navbar-上的-hi-email-改成-hi-name"><a href="#Step-4-navbar-上的-hi-email-改成-hi-name" class="headerlink" title="Step 4: navbar 上的 hi! email 改成 hi! name"></a>Step 4: navbar 上的 hi! email 改成 hi! name</h2><p>既然我們都能讓會員取名字了， navbar 上的 greeting 也該改成 name 吧？</p>
+<p>打開 <code>app/views/common/_navbar.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"dropdown"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"dropdown-toggle"</span> <span class="attr">data-toggle</span>=<span class="string">"dropdown"</span>&gt;</span></span><br><span class="line">-           Hi!, <span class="tag">&lt;<span class="name">%=</span> <span class="attr">current_user.email</span> %&gt;</span></span><br><span class="line">+           Hi!, <span class="tag">&lt;<span class="name">%=</span> <span class="attr">current_user.name</span> %&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">b</span> <span class="attr">class</span>=<span class="string">"caret"</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>before<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx6ctnlk77j31kw0pwwib.jpg" alt=""></p>
+<p>after<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx6ctv94b8j31kw0nkgow.jpg" alt=""><br><br></p>
+<h2 id="Step-5-新增-“帳號設定”-功能，並能修改自己帳號的-name"><a href="#Step-5-新增-“帳號設定”-功能，並能修改自己帳號的-name" class="headerlink" title="Step 5: 新增 “帳號設定” 功能，並能修改自己帳號的 name"></a>Step 5: 新增 “帳號設定” 功能，並能修改自己帳號的 name</h2><p>我們在前面章節也有創造一個帳號，但是卻還沒命名<br>所以需要做一個 “使用者帳號設定” 頁面來把<strong>還沒命名的帳號命名</strong></p>
+<p>Devise 已經幫我們建好內建的功能<br>打開 <code>app/views/common/_navbar.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></span><br><span class="line">+             <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("帳號設定", <span class="attr">edit_user_registration_path</span> )%&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("登出", <span class="attr">destroy_user_session_path</span>, <span class="attr">method:</span> <span class="attr">:delete</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>修改 edit_account 的 strong_parameters</p>
+<figure class="highlight html"><figcaption><span>app/controller/application_controller</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">   def configure_permitted_parameters</span><br><span class="line">    devise_parameter_sanitizer.for(:sign_up) &#123; |u| u.permit(:name, :email, :password, :password_confirmation) &#125;</span><br><span class="line">+   devise_parameter_sanitizer.for(:account_update) &#123; |u| u.permit(:name, :email, :password, :password_confirmation, :current_password) &#125;</span><br><span class="line">   end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>在 app/views/devise/registrations/edit.html.erb 中 還要加入</p>
+<figure class="highlight html"><figcaption><span>app/views/devise/registrations/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-inputs"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:email</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">autofocus:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:name</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">hint:</span> ("#&#123;@<span class="attr">minimum_password_length</span>&#125; <span class="attr">characters</span> <span class="attr">minimum</span>" <span class="attr">if</span> @<span class="attr">validatable</span>) %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password_confirmation</span>, <span class="attr">required:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>也有可能你的 app/views/devise/registrations/edit.html.erb 长这样：<br><figure class="highlight html"><figcaption><span>app/views/devise/registrations/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-inputs"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:email</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">autofocus:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:name</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">devise_mapping.confirmable</span>? &amp;&amp; <span class="attr">resource.pending_reconfirmation</span>? %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Currently waiting confirmation for: <span class="tag">&lt;<span class="name">%=</span> <span class="attr">resource.unconfirmed_email</span> %&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password</span>, <span class="attr">autocomplete:</span> "<span class="attr">off</span>", <span class="attr">hint:</span> "<span class="attr">leave</span> <span class="attr">it</span> <span class="attr">blank</span> <span class="attr">if</span> <span class="attr">you</span> <span class="attr">don</span>'<span class="attr">t</span> <span class="attr">want</span> <span class="attr">to</span> <span class="attr">change</span> <span class="attr">it</span>", <span class="attr">required:</span> <span class="attr">false</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password_confirmation</span>, <span class="attr">required:</span> <span class="attr">false</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:current_password</span>, <span class="attr">hint:</span> "<span class="attr">we</span> <span class="attr">need</span> <span class="attr">your</span> <span class="attr">current</span> <span class="attr">password</span> <span class="attr">to</span> <span class="attr">confirm</span> <span class="attr">your</span> <span class="attr">changes</span>", <span class="attr">required:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx6i8tu2f0j31kw0xaaes.jpg" alt=""></p>
+<h2 id="Step-6-git存档"><a href="#Step-6-git存档" class="headerlink" title="Step 6: git存档"></a>Step 6: git存档</h2><p><code>git add .</code><br><code>git commit -m &quot;customize name of account&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjor7t5c8000q8g6c2gja4g5g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/15/6-1Group与User产生关联/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          6.1 让“Group”与“User”产生关联
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/12/5-2实际登入登出注册账号/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">5.2 实际登入登出注册账号</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-7-2判断“是否群组成员”" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/18/7-2判断“是否群组成员”/" class="article-date">
+  <time datetime="2018-11-18T03:04:23.000Z" itemprop="datePublished">2018-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/18/7-2判断“是否群组成员”/">7.2 判断“是否为群组成员”</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>会员要可以在社团里面看到自己“是否群组成员”</li>
+<li>user 必須要是這個社團的成員才能發表文章</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-在-user-model-内实作“是否为成员一分子”的判断式-is-member-of-group"><a href="#Step-1-在-user-model-内实作“是否为成员一分子”的判断式-is-member-of-group" class="headerlink" title="Step 1. 在 user model 内实作“是否为成员一分子”的判断式 is_member_of?(group)"></a>Step 1. 在 user model 内实作“是否为成员一分子”的判断式 is_member_of?(group)</h2><p>打開 app/models/user.rb</p>
+<figure class="highlight html"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  has_many :group_users</span><br><span class="line">  has_many :participated_groups, through: :group_users, source: :group</span><br><span class="line"></span><br><span class="line">+ def is_member_of?(group)</span><br><span class="line">+   participated_groups.include?(group)</span><br><span class="line">+ end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Step-2-user-必須要是這個社團的成員才能發表文章"><a href="#Step-2-user-必須要是這個社團的成員才能發表文章" class="headerlink" title="Step 2. user 必須要是這個社團的成員才能發表文章"></a>Step 2. user 必須要是這個社團的成員才能發表文章</h2><figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:authenticate_user</span>!</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:find_group</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_action</span> <span class="attr">:member_required</span>, <span class="attr">only:</span> [<span class="attr">:new</span>, <span class="attr">:create</span> ]</span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"><span class="attr">..</span></span></span><br><span class="line"><span class="tag"><span class="attr">..</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">member_required</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">if</span> !<span class="attr">current_user.is_member_of</span>?(@<span class="attr">group</span>)</span></span><br><span class="line"><span class="tag">+     <span class="attr">flash</span>[<span class="attr">:warning</span>] = <span class="string">"你不是本讨论版的成员，不能发文喔！"</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>)</span></span><br><span class="line"><span class="tag">+   <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-3-user-可以在-group-頁面-加入-退出-此-group"><a href="#Step-3-user-可以在-group-頁面-加入-退出-此-group" class="headerlink" title="Step 3. user 可以在 group 頁面 加入 / 退出 此 group"></a>Step 3. user 可以在 group 頁面 加入 / 退出 此 group</h2><p>定义关系 <code>join!</code> 和 <code>quit!</code><br><figure class="highlight html"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class User <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">join</span>!(<span class="attr">group</span>)</span></span><br><span class="line">+   participated_groups &lt;&lt; group</span><br><span class="line">+ end</span><br><span class="line">+</span><br><span class="line">+ def quit!(group)</span><br><span class="line">+   participated_groups.delete(group)</span><br><span class="line">+ end</span><br><span class="line"></span><br><span class="line"> def is_member_of?(group)</span><br><span class="line">   participated_groups.include?(group)</span><br><span class="line"> end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>实际操作“加入群组”或“退出群组”<br><figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">+ def join</span><br><span class="line">+   @group = Group.find(params[:id])</span><br><span class="line">+</span><br><span class="line">+   if !current_user.is_member_of?(@group)</span><br><span class="line">+     current_user.join!(@group)</span><br><span class="line">+     flash[:notice] = "加入本讨论版成功！"</span><br><span class="line">+   else</span><br><span class="line">+     flash[:warning] = "你已经是本讨论版成员！"</span><br><span class="line">+   end</span><br><span class="line">+</span><br><span class="line">+   redirect_to group_path(@group)</span><br><span class="line">+ end</span><br><span class="line">+</span><br><span class="line">+ def quit</span><br><span class="line">+   @group = Group.find(params[:id])</span><br><span class="line">+</span><br><span class="line">+   if current_user.is_member_of?(@group)</span><br><span class="line">+     current_user.quit!(@group)</span><br><span class="line">+     flash[:alert] = "已退出本讨论版！"</span><br><span class="line">+   else</span><br><span class="line">+     flash[:warning] = "你不是本讨论版成员，无法退出"</span><br><span class="line">+   end</span><br><span class="line">+</span><br><span class="line">+   redirect_to group_path(@group)</span><br><span class="line">+ end</span><br><span class="line"></span><br><span class="line"> private</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2 id="Step-4-修改路由"><a href="#Step-4-修改路由" class="headerlink" title="Step 4. 修改路由"></a>Step 4. 修改路由</h2><figure class="highlight html"><figcaption><span>config/routes</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"> resources :groups do</span><br><span class="line">+   member do</span><br><span class="line">+     post :join</span><br><span class="line">+     post :quit</span><br><span class="line">+   end</span><br><span class="line"></span><br><span class="line">   resources :posts</span><br><span class="line"> end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Step-5-实作加入-退出按钮"><a href="#Step-5-实作加入-退出按钮" class="headerlink" title="Step 5. 实作加入/退出按钮"></a>Step 5. 实作加入/退出按钮</h2><figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"group"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">New</span> <span class="attr">Post</span>", <span class="attr">new_group_post_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-warning</span> <span class="attr">pull-right</span>")%&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Edit</span>", <span class="attr">edit_group_path</span>(@<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span> <span class="attr">pull-right</span>")%&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span> &amp;&amp; <span class="attr">current_user.is_member_of</span>?(@<span class="attr">group</span>) %&gt;</span></span><br><span class="line">+      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Quit</span> <span class="attr">Group</span>", <span class="attr">quit_group_path</span>(@<span class="attr">group</span>), <span class="attr">method:</span> <span class="attr">:post</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span>") %&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">%</span> <span class="attr">else</span> %&gt;</span></span><br><span class="line">+      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Join</span> <span class="attr">Group</span>", <span class="attr">join_group_path</span>(@<span class="attr">group</span>), <span class="attr">method:</span> <span class="attr">:post</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-info</span>") %&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Step-6-User-在建立-group-後自動成為-group-的一員"><a href="#Step-6-User-在建立-group-後自動成為-group-的一員" class="headerlink" title="Step 6. User 在建立 group 後自動成為 group 的一員"></a>Step 6. User 在建立 group 後自動成為 group 的一員</h2><p>當你創辦了 group ，卻還要手動再加入這個 group 不會很怪嗎？</p>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  def create</span><br><span class="line">    @group = current_user.groups.new(group_params)</span><br><span class="line"></span><br><span class="line">    if @group.save</span><br><span class="line">+     current_user.join!(@group)</span><br><span class="line">      redirect_to groups_path, notice: "新增讨论版成功"</span><br><span class="line">    else</span><br><span class="line">      render :new</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line"> ...</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdgy3by00j31qa0u0n0s.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxdgyh1r74j31qb0u0gp6.jpg" alt=""></p>
+<h2 id="Step-7-git-git-储存"><a href="#Step-7-git-git-储存" class="headerlink" title="Step 7. git git 储存"></a>Step 7. git git 储存</h2><p> <code>git add .</code><br> <code>git commit -m &quot;implement join/quit action&quot;</code></p>
+<h2 id="解说："><a href="#解说：" class="headerlink" title="解说："></a>解说：</h2><p>member 是什么？它的规则是什么？<br>执行 <code>rake routes</code>，你会看到它产生的规则是 join_group_path(@group) ，“单数”。member 是单数。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxcipnncw2j30ho01nt8o.jpg" alt=""></p>
+<p>还有一个东西，叫 collection，假设我们要做一个热门文章吧，叫做 hot，意思是“热门的文章”“们”，这时候我们就会用 collection。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxcipr6hhzj306902i3yd.jpg" alt=""></p>
+<p>再执行 <code>rake routes</code></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxciq0wt1yj30iy0300t3.jpg" alt=""><br>在这边你只要先“背”起来：</p>
+<ul>
+<li>member （成员）是“单数”，不加 s</li>
+<li>collection （集合）是“复数”，加 s</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/18/7-2判断“是否群组成员”/" data-id="cjor7t5ck00108g6c2s0h5o6v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8-0实作后台机制" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/8-0实作后台机制/" class="article-date">
+  <time datetime="2018-11-19T08:45:17.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/19/8-0实作后台机制/">8.0 实作后台机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="本章目標"><a href="#本章目標" class="headerlink" title="本章目標"></a>本章目標</h2><ul>
+<li>建立使用者後台 ( 前置作業 )</li>
+<li>使用者可以在後台看到自己參加的 group</li>
+<li>使用可以在後台看到自己發表的 post</li>
+<li>post 的排列要以時間 (最新 =&gt; 最舊) 順序排列</li>
+<li>group 的排列要以 文章數量 當熱門度排列</li>
+<li>bug 解決 =&gt; 當 group 刪除時，所屬的 posts 也要跟著刪除</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/19/8-0实作后台机制/" data-id="cjor7t5cl00118g6cga9vit4n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8-1可看到自己参与的Group" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/8-1可看到自己参与的Group/" class="article-date">
+  <time datetime="2018-11-19T08:56:10.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/19/8-1可看到自己参与的Group/">8.1 可看到自己参与的Group</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>使用者在下拉选单内，可以看到 “My Groups”</li>
+<li>使用者点选 “My Groups” 可以看到自己参与的所有群组</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch08"><a href="#Step-0-git-checkout-b-ch08" class="headerlink" title="Step 0. git checkout -b ch08"></a>Step 0. git checkout -b ch08</h2><p>因为我们现在要实作第七章的内容，新增一个 branch 把实作内容集中在 ch08 是比较合理的。将来回顾就可以比较清楚 在 ch08 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch08</code></p>
+<h2 id="Step-1-产生-account-的-namespace-下的-groups-controller"><a href="#Step-1-产生-account-的-namespace-下的-groups-controller" class="headerlink" title="Step 1: 产生 account 的 namespace 下的 groups_controller"></a>Step 1: 产生 account 的 namespace 下的 groups_controller</h2><p>执行</p>
+<p><code>rails g controller account/groups</code></p>
+<h2 id="Step-2-修改-routing"><a href="#Step-2-修改-routing" class="headerlink" title="Step 2. 修改 routing"></a>Step 2. 修改 routing</h2><p>修改 config/routes.rb 加入：</p>
+<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace :account do</span><br><span class="line">  resources :groups</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Step-3-修改下拉选项"><a href="#Step-3-修改下拉选项" class="headerlink" title="Step 3: 修改下拉选项"></a>Step 3: 修改下拉选项</h2><p>然后修改 <code>app/views/common/_navbar.html.erb</code></p>
+<p>加入多一个“下拉选单选项”：</p>
+<figure class="highlight html"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">My</span> <span class="attr">Groups</span>", <span class="attr">account_groups_path</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"divider"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("账号设定", <span class="attr">edit_user_registration_path</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("登出", <span class="attr">destroy_user_session_path</span>, <span class="attr">method:</span> <span class="attr">:delete</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>成果就会长这样：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdksag71wj31vy0syjvj.jpg" alt=""></p>
+<h2 id="Step-4-建立-account-groups-controller-rb-下的-index-action"><a href="#Step-4-建立-account-groups-controller-rb-下的-index-action" class="headerlink" title="Step 4. 建立 account/groups_controller.rb 下的 index action"></a>Step 4. 建立 account/groups_controller.rb 下的 index action</h2><p>记得要加入： before_action :authenticate_user!，限制必须要得登入使用者，才能看。</p>
+<figure class="highlight html"><figcaption><span>app/controllers/account/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Account::GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:authenticate_user</span>!</span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">groups</span> = <span class="string">current_user.participated_groups</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-5-新增-“参与群组一览表”"><a href="#Step-5-新增-“参与群组一览表”" class="headerlink" title="Step 5. 新增 “参与群组一览表”"></a>Step 5. 新增 “参与群组一览表”</h2><p><code>touch app/views/account/groups/index.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/account/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span> 我加入的讨论版 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> # <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Title <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Description <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Post Count <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Last Update <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> @<span class="attr">groups.each</span> <span class="attr">do</span> |<span class="attr">group</span>| %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> # <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">group.title</span>, <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.description</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.posts.count</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.updated_at</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>成果：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxdn9g3m2ij31w00p0jut.jpg" alt=""></p>
+<h2 id="Step-6-git-储存"><a href="#Step-6-git-储存" class="headerlink" title="Step 6: git 储存"></a>Step 6: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;implement my groups&quot;</code></p>
+<h2 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h2><p><strong>namespace 是什么？</strong></p>
+<ul>
+<li>我们尴尬的发现，要做个人后台时，却发现 groups 这个名字已被人用走，但我们却想做出 /account/groups 这样的网址。</li>
+<li>namespace 就是“命名空间”，你可以想成因为北京有很多个叫“梁朝伟”的人，所以要分成“三里屯梁朝伟”、“国贸梁朝伟”。<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace :account do</span><br><span class="line">  resources :groups</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>会生成以下这样的 routing</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxdn7ob90ej31c608kdhy.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/19/8-1可看到自己参与的Group/" data-id="cjor7t5ch000w8g6cz6293yrq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8-2可看到自己发表的Post" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/8-2可看到自己发表的Post/" class="article-date">
+  <time datetime="2018-11-19T08:56:39.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/19/8-2可看到自己发表的Post/">8.2 可看到自己发表的Post</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Bug-fix-將沒有-group-id-的文章刪除掉"><a href="#Bug-fix-將沒有-group-id-的文章刪除掉" class="headerlink" title="Bug fix: 將沒有 group_id 的文章刪除掉"></a>Bug fix: 將沒有 group_id 的文章刪除掉</h3><p>在做下面開發前，先確認之前有沒有因為尚未實作 model 關聯前所建立的 post 資料<br>導致該 post 沒有 group_id, 會在下面開發時發生錯誤</p>
+<p><strong>解決方法:</strong></p>
+<p><code>rails c</code> 到 rails console 模式</p>
+<p><code>Post.where(group_id: nil)</code> 確認有沒有 group_id 是空的 post</p>
+<p><code>Post.where(group_id: nil).destroy_all</code> 將那些 post 刪除掉</p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>使用者在下拉选单内，可以看到 “My Posts”</li>
+<li>使用者点选 “My Posts” 可以看到自己发表的所有文章</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-1-产生-account-的-namespace-下的-posts-controller"><a href="#Step-1-产生-account-的-namespace-下的-posts-controller" class="headerlink" title="Step 1: 产生 account 的 namespace 下的 posts_controller"></a>Step 1: 产生 account 的 namespace 下的 posts_controller</h2><p>执行</p>
+<p><code>rails g controller account/posts</code></p>
+<h2 id="Step-2-建立-account-posts-controller-rb-下的-index-action"><a href="#Step-2-建立-account-posts-controller-rb-下的-index-action" class="headerlink" title="Step 2. 建立 account/posts_controller.rb 下的 index action"></a>Step 2. 建立 account/posts_controller.rb 下的 index action</h2><p>加入： before_action :authenticate_user!，限制必须要得登入使用者，才能看。</p>
+<figure class="highlight html"><figcaption><span>app/controllers/account/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Account::PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">before_action</span> <span class="attr">:authenticate_user</span>!</span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">posts</span> = <span class="string">current_user.posts</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="Step-3-修改-routing"><a href="#Step-3-修改-routing" class="headerlink" title="Step 3. 修改 routing"></a>Step 3. 修改 routing</h2><p>修改 config/routes.rb 加入：</p>
+<figure class="highlight html"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace :account do</span><br><span class="line">  resources :groups</span><br><span class="line">  resources :posts</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Step-4-修改下拉选项"><a href="#Step-4-修改下拉选项" class="headerlink" title="Step 4: 修改下拉选项"></a>Step 4: 修改下拉选项</h2><p>然后修改 <code>app/views/common/_navbar.html.erb</code></p>
+<p>加入多一个“下拉选单选项”：</p>
+<figure class="highlight html"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">My</span> <span class="attr">Groups</span>", <span class="attr">account_groups_path</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">My</span> <span class="attr">Posts</span>", <span class="attr">account_posts_path</span>) %&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"divider"</span>&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("登出", <span class="attr">destroy_user_session_path</span>, <span class="attr">method:</span> <span class="attr">:delete</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>成果就会长这样：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxdnhtagb3j31vy0qg0wn.jpg" alt=""></p>
+<h2 id="Step-5-新增-“发表文章一览表”"><a href="#Step-5-新增-“发表文章一览表”" class="headerlink" title="Step 5. 新增 “发表文章一览表”"></a>Step 5. 新增 “发表文章一览表”</h2><p><code>touch app/views/account/posts/index.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span> 我发表过的文章 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Content <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Group Name <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span> Last Update <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> @<span class="attr">posts.each</span> <span class="attr">do</span> |<span class="attr">post</span>| %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.content</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.group.title</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.updated_at</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Edit</span>', <span class="attr">edit_group_post_path</span>(<span class="attr">post.group</span>, <span class="attr">post</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-info</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Delete</span>', <span class="attr">group_post_path</span>(<span class="attr">post.group</span>, <span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">data:</span> &#123; <span class="attr">confirm:</span> "<span class="attr">Are</span> <span class="attr">you</span> <span class="attr">sure</span>?" &#125;, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>成果：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdp3wdjjyj31vy0ren12.jpg" alt=""></p>
+<h2 id="Step-6-git-储存"><a href="#Step-6-git-储存" class="headerlink" title="Step 6: git 储存"></a>Step 6: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;implement my post&quot;</code></p>
+<p><strong>过程中出现了类似这样的bug:</strong></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxdoyydf7ij30m809ljud.jpg" alt=""></p>
+<p>之后执行了下面的代码，解决了：<br><code>rake db:drop</code><br><code>rake db:create</code><br><code>rake db:migrate</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/19/8-2可看到自己发表的Post/" data-id="cjor7t5ci000x8g6cwquc8hip" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8-3实作后台“编辑”和“删除”按钮功能" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/8-3实作后台“编辑”和“删除”按钮功能/" class="article-date">
+  <time datetime="2018-11-20T02:16:54.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/8-3实作后台“编辑”和“删除”按钮功能/">8.3 实作后台“编辑”和“删除”按钮功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>在”我发表的文章”中删除和编辑自己发表的文章</li>
+<li>在”我加入的讨论版”中删除和编辑自己发表的文章</li>
+</ul>
+<p>#步骤</p>
+<h3 id="实现后台文章的删除和编辑"><a href="#实现后台文章的删除和编辑" class="headerlink" title="实现后台文章的删除和编辑"></a>实现后台文章的删除和编辑</h3><h2 id="step1-修改views"><a href="#step1-修改views" class="headerlink" title="step1:修改views"></a>step1:修改views</h2><figure class="highlight html"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-     <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Edit</span>', <span class="attr">edit_group_post_path</span>(<span class="attr">post.group</span>, <span class="attr">post</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-info</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Edit</span>', <span class="attr">edit_account_post_path</span>(<span class="attr">post</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-info</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"></span><br><span class="line">-     <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Delete</span>', <span class="attr">group_post_path</span>(<span class="attr">post.group</span>, <span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">data:</span> &#123; <span class="attr">confirm:</span> "<span class="attr">Are</span> <span class="attr">you</span> <span class="attr">sure</span>?" &#125;, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Delete</span>', <span class="attr">account_post_path</span>(<span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">data:</span> &#123; <span class="attr">confirm:</span> "<span class="attr">Are</span> <span class="attr">you</span> <span class="attr">sure</span>?" &#125;, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="step2-修改controllers"><a href="#step2-修改controllers" class="headerlink" title="step2:修改controllers"></a>step2:修改controllers</h2><figure class="highlight html"><figcaption><span>app/controller/account/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  def edit</span><br><span class="line">    @post = Post.find(params[:id])</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def update</span><br><span class="line">    @post = Post.find(params[:id])</span><br><span class="line">    if @post.update(post_params)</span><br><span class="line">      redirect_to account_posts_path, notice: "Update Success"</span><br><span class="line">    else</span><br><span class="line">      render :edit</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def destroy</span><br><span class="line">    @post = Post.find(params[:id])</span><br><span class="line">    @post.destroy</span><br><span class="line">    redirect_to account_posts_path, alert: "Post Deleted"</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  def post_params</span><br><span class="line">    params.require(:post).permit(:content)</span><br><span class="line">  end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="step3-添加views"><a href="#step3-添加views" class="headerlink" title="step3:添加views"></a>step3:添加views</h2><p><code>touch app/views/account/posts/edit.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/account/posts/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span>编辑文章<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4 col-md-offset-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">simple_form_for</span> [<span class="attr">:account</span>,@<span class="attr">post</span>] <span class="attr">do</span> |<span class="attr">f</span>| %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:content</span>, <span class="attr">input_html:</span> &#123;<span class="attr">class:</span> "<span class="attr">form-control</span>"&#125; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-actions"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.submit</span> "<span class="attr">Submit</span>", <span class="attr">disable_with:</span> "<span class="attr">Submiting...</span>", <span class="attr">class:</span> '<span class="attr">btn</span> <span class="attr">btn-primary</span>'%&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="step-4-修改model"><a href="#step-4-修改model" class="headerlink" title="step 4:修改model"></a>step 4:修改model</h2><p> 當 group 刪除時，所屬的 posts 也要跟著刪除</p>
+<figure class="highlight html"><figcaption><span>app/models/group.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">- has_many :posts</span><br><span class="line">+ has_many :posts, dependent: :destroy</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxecn6u6pcj31w00t8tcl.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxecndeo2ij31w20ti0wo.jpg" alt=""></p>
+<h2 id="Step-5-git-储存"><a href="#Step-5-git-储存" class="headerlink" title="Step 5: git 储存"></a>Step 5: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;implement edit and delete for account/posts&quot;</code></p>
+<p><br></p>
+<h3 id="在”我加入的讨论版”中删除和编辑自己发表的文章"><a href="#在”我加入的讨论版”中删除和编辑自己发表的文章" class="headerlink" title="在”我加入的讨论版”中删除和编辑自己发表的文章"></a>在”我加入的讨论版”中删除和编辑自己发表的文章</h3><h2 id="step1-修改views-1"><a href="#step1-修改views-1" class="headerlink" title="step1:修改views"></a>step1:修改views</h2><figure class="highlight html"><figcaption><span>app/views/account/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">+   <span class="tag">&lt;<span class="name">th</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">+   <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Edit</span>', <span class="attr">edit_account_group_path</span>(<span class="attr">group</span>), <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-info</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>('<span class="attr">Delete</span>', <span class="attr">account_group_path</span>(<span class="attr">group</span>), <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">data:</span> &#123;<span class="attr">confirm:</span> "<span class="attr">Are</span> <span class="attr">you</span> <span class="attr">sure</span>?"&#125;, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span> <span class="attr">btn-xs</span>") %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="step2-修改controllers-1"><a href="#step2-修改controllers-1" class="headerlink" title="step2:修改controllers"></a>step2:修改controllers</h2><figure class="highlight html"><figcaption><span>app/controllers/account/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">def destroy</span><br><span class="line">  @group = Group.find(params[:id])</span><br><span class="line">  @group.destroy</span><br><span class="line">  redirect_to account_groups_path, alert: "Group deleted"</span><br><span class="line">end</span><br><span class="line">def edit</span><br><span class="line">  @group = Group.find(params[:id])</span><br><span class="line">end</span><br><span class="line">def update</span><br><span class="line">  @group = Group.find(params[:id])</span><br><span class="line">  if @group.update(group_params)</span><br><span class="line">    redirect_to account_groups_path, notice: "Update Success"</span><br><span class="line">  else</span><br><span class="line">    render :edit</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">private</span><br><span class="line"></span><br><span class="line">def group_params</span><br><span class="line">  params.require(:group).permit(:title, :description)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="step3-增加views"><a href="#step3-增加views" class="headerlink" title="step3:增加views"></a>step3:增加views</h2><p><code>touch app/views/account/groups/edit.html.erb</code></p>
+<figure class="highlight html"><figcaption><span>app/views/account/groups/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> &gt;</span>编辑讨论版<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4 col-md-offset-4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">simple_form_for</span> [<span class="attr">:account</span>,@<span class="attr">group</span>] <span class="attr">do</span> |<span class="attr">f</span>| %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:title</span>, <span class="attr">input_html:</span> &#123; <span class="attr">class:</span> "<span class="attr">form-control</span>"&#125; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:description</span>, <span class="attr">input_html:</span> &#123; <span class="attr">class:</span> "<span class="attr">form-control</span>"&#125; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-actions"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.submit</span> "<span class="attr">Submit</span>", <span class="attr">disable_with:</span> "<span class="attr">Submiting...</span>", <span class="attr">class:</span> '<span class="attr">btn</span> <span class="attr">btn-primary</span>'%&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxekdp66g8j31vy0r2422.jpg" alt=""><br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxekdwb56gj31vw0s6q63.jpg" alt=""></p>
+<h2 id="Step-4-git-储存"><a href="#Step-4-git-储存" class="headerlink" title="Step 4: git 储存"></a>Step 4: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;implement edit and delete for account/groups&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/8-3实作后台“编辑”和“删除”按钮功能/" data-id="cjor7t5ci000y8g6cqsjcw1mq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8-4小技巧：排列顺序" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/8-4小技巧：排列顺序/" class="article-date">
+  <time datetime="2018-11-20T07:49:22.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/8-4小技巧：排列顺序/">8.4 小技巧：排列顺序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>post 的排列要以時間 (最新 =&gt; 最舊) 順序排列</li>
+</ul>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>我們會發現，account/posts 裡的文章是從最舊 =&gt; 最新 的順序排列的</p>
+<p>我們應該要把最新的放在最上面才對</p>
+<p>運作邏輯是 =&gt; 修改時間 (updated_at) 用 倒序排列 (DESC)</p>
+<p>打開 app/controllers/account/posts_controller.rb<br><figure class="highlight html"><figcaption><span>app/controllers/account/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Account::PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"> <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">posts</span> = <span class="string">current_user.posts</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">posts</span> = <span class="string">current_user.posts.order(</span>"<span class="attr">updated_at</span> <span class="attr">DESC</span>")</span></span><br><span class="line"><span class="tag"> <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure></p>
+<p>Before</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxenyahge0j31vy0pigp5.jpg" alt=""></p>
+<p>After</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxenyixvl1j31w00p4q6g.jpg" alt=""></p>
+<h2 id="Step-4-git-储存"><a href="#Step-4-git-储存" class="headerlink" title="Step 4: git 储存"></a>Step 4: git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;order My Posts&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/8-4小技巧：排列顺序/" data-id="cjor7t5cp00168g6c1t5fejr8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8-5countercache优化" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/8-5countercache优化/" class="article-date">
+  <time datetime="2018-11-20T09:56:06.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/8-5countercache优化/">8.5 counter cache 优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/8-5countercache优化/" data-id="cjor7t5cj000z8g6ckbdi99hn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-9-0重构程式码-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/9-0重构程式码-1/" class="article-date">
+  <time datetime="2018-11-20T09:56:28.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/9-0重构程式码-1/">9.0 重构程式码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目標"><a href="#目標" class="headerlink" title="目標:"></a>目標:</h1><h3 id="翻修-View"><a href="#翻修-View" class="headerlink" title="翻修 View"></a>翻修 View</h3><ul>
+<li>使用系統 helper 整理 code</li>
+<li>自己撰寫的 helper 包裝 html</li>
+<li>使用 partial 整理 html</li>
+</ul>
+<h3 id="翻修-Model"><a href="#翻修-Model" class="headerlink" title="翻修 Model"></a>翻修 Model</h3><ul>
+<li>使用 scope 整理 query</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/9-0重构程式码-1/" data-id="cjor7t5cn00148g6cgxudch09" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-9-1使用系統helper整理code-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/9-1使用系統helper整理code-1/" class="article-date">
+  <time datetime="2018-11-20T10:00:36.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/9-1使用系統helper整理code-1/">9.1 使用系統 helper 整理 code</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch09"><a href="#Step-0-git-checkout-b-ch09" class="headerlink" title="Step 0. git checkout -b ch09"></a>Step 0. git checkout -b ch09</h2><p>因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch09 是比较合理的。将来回顾就可以比较清楚 在 ch09 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch09</code></p>
+<h2 id="Step-1-時間格式"><a href="#Step-1-時間格式" class="headerlink" title="Step 1. 時間格式"></a>Step 1. 時間格式</h2><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxeox9f396j31vm0psjux.jpg" alt=""></p>
+<p>我們會發現在時間格式上是顯示</p>
+<p>2018-11-20 03:07:08 UTC        </p>
+<p>我們可以改用這樣的寫法:</p>
+<figure class="highlight html"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.updated_at.to_s</span>(<span class="attr">:long</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxep07dmqsj31vu0po0wb.jpg" alt=""></p>
+<p>或</p>
+<figure class="highlight html"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.updated_at.to_s</span>(<span class="attr">:short</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxep17zgexj31w00qajuu.jpg" alt=""><br><br></p>
+<h2 id="Step-2-內文自動斷行"><a href="#Step-2-內文自動斷行" class="headerlink" title="Step 2. 內文自動斷行"></a>Step 2. 內文自動斷行</h2><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxep3rnu6uj31um0u0whx.jpg" alt=""></p>
+<p>要讓 post 的 content 能自動斷行</p>
+<figure class="highlight html"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">-         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.content</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+         <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">simple_format</span>(<span class="attr">post.content</span>) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxep7f5sjhj31vy0q8whe.jpg" alt=""></p>
+<p>如果後台的 account/post 也要改的話，<br>一樣打開 app/views/account/posts/index.html.erb<br>把上述那行改掉</p>
+<p><br></p>
+<h2 id="Step-3-標題文字太長"><a href="#Step-3-標題文字太長" class="headerlink" title="Step 3. 標題文字太長"></a>Step 3. 標題文字太長</h2><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxepbcbnn8j31vs0qwtcx.jpg" alt=""></p>
+<figure class="highlight html"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">-     <span class="tag">&lt;<span class="name">td</span>&gt;</span>  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">group.title</span>, <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">td</span>&gt;</span>  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">truncate</span>(<span class="attr">group.title</span>, <span class="attr">length:</span> <span class="attr">15</span> ), <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxepdnxlk0j31vu0qswib.jpg" alt=""></p>
+<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><p><strong>为什么会有这样的差别？</strong><br>让我们捞出 Log，你可以观察到，其实系统存的是这样的格式，断行是 <code>\r\n</code>。很遗憾的 HTML 并不认得 <code>\r\n</code> 是什么。HTML 只知道断行符号应该叫<code>&lt;br&gt;</code></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxfnwf7ni6j30m800ydgn.jpg" alt=""></p>
+<p><code>simple_format</code> 是 Rails 内建的 Helper，可以帮忙把 <code>\r\n</code> 翻译成为 <code>&lt;br&gt;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/9-1使用系統helper整理code-1/" data-id="cjor7t5cl00128g6cuj7s3k74" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-9-2自己撰寫helper包裝html" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/9-2自己撰寫helper包裝html/" class="article-date">
+  <time datetime="2018-11-20T10:30:01.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/9-2自己撰寫helper包裝html/">9.2 自己撰寫helper包裝html</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在剛剛的專案當中，顯示Post 的程式碼如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= post.content %&gt; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>隨著專案變遷，這樣的程式碼，可能會依需求改成：（需要內容斷行）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= simple_format(post.content) %&gt; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>之後又改成（只顯示頭一百字）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= simple_format(truncate(post.content, lenth: 30)) %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>而麻煩的是，這樣類似的內容，常常在專案出現。每當需求變更，開發者就需要去找出來，<br>有十個地方，就需要改十遍，很是麻煩。</p>
+<p>Helper 就是用在這樣的地方</p>
+<p>一開始就設計一個 Helper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= render_post_content(post) %&gt;  (這是放在 views 裡面的)</span><br></pre></td></tr></table></figure></p>
+<p>然後打開 app/helpers/posts_helper.rb</p>
+<figure class="highlight html"><figcaption><span>app/helpers/posts_helper.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def render_post_content(post)</span><br><span class="line">  simple_format(truncate(post.content, lenth: 100))</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>以後對 @post.content 有任何的異動，只要改 helper 裡的東西就好<br>不用再到各個有放 @post.content 的檔案一一修改</p>
+</li>
+<li><p>helper 是全域的變數，即使寫在 posts_helper.rb 裡面<br>在其他地方像是 groups  /  account/groups  /  account/posts<br>都能呼叫得出來</p>
+</li>
+<li><p>還有一個好處就是把 view 單純化，把所有運作邏輯全部轉到 helper 裡面<br>在未來需要維護的時候，會一整個非常乾淨好讀</p>
+</li>
+</ul>
+<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><p><strong>自制的 Helper 是什么意思？</strong></p>
+<ul>
+<li>Helper 就是用 Ruby 写的“View 装饰的小方法”，你也可以自己定义</li>
+<li>自制 Helper 都会放在 app/helpers 下</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/9-2自己撰寫helper包裝html/" data-id="cjor7t5cm00138g6c58t2ni5v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

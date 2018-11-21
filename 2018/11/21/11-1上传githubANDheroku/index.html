@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>11.1 上传 github &amp; heroku | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="建立新分支因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch11 是比较合理的。将来回顾就可以比较清楚 在 ch11 我们做了哪一些练习。 git checkout -b ch11 新建git新专案 复制那两行代码 放到终端跑 推送到GitHub：git push --all origin  再然后： 修改Gemfile 将 gem &amp;#39;sqlite3&amp;#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11.1 上传 github &amp; heroku">
+<meta property="og:url" content="http://yoursite.com/2018/11/21/11-1上传githubANDheroku/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="建立新分支因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch11 是比较合理的。将来回顾就可以比较清楚 在 ch11 我们做了哪一些练习。 git checkout -b ch11 新建git新专案 复制那两行代码 放到终端跑 推送到GitHub：git push --all origin  再然后： 修改Gemfile 将 gem &amp;#39;sqlite3&amp;#39;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxfv22qdlsj31vs0menfn.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxfv5u86ioj31ln0u0wmy.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxfv9sbglbj31ek0gstcq.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fxfvpq4mdej30zc0hodjk.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fxfw9hpt1rj312204kt9i.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fxfwigu2fpj31vw0jawgv.jpg">
+<meta property="og:updated_time" content="2018-11-21T13:39:31.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11.1 上传 github &amp; heroku">
+<meta name="twitter:description" content="建立新分支因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch11 是比较合理的。将来回顾就可以比较清楚 在 ch11 我们做了哪一些练习。 git checkout -b ch11 新建git新专案 复制那两行代码 放到终端跑 推送到GitHub：git push --all origin  再然后： 修改Gemfile 将 gem &amp;#39;sqlite3&amp;#39;">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxfv22qdlsj31vs0menfn.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-11-1上传githubANDheroku" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/21/11-1上传githubANDheroku/" class="article-date">
+  <time datetime="2018-11-21T10:22:50.000Z" itemprop="datePublished">2018-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      11.1 上传 github &amp; heroku
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="建立新分支"><a href="#建立新分支" class="headerlink" title="建立新分支"></a>建立新分支</h2><p>因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch11 是比较合理的。将来回顾就可以比较清楚 在 ch11 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch11</code></p>
+<h2 id="新建git新专案"><a href="#新建git新专案" class="headerlink" title="新建git新专案"></a>新建git新专案</h2><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxfv22qdlsj31vs0menfn.jpg" alt=""></p>
+<h3 id="复制那两行代码"><a href="#复制那两行代码" class="headerlink" title="复制那两行代码"></a>复制那两行代码</h3><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxfv5u86ioj31ln0u0wmy.jpg" alt=""></p>
+<h3 id="放到终端跑"><a href="#放到终端跑" class="headerlink" title="放到终端跑"></a>放到终端跑</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxfv9sbglbj31ek0gstcq.jpg" alt=""></p>
+<h2 id="推送到GitHub："><a href="#推送到GitHub：" class="headerlink" title="推送到GitHub："></a>推送到GitHub：</h2><p><code>git push --all origin</code></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fxfvpq4mdej30zc0hodjk.jpg" alt=""></p>
+<p>再然后：</p>
+<h2 id="修改Gemfile"><a href="#修改Gemfile" class="headerlink" title="修改Gemfile"></a>修改Gemfile</h2><ul>
+<li>将 <code>gem &#39;sqlite3&#39;</code> 贴到 <code>group :development</code> 内</li>
+<li>添加<code>gem &#39;pg&#39;</code></li>
+</ul>
+<figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    gem 'rails', '~&gt; 5.0.7'</span><br><span class="line">    # Use sqlite3 as the database for Active Record</span><br><span class="line">-   gem 'sqlite3'</span><br><span class="line">    # Use Puma as the app server</span><br><span class="line">    gem 'puma', '~&gt; 3.0'</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    group :development, :test do</span><br><span class="line">    gem 'byebug', platform: :mri</span><br><span class="line">+   gem 'sqlite3'</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">+   group :production do</span><br><span class="line">+   gem 'pg'</span><br><span class="line">+   end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="执行："><a href="#执行：" class="headerlink" title="执行："></a>执行：</h3><p><code>bundle install</code></p>
+<h2 id="先commit，建立一个还原点"><a href="#先commit，建立一个还原点" class="headerlink" title="先commit，建立一个还原点"></a>先commit，建立一个还原点</h2><p><code>git add .</code><br><code>git commit -m &quot;deploy to GitHub and change Gemfile&quot;</code></p>
+<h2 id="登入-Heroku-："><a href="#登入-Heroku-：" class="headerlink" title="登入 Heroku ："></a>登入 Heroku ：</h2><ul>
+<li><code>heroku login</code></li>
+<li>输入注册邮箱地址</li>
+<li>输入密码</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fxfw9hpt1rj312204kt9i.jpg" alt=""></p>
+<h3 id="创建新的-heroku-专案"><a href="#创建新的-heroku-专案" class="headerlink" title="创建新的 heroku 专案"></a>创建新的 heroku 专案</h3><p><code>heroku create</code><br>（如果免费的heroku账户专案满了，heroku在终端删除专案： <code>heroku apps:destroy 你要删除的文件名</code>，然后再执行上一步 ）</p>
+<h2 id="推送到-heroku-："><a href="#推送到-heroku-：" class="headerlink" title="推送到 heroku ："></a>推送到 heroku ：</h2><p><code>git push heroku ch11:master</code></p>
+<p>(如果没有分支，只有一个master，直接执行：<code>git push heroku master</code>)</p>
+<h3 id="执行：-1"><a href="#执行：-1" class="headerlink" title="执行："></a>执行：</h3><p><code>heroku run rake db:migrate</code></p>
+<h3 id="打开网站："><a href="#打开网站：" class="headerlink" title="打开网站："></a>打开网站：</h3><p><code>heroku open</code></p>
+<p>然后就可以看到你做的网站了！</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fxfwigu2fpj31vw0jawgv.jpg" alt=""><br>恭喜您，终于成功啦！！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/21/11-1上传githubANDheroku/" data-id="cjor7t5bd00068g6c3h5awefj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/21/10-2countercache优化效能/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">10.2 counter cache 优化效能</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

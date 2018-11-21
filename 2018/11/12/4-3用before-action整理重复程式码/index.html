@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>4.3 用before_action整理重复程式码 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目前為止，我們的 posts_controller 整份程式碼如下： app/controllers/posts_controller.rb1234567891011121314151617181920212223242526272829303132333435363738394041424344454647class PostsController &amp;lt; ApplicationControl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.3 用before_action整理重复程式码">
+<meta property="og:url" content="http://yoursite.com/2018/11/12/4-3用before-action整理重复程式码/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目前為止，我們的 posts_controller 整份程式碼如下： app/controllers/posts_controller.rb1234567891011121314151617181920212223242526272829303132333435363738394041424344454647class PostsController &amp;lt; ApplicationControl">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-12T09:16:48.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4.3 用before_action整理重复程式码">
+<meta name="twitter:description" content="目前為止，我們的 posts_controller 整份程式碼如下： app/controllers/posts_controller.rb1234567891011121314151617181920212223242526272829303132333435363738394041424344454647class PostsController &amp;lt; ApplicationControl">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-4-3用before-action整理重复程式码" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/12/4-3用before-action整理重复程式码/" class="article-date">
+  <time datetime="2018-11-12T07:04:19.000Z" itemprop="datePublished">2018-11-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      4.3 用before_action整理重复程式码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目前為止，我們的 posts_controller 整份程式碼如下：</p>
+<figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.build(post_params)</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已刪除"</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">post_params</span></span></span><br><span class="line"><span class="tag">    <span class="attr">params.require</span>(<span class="attr">:post</span>)<span class="attr">.permit</span>(<span class="attr">:content</span>)</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>有沒有人發現每個 action 都有重複的地方？ 不會覺得礙眼嗎</p>
+<p>可以看到每個 action 前面都有一行 <code>@group = Group.find(params[:group_id])</code></p>
+<p>所以能使用 before_action 來宣告此 Controller 每個 action 在執行之前都會先做 before_action 的設定</p>
+<p>來把每個 action 的那行簡化掉</p>
+<p>在最下面增加一段 code</p>
+<p>變成</p>
+<figure class="highlight html"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">class PostsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_action</span> <span class="attr">:find_group</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.build(post_params)</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.save</span></span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "新增文章成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    <span class="attr">if</span> @<span class="attr">post.update</span>(<span class="attr">post_params</span>)</span></span><br><span class="line"><span class="tag">      <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">notice:</span> "文章修改成功！"</span></span><br><span class="line"><span class="tag">    <span class="attr">else</span></span></span><br><span class="line"><span class="tag">      <span class="attr">render</span> <span class="attr">:edit</span></span></span><br><span class="line"><span class="tag">    <span class="attr">end</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">post</span> = <span class="string">@group.posts.find(params[:id])</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    @<span class="attr">post.destroy</span></span></span><br><span class="line"><span class="tag">    <span class="attr">redirect_to</span> <span class="attr">group_path</span>(@<span class="attr">group</span>), <span class="attr">alert:</span> "文章已刪除"</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">find_group</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.find(params[:group_id])</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">post_params</span></span></span><br><span class="line"><span class="tag">    <span class="attr">params.require</span>(<span class="attr">:post</span>)<span class="attr">.permit</span>(<span class="attr">:content</span>)</span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><ul>
+<li><p>before_action 是一個常見的 controller 技巧,用來收納重複的程式碼。</p>
+</li>
+<li><p>before_action 后面不加任何东西，表示这个 controller 下的所有 action 都要登入。</p>
+</li>
+<li><p>before_action 可以用 only,指定某些 action 執行:<br><code>before_action :find_group, only: [:edit, :update]</code></p>
+</li>
+<li><p>或者使用 except,排除某些 action 不執行:<br><code>before_action :find_group, except: [:show, :index]</code></p>
+</li>
+<li><p>還有一個 after_action =&gt; 同 before_action, 用於執行完成 action 後的動作</p>
+</li>
+<li><p>你可以把 before_action 想像成“先过我这一关”的“拦截器”</p>
+</li>
+</ul>
+<h3 id="git-存档"><a href="#git-存档" class="headerlink" title="git 存档"></a><strong>git 存档</strong></h3><p><code>git add .</code><br><code>git commit -m &quot;use before_action simple method&quot;</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/12/4-3用before-action整理重复程式码/" data-id="cjor7t5bz000l8g6cxnl3ux22" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/12/5-0實作使用者功能/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          5.0 實作使用者功能
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/11/4-2Post的CRUD/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4.2 Post的CRUD</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

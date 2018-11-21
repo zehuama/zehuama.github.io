@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>9.2 自己撰寫helper包裝html | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在剛剛的專案當中，顯示Post 的程式碼如下：1&amp;lt;%= post.content %&amp;gt; %&amp;gt; 隨著專案變遷，這樣的程式碼，可能會依需求改成：（需要內容斷行）1&amp;lt;%= simple_format(post.content) %&amp;gt; %&amp;gt; 之後又改成（只顯示頭一百字）1&amp;lt;%= simple_format(truncate(post.content, lenth:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9.2 自己撰寫helper包裝html">
+<meta property="og:url" content="http://yoursite.com/2018/11/20/9-2自己撰寫helper包裝html/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在剛剛的專案當中，顯示Post 的程式碼如下：1&amp;lt;%= post.content %&amp;gt; %&amp;gt; 隨著專案變遷，這樣的程式碼，可能會依需求改成：（需要內容斷行）1&amp;lt;%= simple_format(post.content) %&amp;gt; %&amp;gt; 之後又改成（只顯示頭一百字）1&amp;lt;%= simple_format(truncate(post.content, lenth:">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-21T06:30:27.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9.2 自己撰寫helper包裝html">
+<meta name="twitter:description" content="在剛剛的專案當中，顯示Post 的程式碼如下：1&amp;lt;%= post.content %&amp;gt; %&amp;gt; 隨著專案變遷，這樣的程式碼，可能會依需求改成：（需要內容斷行）1&amp;lt;%= simple_format(post.content) %&amp;gt; %&amp;gt; 之後又改成（只顯示頭一百字）1&amp;lt;%= simple_format(truncate(post.content, lenth:">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-9-2自己撰寫helper包裝html" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/20/9-2自己撰寫helper包裝html/" class="article-date">
+  <time datetime="2018-11-20T10:30:01.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      9.2 自己撰寫helper包裝html
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在剛剛的專案當中，顯示Post 的程式碼如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= post.content %&gt; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>隨著專案變遷，這樣的程式碼，可能會依需求改成：（需要內容斷行）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= simple_format(post.content) %&gt; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>之後又改成（只顯示頭一百字）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= simple_format(truncate(post.content, lenth: 30)) %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>而麻煩的是，這樣類似的內容，常常在專案出現。每當需求變更，開發者就需要去找出來，<br>有十個地方，就需要改十遍，很是麻煩。</p>
+<p>Helper 就是用在這樣的地方</p>
+<p>一開始就設計一個 Helper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= render_post_content(post) %&gt;  (這是放在 views 裡面的)</span><br></pre></td></tr></table></figure></p>
+<p>然後打開 app/helpers/posts_helper.rb</p>
+<figure class="highlight html"><figcaption><span>app/helpers/posts_helper.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def render_post_content(post)</span><br><span class="line">  simple_format(truncate(post.content, lenth: 100))</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>以後對 @post.content 有任何的異動，只要改 helper 裡的東西就好<br>不用再到各個有放 @post.content 的檔案一一修改</p>
+</li>
+<li><p>helper 是全域的變數，即使寫在 posts_helper.rb 裡面<br>在其他地方像是 groups  /  account/groups  /  account/posts<br>都能呼叫得出來</p>
+</li>
+<li><p>還有一個好處就是把 view 單純化，把所有運作邏輯全部轉到 helper 裡面<br>在未來需要維護的時候，會一整個非常乾淨好讀</p>
+</li>
+</ul>
+<h3 id="解说"><a href="#解说" class="headerlink" title="解说"></a>解说</h3><p><strong>自制的 Helper 是什么意思？</strong></p>
+<ul>
+<li>Helper 就是用 Ruby 写的“View 装饰的小方法”，你也可以自己定义</li>
+<li>自制 Helper 都会放在 app/helpers 下</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/20/9-2自己撰寫helper包裝html/" data-id="cjor7t5cm00138g6c58t2ni5v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/20/9-3使用partial整理html/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          9.3 使用partial整理html
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/20/9-1使用系統helper整理code-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">9.1 使用系統 helper 整理 code</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
