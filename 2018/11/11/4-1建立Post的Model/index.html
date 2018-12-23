@@ -7,19 +7,19 @@
   
   <title>4.1 建立Post的Model | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch05因为我们现在要实作第五章的内容，新增一个 branch 把实作内容集中在 ch05 是比较合理的。将来回顾就可以比">
+  <meta name="description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch04因为我们现在要实作第四章的内容，新增一个 branch 把实作内容集中在 ch04 是比较合理的。将来回顾就可以比">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4.1 建立Post的Model">
 <meta property="og:url" content="http://yoursite.com/2018/11/11/4-1建立Post的Model/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch05因为我们现在要实作第五章的内容，新增一个 branch 把实作内容集中在 ch05 是比较合理的。将来回顾就可以比">
+<meta property="og:description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch04因为我们现在要实作第四章的内容，新增一个 branch 把实作内容集中在 ch04 是比较合理的。将来回顾就可以比">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx4j6cqudzj31b20iagq9.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx4kh5yqzqj31kw0j1tb9.jpg">
-<meta property="og:updated_time" content="2018-11-11T16:03:03.737Z">
+<meta property="og:updated_time" content="2018-12-23T13:27:51.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4.1 建立Post的Model">
-<meta name="twitter:description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch05因为我们现在要实作第五章的内容，新增一个 branch 把实作内容集中在 ch05 是比较合理的。将来回顾就可以比">
+<meta name="twitter:description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch04因为我们现在要实作第四章的内容，新增一个 branch 把实作内容集中在 ch04 是比较合理的。将来回顾就可以比">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx4j6cqudzj31b20iagq9.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -94,8 +94,8 @@
 <li>文章 Post 要有“内容”、“所属讨论群组”、“叙述”</li>
 <li>发文网址是在 <a href="http://localhost:3000/groups/1/posts/new" target="_blank" rel="noopener">http://localhost:3000/groups/1/posts/new</a></li>
 </ul>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch05"><a href="#Step-0-git-checkout-b-ch05" class="headerlink" title="Step 0. git checkout -b ch05"></a>Step 0. git checkout -b ch05</h2><p>因为我们现在要实作第五章的内容，新增一个 branch 把实作内容集中在 ch05 是比较合理的。将来回顾就可以比较清楚 在 ch05 我们做了哪一些练习。</p>
-<p><code>git checkout -b ch05</code></p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="Step-0-git-checkout-b-ch04"><a href="#Step-0-git-checkout-b-ch04" class="headerlink" title="Step 0. git checkout -b ch04"></a>Step 0. git checkout -b ch04</h2><p>因为我们现在要实作第四章的内容，新增一个 branch 把实作内容集中在 ch04 是比较合理的。将来回顾就可以比较清楚 在 ch04 我们做了哪一些练习。</p>
+<p><code>git checkout -b ch04</code></p>
 <h2 id="Step-1-建立文章-Post-的-Model"><a href="#Step-1-建立文章-Post-的-Model" class="headerlink" title="Step 1 : 建立文章 Post 的 Model"></a>Step 1 : 建立文章 Post 的 Model</h2><ul>
 <li><p><strong>文章要有「內容」</strong><br>所以我們在這裡要建立一個 model: Post（文章）。文章內容必須要有 content （內容），並且要紀錄屬於哪個群組 group_id</p>
 </li>
@@ -137,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjq0c74rs000kmx6c4lnzxwr8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjq0xh7gw000o396ccy6dhlhc" class="article-share-link">Share</a>
       
       
     </footer>
