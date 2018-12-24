@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-0實作使用者功能/" data-id="cjq29aem3000nwc6cj833o8ma" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-0實作使用者功能/" data-id="cjq29pa2c000mzh6cxs54r7gv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-1安装登入系统/" data-id="cjq29aem4000owc6cjshk05vi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-1安装登入系统/" data-id="cjq29pa2e000ozh6cfq323kwy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-2实际登入登出注册账号/" data-id="cjq29aem5000pwc6cxxeki3jm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-2实际登入登出注册账号/" data-id="cjq29pa2f000pzh6ca7l3vkf4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -294,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjq29aem7000qwc6cwlmgpr2e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjq29pa2g000qzh6c1bqod1uy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -346,7 +346,7 @@
 <figure class="highlight html"><figcaption><span>app/controllers/group_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">edit</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group.user</span> = <span class="string">current_user</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.new(group_params)</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group.user</span> = <span class="string">current_user</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">update</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group.user</span> = <span class="string">current_user</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">destroy</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.find(params[:id])</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group.user</span> = <span class="string">current_user</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="Step-4-git-储存"><a href="#Step-4-git-储存" class="headerlink" title="Step 4 : git 储存"></a>Step 4 : git 储存</h2><p><code>git add .</code><br><code>git commit -m &quot;add user_id to group&quot;</code></p>
 <h2 id="Step-5-修改-group-列表，将-user-的名字列上去"><a href="#Step-5-修改-group-列表，将-user-的名字列上去" class="headerlink" title="Step 5 : 修改 group 列表，将 user 的名字列上去"></a>Step 5 : 修改 group 列表，将 user 的名字列上去</h2><p>修改 app/views/groups/index.html.erb 然后把 Creator 的资讯加进去。</p>
-<figure class="highlight html"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>#<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>Description<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">td</span>&gt;</span>Creator <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>#<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">group.title</span>, <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.description</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.user.email</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>#<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>Description<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">td</span>&gt;</span>Creator <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>#<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>(<span class="attr">group.title</span>, <span class="attr">group_path</span>(<span class="attr">group</span>)) %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.description</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">td</span>&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">group.user.name</span> %&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>做完之后，打开 <a href="http://localhost:3000/" target="_blank" rel="noopener">http://localhost:3000/</a> 会发现，首页怎么爆炸了。<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx91k61lv4j30ll0cntaj.jpg" alt=""></p>
 <p>别担心，这是因为我们之前创造的“群组”都是“无主”的。只要把这些“无主”的群组，通通删掉就行了。既然我们也进不去首页删群组了，我们就从 console 删吧。</p>
 <h2 id="Step-6-删除所有“无主”的群组"><a href="#Step-6-删除所有“无主”的群组" class="headerlink" title="Step 6: 删除所有“无主”的群组"></a>Step 6: 删除所有“无主”的群组</h2><p>执行<br><code>rails console</code>            </p>
@@ -363,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/15/6-1Group与User产生关联/" data-id="cjq29aem9000rwc6ci2xrto32" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/15/6-1Group与User产生关联/" data-id="cjq29pa2i000rzh6czxu71oo9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -426,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjq29aema000swc6cwucl2sj3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjq29pa2j000szh6clb9u57ph" class="article-share-link">Share</a>
       
       
     </footer>
@@ -487,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjq29aemb000twc6catox7qf0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjq29pa2k000tzh6cwn3ldr7s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-0创建社团/" data-id="cjq29aemc000uwc6cpvgusr3f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-0创建社团/" data-id="cjq29pa2l000uzh6cjaebzizm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -598,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-1建立讨论版成员及设定/" data-id="cjq29aemd000vwc6ccaz5dkw6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-1建立讨论版成员及设定/" data-id="cjq29pa2m000vzh6c6etinaup" class="article-share-link">Share</a>
       
       
     </footer>
@@ -660,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-2判断“是否群组成员”/" data-id="cjq29aemh000wwc6c060iy7qt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-2判断“是否群组成员”/" data-id="cjq29pa2n000wzh6cww4m9doc" class="article-share-link">Share</a>
       
       
     </footer>
