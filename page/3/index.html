@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-0實作使用者功能/" data-id="cjq0xm2f8000m616czhgjzica" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-0實作使用者功能/" data-id="cjq23zxba000nhx6czgganw73" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-1安装登入系统/" data-id="cjq0xm2f9000n616cthtdxelc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-1安装登入系统/" data-id="cjq23zxbc000ohx6c6veeorye" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/5-2实际登入登出注册账号/" data-id="cjq0xm2fb000o616cih9kilf9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/5-2实际登入登出注册账号/" data-id="cjq23zxbd000phx6cgrsip6i6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -271,6 +271,9 @@
 <p>現在還只是前端的部分完成，後端還要再加一個設定，才能讓 name 輸入的值真正存到資料庫裡面<br>(還記得前面說的 <a href="http://rails101s.logdown.com/posts/211391-strong-parameters" target="_blank" rel="noopener">strong_params</a> 嗎？)<br><br></p>
 <h2 id="Step-3-加入-strong-parameters-與-devise-整合的-hack"><a href="#Step-3-加入-strong-parameters-與-devise-整合的-hack" class="headerlink" title="Step 3: 加入 strong_parameters 與 devise 整合的 hack"></a>Step 3: 加入 strong_parameters 與 devise 整合的 hack</h2><p>打開 app/controller/application_controller</p>
 <figure class="highlight html"><figcaption><span>app/controller/application_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class ApplicationController <span class="tag">&lt; <span class="attr">ActionController::Base</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">before_filter</span> <span class="attr">:configure_permitted_parameters</span>, <span class="attr">if:</span> <span class="attr">:devise_controller</span>?</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+  <span class="attr">protected</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+  <span class="attr">def</span> <span class="attr">configure_permitted_parameters</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">devise_parameter_sanitizer.for</span>(<span class="attr">:sign_up</span>) &#123; |<span class="attr">u</span>| <span class="attr">u.permit</span>(<span class="attr">:name</span>, <span class="attr">:email</span>, <span class="attr">:password</span>, <span class="attr">:password_confirmation</span>) &#125;</span></span><br><span class="line"><span class="tag">+  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<p>如果出现<code>undefined method ‘for’ for Devise::ParameterSanitizer</code>的问题</p>
+<p>尝试下面方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">devise_parameter_sanitizer.permit(:sign_up) &#123; |u| u.permit(:name, :email, :password, :password_confirmation) &#125;</span><br><span class="line">把 .for 改为 .permit</span><br></pre></td></tr></table></figure>
 <p>這樣註冊新會員功能就完成了， 請新建立一個測試用帳號 來測試功能<br><br></p>
 <h2 id="Step-4-navbar-上的-hi-email-改成-hi-name"><a href="#Step-4-navbar-上的-hi-email-改成-hi-name" class="headerlink" title="Step 4: navbar 上的 hi! email 改成 hi! name"></a>Step 4: navbar 上的 hi! email 改成 hi! name</h2><p>既然我們都能讓會員取名字了， navbar 上的 greeting 也該改成 name 吧？</p>
 <p>打開 <code>app/views/common/_navbar.html.erb</code></p>
@@ -286,12 +289,12 @@
 <figure class="highlight html"><figcaption><span>app/views/devise/registrations/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-inputs"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:email</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">autofocus:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">+   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:name</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">hint:</span> ("#&#123;@<span class="attr">minimum_password_length</span>&#125; <span class="attr">characters</span> <span class="attr">minimum</span>" <span class="attr">if</span> @<span class="attr">validatable</span>) %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password_confirmation</span>, <span class="attr">required:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>也有可能你的 app/views/devise/registrations/edit.html.erb 长这样：<br><figure class="highlight html"><figcaption><span>app/views/devise/registrations/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-inputs"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:email</span>, <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">autofocus:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">+     <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:name</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">devise_mapping.confirmable</span>? &amp;&amp; <span class="attr">resource.pending_reconfirmation</span>? %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Currently waiting confirmation for: <span class="tag">&lt;<span class="name">%=</span> <span class="attr">resource.unconfirmed_email</span> %&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password</span>, <span class="attr">autocomplete:</span> "<span class="attr">off</span>", <span class="attr">hint:</span> "<span class="attr">leave</span> <span class="attr">it</span> <span class="attr">blank</span> <span class="attr">if</span> <span class="attr">you</span> <span class="attr">don</span>'<span class="attr">t</span> <span class="attr">want</span> <span class="attr">to</span> <span class="attr">change</span> <span class="attr">it</span>", <span class="attr">required:</span> <span class="attr">false</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:password_confirmation</span>, <span class="attr">required:</span> <span class="attr">false</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">f.input</span> <span class="attr">:current_password</span>, <span class="attr">hint:</span> "<span class="attr">we</span> <span class="attr">need</span> <span class="attr">your</span> <span class="attr">current</span> <span class="attr">password</span> <span class="attr">to</span> <span class="attr">confirm</span> <span class="attr">your</span> <span class="attr">changes</span>", <span class="attr">required:</span> <span class="attr">true</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx6i8tu2f0j31kw0xaaes.jpg" alt=""></p>
-<h2 id="Step-6-git存档"><a href="#Step-6-git存档" class="headerlink" title="Step 6: git存档"></a>Step 6: git存档</h2><p><code>git add .</code><br><code>git commit -m &quot;customize name of account&quot;</code></p>
+<h2 id="Step-6-git存档"><a href="#Step-6-git存档" class="headerlink" title="Step 6: git存档"></a>Step 6: git存档</h2><p><code>git add .</code><br><code>git commit -m &quot;customize name for account&quot;</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjq0xm2fc000p616ces75vo5x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/13/5-3客制化Name栏位/" data-id="cjq23zxbl000thx6c73vk6ibe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -360,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/15/6-1Group与User产生关联/" data-id="cjq0xm2fd000r616c1qrftvx7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/15/6-1Group与User产生关联/" data-id="cjq23zxbf000qhx6cl3spkym4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -423,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjq0xm2fe000s616cs1gog9l1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/15/6-2仅创始者可修改删除Group/" data-id="cjq23zxbg000rhx6cfmyu2sfv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -484,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjq0xm2fi000t616cpnhbjxzj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/16/6-3仅创始者可修改删除Post/" data-id="cjq23zxbh000shx6csmej9drp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -527,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-0创建社团/" data-id="cjq0xm2fj000u616c02zs3h7d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-0创建社团/" data-id="cjq23zxbm000uhx6c8xivuitr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -595,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-1建立讨论版成员及设定/" data-id="cjq0xm2fj000v616cmocnmrup" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-1建立讨论版成员及设定/" data-id="cjq23zxbn000vhx6c2ws1nor7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -657,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/18/7-2判断“是否群组成员”/" data-id="cjq0xm2fk000w616c5kmv9uhv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/18/7-2判断“是否群组成员”/" data-id="cjq23zxbn000whx6ce2ux2jgb" class="article-share-link">Share</a>
       
       
     </footer>
