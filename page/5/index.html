@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/20/10-1用seed-rb档自动建立资料库/" data-id="cjq4y5xi50005hh6c6tnz7scd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/20/10-1用seed-rb档自动建立资料库/" data-id="cjq4z3grk0004w26cqyr7j25i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -186,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/21/10-2countercache优化效能/" data-id="cjq4y5xik000dhh6cllv194sb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/21/10-2countercache优化效能/" data-id="cjq4z3grr0008w26c7ourq8gt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -230,7 +230,7 @@
 <li>将 <code>gem &#39;sqlite3&#39;</code> 贴到 <code>group :development</code> 内</li>
 <li>添加<code>gem &#39;pg&#39;</code></li>
 </ul>
-<figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    gem 'rails', '~&gt; 5.0.7'</span><br><span class="line">    # Use sqlite3 as the database for Active Record</span><br><span class="line">-   gem 'sqlite3'</span><br><span class="line">    # Use Puma as the app server</span><br><span class="line">    gem 'puma', '~&gt; 3.0'</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    group :development, :test do</span><br><span class="line">    gem 'byebug', platform: :mri</span><br><span class="line">+   gem 'sqlite3'</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">+   group :production do</span><br><span class="line">+   gem 'pg'</span><br><span class="line">+   end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    gem 'rails', '~&gt; 5.0.7'</span><br><span class="line">    # Use sqlite3 as the database for Active Record</span><br><span class="line">-   gem 'sqlite3'</span><br><span class="line">    # Use Puma as the app server</span><br><span class="line">    gem 'puma', '~&gt; 3.0'</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    group :development, :test do</span><br><span class="line">      gem 'byebug', platform: :mri</span><br><span class="line">+     gem 'sqlite3'</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">+   group :production do</span><br><span class="line">+     gem 'pg'</span><br><span class="line">+   end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="执行："><a href="#执行：" class="headerlink" title="执行："></a>执行：</h3><p><code>bundle install</code></p>
 <h2 id="先commit，建立一个还原点"><a href="#先commit，建立一个还原点" class="headerlink" title="先commit，建立一个还原点"></a>先commit，建立一个还原点</h2><p><code>git add .</code><br><code>git commit -m &quot;deploy to GitHub and change Gemfile&quot;</code></p>
 <h2 id="登入-Heroku-："><a href="#登入-Heroku-：" class="headerlink" title="登入 Heroku ："></a>登入 Heroku ：</h2><ul>
@@ -250,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/21/11-1上传githubANDheroku/" data-id="cjq4y5xi60006hh6cveyhme8k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/21/11-1上传githubANDheroku/" data-id="cjq4z3gs7000gw26cxje4u0bc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,11 +282,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="经过我很长一段时间的练习Rails101之后，最快速的学习心得就是——打十遍。。。"><a href="#经过我很长一段时间的练习Rails101之后，最快速的学习心得就是——打十遍。。。" class="headerlink" title="经过我很长一段时间的练习Rails101之后，最快速的学习心得就是——打十遍。。。"></a>经过我很长一段时间的练习Rails101之后，最快速的学习心得就是——打十遍。。。</h1>
+        <h1 id="经过我很长一段时间的练习Rails101之后，最快速的学习方法就是——打十遍。。。"><a href="#经过我很长一段时间的练习Rails101之后，最快速的学习方法就是——打十遍。。。" class="headerlink" title="经过我很长一段时间的练习Rails101之后，最快速的学习方法就是——打十遍。。。"></a>经过我很长一段时间的练习Rails101之后，最快速的学习方法就是——打十遍。。。</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/05/hello-world/" data-id="cjq4y5xjb0016hh6cxqlsn54w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/05/hello-world/" data-id="cjq4z3gt00014w26ctqpl67ef" class="article-share-link">Share</a>
       
       
     </footer>

@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fxfvpq4mdej30zc0hodjk.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fxfw9hpt1rj312204kt9i.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fxfwigu2fpj31vw0jawgv.jpg">
-<meta property="og:updated_time" content="2018-11-21T13:39:31.284Z">
+<meta property="og:updated_time" content="2018-12-26T09:06:28.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11.1 上传 github &amp; heroku">
 <meta name="twitter:description" content="建立新分支因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch11 是比较合理的。将来回顾就可以比较清楚 在 ch11 我们做了哪一些练习。 git checkout -b ch11 新建git新专案 复制那两行代码 放到终端跑 推送到GitHub：git push --all origin  再然后： 修改Gemfile 将 gem &amp;#39;sqlite3&amp;#39;">
@@ -105,7 +105,7 @@
 <li>将 <code>gem &#39;sqlite3&#39;</code> 贴到 <code>group :development</code> 内</li>
 <li>添加<code>gem &#39;pg&#39;</code></li>
 </ul>
-<figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    gem 'rails', '~&gt; 5.0.7'</span><br><span class="line">    # Use sqlite3 as the database for Active Record</span><br><span class="line">-   gem 'sqlite3'</span><br><span class="line">    # Use Puma as the app server</span><br><span class="line">    gem 'puma', '~&gt; 3.0'</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    group :development, :test do</span><br><span class="line">    gem 'byebug', platform: :mri</span><br><span class="line">+   gem 'sqlite3'</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">+   group :production do</span><br><span class="line">+   gem 'pg'</span><br><span class="line">+   end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">    gem 'rails', '~&gt; 5.0.7'</span><br><span class="line">    # Use sqlite3 as the database for Active Record</span><br><span class="line">-   gem 'sqlite3'</span><br><span class="line">    # Use Puma as the app server</span><br><span class="line">    gem 'puma', '~&gt; 3.0'</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">    group :development, :test do</span><br><span class="line">      gem 'byebug', platform: :mri</span><br><span class="line">+     gem 'sqlite3'</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">+   group :production do</span><br><span class="line">+     gem 'pg'</span><br><span class="line">+   end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="执行："><a href="#执行：" class="headerlink" title="执行："></a>执行：</h3><p><code>bundle install</code></p>
 <h2 id="先commit，建立一个还原点"><a href="#先commit，建立一个还原点" class="headerlink" title="先commit，建立一个还原点"></a>先commit，建立一个还原点</h2><p><code>git add .</code><br><code>git commit -m &quot;deploy to GitHub and change Gemfile&quot;</code></p>
 <h2 id="登入-Heroku-："><a href="#登入-Heroku-：" class="headerlink" title="登入 Heroku ："></a>登入 Heroku ：</h2><ul>
@@ -125,7 +125,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/21/11-1上传githubANDheroku/" data-id="cjq4y5xi60006hh6cveyhme8k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/21/11-1上传githubANDheroku/" data-id="cjq4z3gs7000gw26cxje4u0bc" class="article-share-link">Share</a>
       
       
     </footer>
