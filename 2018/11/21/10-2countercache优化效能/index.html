@@ -7,19 +7,19 @@
   
   <title>10.2 counter cache 优化效能 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="counter cache的配置counter cache主要是用来优化数据库存查询的 在执行语句group.posts.count时，服务器log信息如下： (点击“My Groups”，然后后台会显示) 出现了很多个count(*)，可是 count(*)是很费服务器的效能的，如果数据量足够的时候，影响是非常大的 步骤之前是这样的：app/models/group.rb123class Gro">
+  <meta name="description" content="counter cache的配置counter cache主要是用来优化数据库存查询的 在执行语句group.posts.count时，服务器log信息如下： (点击“My Groups”，然后后台会显示) 出现了很多个count(*)，可是 count(*)是很费服务器的效能的，如果数据量足够的时候，影响是非常大的 步骤之前是这样的：app/models/post.rb123class Post">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10.2 counter cache 优化效能">
 <meta property="og:url" content="http://yoursite.com/2018/11/21/10-2countercache优化效能/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="counter cache的配置counter cache主要是用来优化数据库存查询的 在执行语句group.posts.count时，服务器log信息如下： (点击“My Groups”，然后后台会显示) 出现了很多个count(*)，可是 count(*)是很费服务器的效能的，如果数据量足够的时候，影响是非常大的 步骤之前是这样的：app/models/group.rb123class Gro">
+<meta property="og:description" content="counter cache的配置counter cache主要是用来优化数据库存查询的 在执行语句group.posts.count时，服务器log信息如下： (点击“My Groups”，然后后台会显示) 出现了很多个count(*)，可是 count(*)是很费服务器的效能的，如果数据量足够的时候，影响是非常大的 步骤之前是这样的：app/models/post.rb123class Post">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxfqqn5b7gj318c0outhz.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxfu98vtkzj316j0u04br.jpg">
-<meta property="og:updated_time" content="2018-11-21T10:13:52.619Z">
+<meta property="og:updated_time" content="2018-12-26T08:32:28.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10.2 counter cache 优化效能">
-<meta name="twitter:description" content="counter cache的配置counter cache主要是用来优化数据库存查询的 在执行语句group.posts.count时，服务器log信息如下： (点击“My Groups”，然后后台会显示) 出现了很多个count(*)，可是 count(*)是很费服务器的效能的，如果数据量足够的时候，影响是非常大的 步骤之前是这样的：app/models/group.rb123class Gro">
+<meta name="twitter:description" content="counter cache的配置counter cache主要是用来优化数据库存查询的 在执行语句group.posts.count时，服务器log信息如下： (点击“My Groups”，然后后台会显示) 出现了很多个count(*)，可是 count(*)是很费服务器的效能的，如果数据量足够的时候，影响是非常大的 步骤之前是这样的：app/models/post.rb123class Post">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxfqqn5b7gj318c0outhz.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -93,8 +93,7 @@
 <p>在执行语句group.posts.count时，服务器log信息如下：</p>
 <p>(点击“<strong>My Groups</strong>”，然后后台会显示)<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxfqqn5b7gj318c0outhz.jpg" alt=""></p>
 <p>出现了很多个<code>count(*)</code>，可是 <code>count(*)</code>是很费服务器的效能的，如果数据量足够的时候，影响是非常大的</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>之前是这样的：<br><figure class="highlight html"><figcaption><span>app/models/group.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Group <span class="tag">&lt; <span class="attr">ApplicationRecord</span></span></span><br><span class="line"><span class="tag">  <span class="attr">has_many</span> <span class="attr">:posts</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><figcaption><span>app/models/post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Post <span class="tag">&lt; <span class="attr">ApplicationRecord</span></span></span><br><span class="line"><span class="tag">  <span class="attr">belongs_to</span> <span class="attr">:group</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>之前是这样的：<br><figure class="highlight html"><figcaption><span>app/models/post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Post <span class="tag">&lt; <span class="attr">ApplicationRecord</span></span></span><br><span class="line"><span class="tag">  <span class="attr">belongs_to</span> <span class="attr">:group</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure></p>
 <h2 id="Step-1-在post-rb中-belongs-to的一方-，添加counter-cache-true"><a href="#Step-1-在post-rb中-belongs-to的一方-，添加counter-cache-true" class="headerlink" title="Step 1: 在post.rb中(belongs_to的一方)，添加counter_cache: true"></a>Step 1: 在post.rb中(belongs_to的一方)，添加<code>counter_cache: true</code></h2><p>即把之前的belongs_to :group这一行修改为：<br><figure class="highlight html"><figcaption><span>app/models/post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Post <span class="tag">&lt; <span class="attr">ApplicationRecord</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">-</span>  <span class="attr">belongs_to</span> <span class="attr">:group</span></span></span><br><span class="line"><span class="tag">+  <span class="attr">belongs_to</span> <span class="attr">:group</span>, <span class="attr">counter_cache:</span> <span class="attr">true</span></span></span><br><span class="line"><span class="tag"><span class="attr">...</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure></p>
 <h2 id="Step-2-在groups表-即has-many的一方-中增加一个posts-count栏位"><a href="#Step-2-在groups表-即has-many的一方-中增加一个posts-count栏位" class="headerlink" title="Step 2: 在groups表(即has_many的一方)中增加一个posts_count栏位"></a>Step 2: 在groups表(即has_many的一方)中增加一个<code>posts_count</code>栏位</h2><ul>
 <li><p>执行<br><code>rails g migration add_posts_count_to_group</code></p>
@@ -121,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/21/10-2countercache优化效能/" data-id="cjq2en9n00007kv6cvelnerwn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/21/10-2countercache优化效能/" data-id="cjq4y5xik000dhh6cllv194sb" class="article-share-link">Share</a>
       
       
     </footer>
