@@ -7,17 +7,17 @@
   
   <title>9.4 使用 scope 整理 query | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在上一章我們在設計了一行程式碼，讓文章永遠按照最新的時間降序排列 app/controllers/account/posts_controller.rb1234567......  def index    @posts = current_user.posts.order(&quot;updated_at DESC&quot;)  end......  1.order(&amp;quot;updated_at DESC&amp;q">
+  <meta name="description" content="在上一章我們在設計了一行程式碼，讓文章永遠按照最新的時間降序排列 app/controllers/account/posts_controller.rb1234567......  def index    @posts = current_user.posts.order(&quot;updated_at DESC&quot;)  end......  .order(&amp;quot;updated_at DESC&amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="9.4 使用 scope 整理 query">
 <meta property="og:url" content="http://yoursite.com/2018/11/20/9-4使用scope整理query/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在上一章我們在設計了一行程式碼，讓文章永遠按照最新的時間降序排列 app/controllers/account/posts_controller.rb1234567......  def index    @posts = current_user.posts.order(&quot;updated_at DESC&quot;)  end......  1.order(&amp;quot;updated_at DESC&amp;q">
+<meta property="og:description" content="在上一章我們在設計了一行程式碼，讓文章永遠按照最新的時間降序排列 app/controllers/account/posts_controller.rb1234567......  def index    @posts = current_user.posts.order(&quot;updated_at DESC&quot;)  end......  .order(&amp;quot;updated_at DESC&amp;qu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-20T13:53:36.380Z">
+<meta property="og:updated_time" content="2018-12-30T09:03:02.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="9.4 使用 scope 整理 query">
-<meta name="twitter:description" content="在上一章我們在設計了一行程式碼，讓文章永遠按照最新的時間降序排列 app/controllers/account/posts_controller.rb1234567......  def index    @posts = current_user.posts.order(&quot;updated_at DESC&quot;)  end......  1.order(&amp;quot;updated_at DESC&amp;q">
+<meta name="twitter:description" content="在上一章我們在設計了一行程式碼，讓文章永遠按照最新的時間降序排列 app/controllers/account/posts_controller.rb1234567......  def index    @posts = current_user.posts.order(&quot;updated_at DESC&quot;)  end......  .order(&amp;quot;updated_at DESC&amp;qu">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -89,8 +89,7 @@
         <p>在上一章我們在設計了一行程式碼，<br>讓文章永遠按照最新的時間降序排列</p>
 <figure class="highlight html"><figcaption><span>app/controllers/account/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line">  def index</span><br><span class="line">    @posts = current_user.posts.order("updated_at DESC")</span><br><span class="line">  end</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.order(&quot;updated_at DESC&quot;)</span><br></pre></td></tr></table></figure>
-<p>其實是一段可能會很常用到的程式碼</p>
+<p><code>.order(&quot;updated_at DESC&quot;)</code><br>其實是一段可能會很常用到的程式碼</p>
 <p>既然能在 View 裡面用 helper 跟 partial 整理<br>在 controller 當然也能用 scope 整理</p>
 <p>打開 app/models/post.rb</p>
 <figure class="highlight html"><figcaption><span>app/models/post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Post <span class="tag">&lt; <span class="attr">ActiveRecord::Base</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">scope</span> <span class="attr">:recent</span>, <span class="attr">-</span>&gt;</span> &#123; order("updated_at DESC") &#125;</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
@@ -101,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/20/9-4使用scope整理query/" data-id="cjq7r4ddm0017t96cyrntuz1i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/20/9-4使用scope整理query/" data-id="cjqao3m8r0016ey6c0gz8rf8k" class="article-share-link">Share</a>
       
       
     </footer>

@@ -94,7 +94,7 @@
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx324bpqrnj31kw0k9dii.jpg" alt=""><br>  <br><br><strong>目前還只是個表單畫面，無法將資料送出後成功建立出一筆討論版的資料，缺了 action ‘create’</strong></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx325owgh8j31gg098dh2.jpg" alt=""></p>
 <h2 id="Step-2-接收資料並儲存"><a href="#Step-2-接收資料並儲存" class="headerlink" title="Step 2 : 接收資料並儲存"></a>Step 2 : 接收資料並儲存</h2><h3 id="建立-“create”-action"><a href="#建立-“create”-action" class="headerlink" title="建立 “create” action"></a>建立 “create” action</h3><p>我們要將 <a href="http://localhost:3000/groups/new" target="_blank" rel="noopener">http://localhost:3000/groups/new</a> 裡的表單送出的訊息變成一筆存在資料庫裡的資料</p>
-<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">groups</span> = <span class="string">Group.all</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.new(group_params)</span></span></span><br><span class="line"><span class="tag">+</span></span><br><span class="line"><span class="tag">+   <span class="attr">if</span> @<span class="attr">group.save</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">redirect_to</span> <span class="attr">groups_path</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">else</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">private</span></span></span><br><span class="line"><span class="tag">+</span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">group_params</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">params.require</span>(<span class="attr">:group</span>)<span class="attr">.permit</span>(<span class="attr">:title</span>, <span class="attr">:description</span>)</span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class GroupsController <span class="tag">&lt; <span class="attr">ApplicationController</span></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">index</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">groups</span> = <span class="string">Group.all</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">  <span class="attr">def</span> <span class="attr">new</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">group</span> = <span class="string">Group.new</span></span></span><br><span class="line"><span class="tag">  <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">create</span></span></span><br><span class="line"><span class="tag">+   @<span class="attr">group</span> = <span class="string">Group.new(group_params)</span></span></span><br><span class="line"><span class="tag">+</span></span><br><span class="line"><span class="tag">+   <span class="attr">if</span> @<span class="attr">group.save</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">redirect_to</span> <span class="attr">groups_path</span>, <span class="attr">notice:</span> "新增讨论版成功！"</span></span><br><span class="line"><span class="tag">+   <span class="attr">else</span></span></span><br><span class="line"><span class="tag">+     <span class="attr">render</span> <span class="attr">:new</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">end</span></span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">+ <span class="attr">private</span></span></span><br><span class="line"><span class="tag">+</span></span><br><span class="line"><span class="tag">+ <span class="attr">def</span> <span class="attr">group_params</span></span></span><br><span class="line"><span class="tag">+   <span class="attr">params.require</span>(<span class="attr">:group</span>)<span class="attr">.permit</span>(<span class="attr">:title</span>, <span class="attr">:description</span>)</span></span><br><span class="line"><span class="tag">+ <span class="attr">end</span></span></span><br><span class="line"><span class="tag"><span class="attr">end</span></span></span><br></pre></td></tr></table></figure>
 <p>完成後再送一次即可成功建立資料<br>可以多建幾筆資料測試功能</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx32icfg7wj31kw0fgtbj.jpg" alt=""></p>
 <h3 id="git-存档-1"><a href="#git-存档-1" class="headerlink" title="git 存档"></a>git 存档</h3><p><code>git add .</code><br><code>git commit -m &quot;implement groups#create&quot;</code></p>
@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-2实作讨论群“新增”功能/" data-id="cjq7r4dcq000dt96cwomzr7rv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-2实作讨论群“新增”功能/" data-id="cjqao3m7t000dey6cuwoiatzh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -154,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-3实作讨论群“浏览”功能/" data-id="cjq7r4dcs000ft96cajh4ijsb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-3实作讨论群“浏览”功能/" data-id="cjqao3m7v000eey6c4risx34r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -207,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-4实作讨论群“修改”功能/" data-id="cjq7r4dcr000et96cy3ykxba5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-4实作讨论群“修改”功能/" data-id="cjqao3m7w000fey6ctz4s5nk0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -256,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/3-5实作讨论群“删除“功能/" data-id="cjq7r4dct000gt96cyek7a36n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/3-5实作讨论群“删除“功能/" data-id="cjqao3m7x000gey6cga8h29qk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/" data-id="cjq7r4dcw000it96cdh8p9c4p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/3-6限制“标题为空”的文章/" data-id="cjqao3m7y000hey6cn1pwh4m2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -400,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/3-7解说CRUD与RESTful/" data-id="cjq7r4dcu000ht96cp65g8xkt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/3-7解说CRUD与RESTful/" data-id="cjqao3m7z000iey6c2ggnowrw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -443,7 +443,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-0发表文章Post/" data-id="cjq7r4dcx000jt96cy2xsfpgg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-0发表文章Post/" data-id="cjqao3m81000jey6cr3a8g87i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -523,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjq7r4dcy000kt96coapzh9wi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjqao3m82000key6cywrm268x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -605,7 +605,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-2Post的CRUD/" data-id="cjq7r4dcz000lt96cx8j9m27r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-2Post的CRUD/" data-id="cjqao3m83000ley6c7vibgqi8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -665,7 +665,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/12/4-3用before-action整理重复程式码/" data-id="cjq7r4dd0000mt96c8remn8a4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/12/4-3用before-action整理重复程式码/" data-id="cjqao3m84000mey6chr75wewk" class="article-share-link">Share</a>
       
       
     </footer>
