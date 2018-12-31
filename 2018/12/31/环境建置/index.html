@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>环境建置 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装 Xcode直接在app store中下载 确认安装 Command Line Tools在terminal中输入：xcode-select --install 如何确定已经装好在Terminal视窗输入：xcode-select -p 显示出： /Applications/Xcode.app/Contents/Developer即是成功安装！ 确认安装 Homebrew打开 Homebrew">
+<meta property="og:type" content="article">
+<meta property="og:title" content="环境建置">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/环境建置/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装 Xcode直接在app store中下载 确认安装 Command Line Tools在terminal中输入：xcode-select --install 如何确定已经装好在Terminal视窗输入：xcode-select -p 显示出： /Applications/Xcode.app/Contents/Developer即是成功安装！ 确认安装 Homebrew打开 Homebrew">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyq0vhrazmj30gt0dygq6.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fyq1doubjmj309g0ai0v6.jpg">
+<meta property="og:updated_time" content="2018-12-31T09:07:50.667Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="环境建置">
+<meta name="twitter:description" content="安装 Xcode直接在app store中下载 确认安装 Command Line Tools在terminal中输入：xcode-select --install 如何确定已经装好在Terminal视窗输入：xcode-select -p 显示出： /Applications/Xcode.app/Contents/Developer即是成功安装！ 确认安装 Homebrew打开 Homebrew">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyq0vhrazmj30gt0dygq6.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-环境建置" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/31/环境建置/" class="article-date">
+  <time datetime="2018-12-31T08:39:07.000Z" itemprop="datePublished">2018-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      环境建置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装-Xcode"><a href="#安装-Xcode" class="headerlink" title="安装 Xcode"></a>安装 Xcode</h2><p>直接在app store中下载</p>
+<h2 id="确认安装-Command-Line-Tools"><a href="#确认安装-Command-Line-Tools" class="headerlink" title="确认安装 Command Line Tools"></a>确认安装 Command Line Tools</h2><p>在terminal中输入：<br><code>xcode-select --install</code></p>
+<p>如何确定已经装好<br>在Terminal视窗输入：<br><code>xcode-select -p</code></p>
+<p>显示出： /Applications/Xcode.app/Contents/Developer<br>即是成功安装！</p>
+<h2 id="确认安装-Homebrew"><a href="#确认安装-Homebrew" class="headerlink" title="确认安装 Homebrew"></a>确认安装 Homebrew</h2><p>打开 Homebrew 官方网站：<a href="http://brew.sh/index_zh-tw.html" target="_blank" rel="noopener">http://brew.sh/index_zh-tw.html</a><br>复制里面那行代码，在terminal跑</p>
+<p>发现 homebrew 需要使用先同意 Xcode 的使用者规范<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fyq0vhrazmj30gt0dygq6.jpg" alt=""><br>输入：<code>sudo xcodebuild -license</code> 同意。</p>
+<ul>
+<li>中间会出现很多条文，一直按“空白键”卷到最下页，然后输入 <code>agree</code> 同意。</li>
+</ul>
+<h2 id="在-Homebrew-安装-git"><a href="#在-Homebrew-安装-git" class="headerlink" title="在 Homebrew 安装 git"></a>在 Homebrew 安装 git</h2><p>在 Terminal 视窗输入：<br><code>brew install git</code></p>
+<h2 id="安装-ImageMagick"><a href="#安装-ImageMagick" class="headerlink" title="安装 ImageMagick"></a>安装 ImageMagick</h2><p><code>brew install imagemagick</code></p>
+<h2 id="安装-PostgresSQL"><a href="#安装-PostgresSQL" class="headerlink" title="安装 PostgresSQL"></a>安装 PostgresSQL</h2><p><code>brew install postgresql</code></p>
+<p>安装完毕后：</p>
+<p><code>brew services start postgresql</code> （会确保在你下次开机时，也一并启动资料库）</p>
+<h2 id="确认安装-RVM"><a href="#确认安装-RVM" class="headerlink" title="确认安装 RVM"></a>确认安装 RVM</h2><p>RVM 的官方网址是 <a href="http://rvm.io" target="_blank" rel="noopener">http://rvm.io</a></p>
+<p>官方网站提供的安装指令是：</p>
+<p><code>\curl -L https://get.rvm.io | bash -s stable</code></p>
+<p>安装完输入：<code>source ~/.rvm/scripts/rvm</code> 让 rvm 生效。</p>
+<p>然后安装一个套件</p>
+<p><code>brew install libxml2</code></p>
+<h2 id="确认安装-Ruby"><a href="#确认安装-Ruby" class="headerlink" title="确认安装 Ruby"></a>确认安装 Ruby</h2><p><code>rvm install 2.3.1</code> &lt;== 尾端可选择自己需要的版本 EX: 1.9.3 , 2.1.2 … etc</p>
+<p><code>rvm use 2.3.1 --default</code> 使用 ruby 2.3.1 为预设版本 (可改自己需要的版本)</p>
+<p>安装完以后记得重开 terminal。</p>
+<p><code>rvm list</code> 列出目前已安装的 Ruby 版本。</p>
+<p>指定 RubyGems 来源（参考，如果你人在内地，无法连上再使用这个方法）<br>如果遇到连不太上 <a href="https://rubygems.org。" target="_blank" rel="noopener">https://rubygems.org。</a><br>可以多执行一行：</p>
+<p><code>gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/</code></p>
+<h2 id="确认安装-Rails"><a href="#确认安装-Rails" class="headerlink" title="确认安装 Rails"></a>确认安装 Rails</h2><p>（建议你在连上 vpn 的环境上操作。因为墙是挡掉 rubygems.org 的）</p>
+<p><code>gem install rails -v 5.0.0</code>  (后面的参数是指定版本，预设会抓最新版)</p>
+<h2 id="Atom-Sublime"><a href="#Atom-Sublime" class="headerlink" title="Atom / Sublime"></a>Atom / Sublime</h2><p>在编程的时候，除了输入指令之外，我们还需要能够编辑程序的软件。</p>
+<p>目前市面上有许多各种不同的 Rails 编辑器，<br>这里我们推荐给新手的有两种，可以选择一种安装就可以了：Atom / Sublime</p>
+<h3 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h3><p>一套是由 Github 维护的 Atom <a href="http://atom.io" target="_blank" rel="noopener">http://atom.io</a></p>
+<p>下载后，解压缩，将 atom 拖拉至 “应用程式”即可。</p>
+<h3 id="Sublime"><a href="#Sublime" class="headerlink" title="Sublime"></a>Sublime</h3><p>一套是独立开发者所维护的 Sublime  <a href="https://www.sublimetext.com/" target="_blank" rel="noopener">https://www.sublimetext.com/</a></p>
+<p>下载后，双击 Submlime 打开 dmg, 将 Sublime 拖到应用程式即可</p>
+<h2 id="设定在-Terminal-内可以打开-Atom-与-Sublime"><a href="#设定在-Terminal-内可以打开-Atom-与-Sublime" class="headerlink" title="设定在 Terminal 内可以打开 Atom 与 Sublime"></a>设定在 Terminal 内可以打开 Atom 与 Sublime</h2><p>如何在 Terminal 内可以“用惯用的编辑器”快速打开“目前正在做”的专案（project）呢？</p>
+<p>这个功能叫 Shell commands。这个功能可以帮助你在最短的时间内，开启正在执行的专案程序码档案。</p>
+<p>Atom 内开启这个功能的选项，在左上角的下拉选单里：</p>
+<ul>
+<li><p>Atom 版本<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyq1doubjmj309g0ai0v6.jpg" alt=""></p>
+</li>
+<li><p>Sublime 版<br><code>sudo ln -s &quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/subl</code><br>（会需要输入这台Mac的密码）</p>
+</li>
+</ul>
+<p>未来当我们在制作一个新的专案（project）的时候，就可以透过在Terminal输入指令，让Atom或Sublime自动打开相对应的资料夹。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/31/环境建置/" data-id="cjqc3rik30015dx6ck1y0s2q3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/21/11-1上传githubANDheroku/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">11.1 上传 github &amp; heroku</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/31/环境建置/">环境建置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

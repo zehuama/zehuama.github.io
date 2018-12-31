@@ -62,6 +62,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-环境建置" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/31/环境建置/" class="article-date">
+  <time datetime="2018-12-31T08:39:07.000Z" itemprop="datePublished">2018-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/31/环境建置/">环境建置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装-Xcode"><a href="#安装-Xcode" class="headerlink" title="安装 Xcode"></a>安装 Xcode</h2><p>直接在app store中下载</p>
+<h2 id="确认安装-Command-Line-Tools"><a href="#确认安装-Command-Line-Tools" class="headerlink" title="确认安装 Command Line Tools"></a>确认安装 Command Line Tools</h2><p>在terminal中输入：<br><code>xcode-select --install</code></p>
+<p>如何确定已经装好<br>在Terminal视窗输入：<br><code>xcode-select -p</code></p>
+<p>显示出： /Applications/Xcode.app/Contents/Developer<br>即是成功安装！</p>
+<h2 id="确认安装-Homebrew"><a href="#确认安装-Homebrew" class="headerlink" title="确认安装 Homebrew"></a>确认安装 Homebrew</h2><p>打开 Homebrew 官方网站：<a href="http://brew.sh/index_zh-tw.html" target="_blank" rel="noopener">http://brew.sh/index_zh-tw.html</a><br>复制里面那行代码，在terminal跑</p>
+<p>发现 homebrew 需要使用先同意 Xcode 的使用者规范<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fyq0vhrazmj30gt0dygq6.jpg" alt=""><br>输入：<code>sudo xcodebuild -license</code> 同意。</p>
+<ul>
+<li>中间会出现很多条文，一直按“空白键”卷到最下页，然后输入 <code>agree</code> 同意。</li>
+</ul>
+<h2 id="在-Homebrew-安装-git"><a href="#在-Homebrew-安装-git" class="headerlink" title="在 Homebrew 安装 git"></a>在 Homebrew 安装 git</h2><p>在 Terminal 视窗输入：<br><code>brew install git</code></p>
+<h2 id="安装-ImageMagick"><a href="#安装-ImageMagick" class="headerlink" title="安装 ImageMagick"></a>安装 ImageMagick</h2><p><code>brew install imagemagick</code></p>
+<h2 id="安装-PostgresSQL"><a href="#安装-PostgresSQL" class="headerlink" title="安装 PostgresSQL"></a>安装 PostgresSQL</h2><p><code>brew install postgresql</code></p>
+<p>安装完毕后：</p>
+<p><code>brew services start postgresql</code> （会确保在你下次开机时，也一并启动资料库）</p>
+<h2 id="确认安装-RVM"><a href="#确认安装-RVM" class="headerlink" title="确认安装 RVM"></a>确认安装 RVM</h2><p>RVM 的官方网址是 <a href="http://rvm.io" target="_blank" rel="noopener">http://rvm.io</a></p>
+<p>官方网站提供的安装指令是：</p>
+<p><code>\curl -L https://get.rvm.io | bash -s stable</code></p>
+<p>安装完输入：<code>source ~/.rvm/scripts/rvm</code> 让 rvm 生效。</p>
+<p>然后安装一个套件</p>
+<p><code>brew install libxml2</code></p>
+<h2 id="确认安装-Ruby"><a href="#确认安装-Ruby" class="headerlink" title="确认安装 Ruby"></a>确认安装 Ruby</h2><p><code>rvm install 2.3.1</code> &lt;== 尾端可选择自己需要的版本 EX: 1.9.3 , 2.1.2 … etc</p>
+<p><code>rvm use 2.3.1 --default</code> 使用 ruby 2.3.1 为预设版本 (可改自己需要的版本)</p>
+<p>安装完以后记得重开 terminal。</p>
+<p><code>rvm list</code> 列出目前已安装的 Ruby 版本。</p>
+<p>指定 RubyGems 来源（参考，如果你人在内地，无法连上再使用这个方法）<br>如果遇到连不太上 <a href="https://rubygems.org。" target="_blank" rel="noopener">https://rubygems.org。</a><br>可以多执行一行：</p>
+<p><code>gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/</code></p>
+<h2 id="确认安装-Rails"><a href="#确认安装-Rails" class="headerlink" title="确认安装 Rails"></a>确认安装 Rails</h2><p>（建议你在连上 vpn 的环境上操作。因为墙是挡掉 rubygems.org 的）</p>
+<p><code>gem install rails -v 5.0.0</code>  (后面的参数是指定版本，预设会抓最新版)</p>
+<h2 id="Atom-Sublime"><a href="#Atom-Sublime" class="headerlink" title="Atom / Sublime"></a>Atom / Sublime</h2><p>在编程的时候，除了输入指令之外，我们还需要能够编辑程序的软件。</p>
+<p>目前市面上有许多各种不同的 Rails 编辑器，<br>这里我们推荐给新手的有两种，可以选择一种安装就可以了：Atom / Sublime</p>
+<h3 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h3><p>一套是由 Github 维护的 Atom <a href="http://atom.io" target="_blank" rel="noopener">http://atom.io</a></p>
+<p>下载后，解压缩，将 atom 拖拉至 “应用程式”即可。</p>
+<h3 id="Sublime"><a href="#Sublime" class="headerlink" title="Sublime"></a>Sublime</h3><p>一套是独立开发者所维护的 Sublime  <a href="https://www.sublimetext.com/" target="_blank" rel="noopener">https://www.sublimetext.com/</a></p>
+<p>下载后，双击 Submlime 打开 dmg, 将 Sublime 拖到应用程式即可</p>
+<h2 id="设定在-Terminal-内可以打开-Atom-与-Sublime"><a href="#设定在-Terminal-内可以打开-Atom-与-Sublime" class="headerlink" title="设定在 Terminal 内可以打开 Atom 与 Sublime"></a>设定在 Terminal 内可以打开 Atom 与 Sublime</h2><p>如何在 Terminal 内可以“用惯用的编辑器”快速打开“目前正在做”的专案（project）呢？</p>
+<p>这个功能叫 Shell commands。这个功能可以帮助你在最短的时间内，开启正在执行的专案程序码档案。</p>
+<p>Atom 内开启这个功能的选项，在左上角的下拉选单里：</p>
+<ul>
+<li><p>Atom 版本<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyq1doubjmj309g0ai0v6.jpg" alt=""></p>
+</li>
+<li><p>Sublime 版<br><code>sudo ln -s &quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/subl</code><br>（会需要输入这台Mac的密码）</p>
+</li>
+</ul>
+<p>未来当我们在制作一个新的专案（project）的时候，就可以透过在Terminal输入指令，让Atom或Sublime自动打开相对应的资料夹。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/31/环境建置/" data-id="cjqc3rik30015dx6ck1y0s2q3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-1-0前言Rails101" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/08/1-0前言Rails101/" class="article-date">
@@ -91,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-0前言Rails101/" data-id="cjqao3m710000ey6cb9r6pkdv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/08/1-0前言Rails101/" data-id="cjqc3riis0001dx6c7iemhd4i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-1开始101/" data-id="cjqao3m780001ey6cd3glx06k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/08/1-1开始101/" data-id="cjqc3riiu0002dx6c6m1wyc7z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -179,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/1-2建立新的专案/" data-id="cjqao3m7a0002ey6ca62cyifb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/08/1-2建立新的专案/" data-id="cjqc3riim0000dx6ck7qjajuk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -235,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/09/1-3帮rails专案穿上bootstrap/" data-id="cjqao3m7c0003ey6c06pzbv5d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/09/1-3帮rails专案穿上bootstrap/" data-id="cjqc3riiy0004dx6cngf6olkv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -297,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/09/1-4套用Bootstrap的html样式/" data-id="cjqao3m7e0004ey6cap75if6t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/09/1-4套用Bootstrap的html样式/" data-id="cjqc3riiw0003dx6c9n80pksu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -353,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/1-5制作漂亮的提示讯息/" data-id="cjqao3m7f0005ey6c4ti0cr6y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/1-5制作漂亮的提示讯息/" data-id="cjqc3rij10006dx6c2m9jigh1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -435,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/2-1建立一个讨论群/" data-id="cjqao3m7l0009ey6cjh1hysz0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/2-1建立一个讨论群/" data-id="cjqc3rij60009dx6cyqyuiiti" class="article-share-link">Share</a>
       
       
     </footer>
@@ -479,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/2-2将首页换成讨论群一览表/" data-id="cjqao3m7n000aey6clktb8339" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/2-2将首页换成讨论群一览表/" data-id="cjqc3rijc000cdx6cfeqg4d1a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -524,59 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-0CRUD与RESTful/" data-id="cjqao3m7p000bey6c47z1efyn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-3-1将表单换成Bootstrap的版型" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/10/3-1将表单换成Bootstrap的版型/" class="article-date">
-  <time datetime="2018-11-10T07:58:41.000Z" itemprop="datePublished">2018-11-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/10/3-1将表单换成Bootstrap的版型/">3.1 将表单换成Bootstrap的版型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Step-1-将表单换成-Bootstrap-的版型"><a href="#Step-1-将表单换成-Bootstrap-的版型" class="headerlink" title="Step 1 : 将表单换成 Bootstrap 的版型"></a>Step 1 : 将表单换成 Bootstrap 的版型</h2><p>在 Rails 表單裡面，通常我們是用 <code>form_for</code> 生成表格</p>
-<p>寫這樣的 code</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &lt;%= form_for @group do |f| -%&gt;</span><br><span class="line"></span><br><span class="line">標題  &lt;%= f.text_field :title %&gt; &lt;br&gt;</span><br><span class="line">敘述 &lt;br&gt;  &lt;%= f.text_area :description %&gt; &lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;%= f.submit &quot;Submit&quot;, :disable_with =&gt; &apos;Submiting...&apos; %&gt;</span><br><span class="line">&lt;% end %&gt;</span><br></pre></td></tr></table></figure>
-<p>產生出</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx30ywbvdzj30iv066dft.jpg" alt=""></p>
-<p>背後會生成這樣的原始碼<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;form class=&quot;new_group&quot; id=&quot;new_group&quot; action=&quot;/groups&quot; accept-charset=&quot;UTF-8&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;utf8&quot; type=&quot;hidden&quot; value=&quot;✓&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;authenticity_token&quot; value=&quot;kp/KDToCeIXh0/mPIoGD+PfOJVJ9/GWTwyNn6/CmvVzEoAsYOqCHyC5RBH402cNqcWGAjO6a8+n3M+twgNp5yQ==&quot;&gt;</span><br><span class="line">標題  &lt;input type=&quot;text&quot; name=&quot;group[title]&quot; id=&quot;group_title&quot;&gt; &lt;br&gt;</span><br><span class="line">敘述 &lt;br&gt;  &lt;textarea name=&quot;group[description]&quot; id=&quot;group_description&quot;&gt;&lt;/textarea&gt; &lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;submit&quot; name=&quot;commit&quot; value=&quot;Submit&quot; disable_with=&quot;Submiting...&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Bootstrap-的完美表格"><a href="#Bootstrap-的完美表格" class="headerlink" title="Bootstrap 的完美表格"></a>Bootstrap 的完美表格</h2><p>但是 Bootstrap 有支援這樣的完美表格</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx311flbkbj30m8081dfz.jpg" alt=""></p>
-<p>不過我們如果要用 Rails 內建的 <code>form_for</code> 製作 Bootstrap 的完美表格，就要寫這樣又長又複雜的語法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> &lt;%= form_for @group do |f| -%&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;form-group string optional&quot;&gt;</span><br><span class="line">    &lt;%= f.label &quot;title&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</span><br><span class="line">     &lt;%= f.text_field :title, :class =&gt; &quot;string optional form-control form-control&quot; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">   &lt;div class=&quot;form-group string optional&quot;&gt;</span><br><span class="line">    &lt;%= f.label &quot;description&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</span><br><span class="line">     &lt;%= f.text_area :description, :class =&gt; &quot;string optional form-control form-control&quot; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">  &lt;%= f.submit &quot;Submit&quot;, class: &quot;btn btn-primary&quot;, data: &#123; disable_with: &quot;Submitting...&quot; &#125; %&gt;</span><br><span class="line">&lt;% end -%&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Simple-Form-表單產生器"><a href="#Simple-Form-表單產生器" class="headerlink" title="Simple Form 表單產生器"></a>Simple Form 表單產生器</h2><p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="noopener">SimpleForm</a> 是一套強大的表單產生器，它能自動產生 Bootstrap 的表單版型。在這裡我們將會使用這套 gem 換掉我們未來的所有表單產生方式。</p>
-<h3 id="安裝-simple-form"><a href="#安裝-simple-form" class="headerlink" title="安裝 simple_form"></a>安裝 simple_form</h3><figure class="highlight html"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">source 'https://rubygems.org'</span><br><span class="line"></span><br><span class="line">gem 'bootstrap-sass'</span><br><span class="line"></span><br><span class="line">+ gem "simple_form"</span><br><span class="line"></span><br><span class="line"># Bundle edge Rails instead: gem 'rails', github: 'rails/rails'</span><br><span class="line">gem 'rails', '4.2.0'</span><br><span class="line"></span><br><span class="line">... (略)</span><br></pre></td></tr></table></figure>
-<p>執行 <code>bundle install</code></p>
-<h3 id="安裝-simple-form-for-bootstrap-的設定"><a href="#安裝-simple-form-for-bootstrap-的設定" class="headerlink" title="安裝 simple_form for bootstrap 的設定"></a>安裝 simple_form for bootstrap 的設定</h3><p><code>rails generate simple_form:install --bootstrap</code></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx31cd11x4j31ac0hygp7.jpg" alt=""></p>
-<h3 id="重開-rails-server"><a href="#重開-rails-server" class="headerlink" title="重開 rails server"></a>重開 rails server</h3><p>（注意：裝任何 Gem 都要重開 rails s）</p>
-<p>重開 <code>rails s</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/10/3-1将表单换成Bootstrap的版型/" data-id="cjqao3m7r000cey6c1x03xs7g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/10/3-0CRUD与RESTful/" data-id="cjqc3rija000bdx6cwokp08zh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -609,7 +637,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -620,6 +648,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/31/环境建置/">环境建置</a>
+          </li>
         
           <li>
             <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
@@ -635,10 +667,6 @@
         
           <li>
             <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/20/9-3使用partial整理html/">9.3 使用partial整理html</a>
           </li>
         
       </ul>
