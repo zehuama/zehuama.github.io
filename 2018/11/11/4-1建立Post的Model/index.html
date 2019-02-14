@@ -22,6 +22,10 @@
 <meta name="twitter:description" content="目标在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：  文章 Post 要有“内容”、“所属讨论群组”、“叙述” 发文网址是在 http://localhost:3000/groups/1/posts/new  步骤Step 0. git checkout -b ch04因为我们现在要实作第四章的内容，新增一个 branch 把实作内容集中在 ch04 是比较合理的。将来回顾就可以比">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx4j6cqudzj31b20iagq9.jpg">
   
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
   
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
@@ -45,8 +49,14 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
       </nav>
       <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
@@ -127,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjs4diila000jgd6c09dkmpaz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/11/4-1建立Post的Model/" data-id="cjs4e99jf000inl6c6710fll2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -158,6 +168,59 @@
 
 </section>
         
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/31/环境建置/">环境建置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/11-1上传githubANDheroku/">11.1 上传 github &amp; heroku</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/10-2countercache优化效能/">10.2 counter cache 优化效能</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/10-1用seed-rb档自动建立资料库/">10.1用seed.rb档自动建立资料库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/9-4使用scope整理query/">9.4 使用 scope 整理 query</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
       </div>
       <footer id="footer">
   
@@ -171,11 +234,18 @@
     </div>
     <nav id="mobile-nav">
   
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
 </nav>
     
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>
